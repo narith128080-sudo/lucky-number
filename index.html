@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>១០០០ ទូទាយលេខសំណាង</title>
+    <style>
+        :root {
+            --primary-color: #ffd700;
+            --secondary-color: #00e676;
+            --bg-gradient: linear-gradient(135deg, #0f0c1b, #241442, #0f0c1b);
+            --panel-bg: rgba(255, 255, 255, 0.06);
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Khmer OS Battambang', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            background: var(--panel-bg);
+            padding: 40px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* ១. ចំណងជើងខាងលើបង្អស់ */
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.4rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #b3b3de;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        /* នាឡិកា និងកាលបរិច្ឆេទ */
+        .live-clock-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.1rem;
+            color: #00b0ff;
+            border: 1px solid rgba(0, 176, 255, 0.2);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ប្រអប់បង្ហាញលេខសំណាងធំ */
+        .lucky-display {
+            position: relative;
+            background: radial-gradient(circle, #ffe066 0%, #f5a623 100%);
+            width: 140px;
+            height: 140px;
+            line-height: 140px;
+            border-radius: 50%;
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: #110d26;
+            margin: 0 auto 35px auto;
+            box-shadow: 0 0 30px rgba(245, 166, 35, 0.6), inset 0 -5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+        }
+
+        /* គំនូរជីវចលវិលពេលប្ដូរលេខ */
+        .spin-animation {
+            animation: spinEffect 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes spinEffect {
+            0% { transform: scale(0.3) rotate(-360deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* ផ្នែកបញ្ជីប្រវត្តិ ២៤ ម៉ោង */
+        .history-card {
+            text-align: left;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .history-header h2 {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        .history-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: 8px;
+            border-radius: 10px;
+            border-left: 4px solid #555;
+            transition: all 0.3s ease;
+        }
+
+        /* ហាយឡាយម៉ោងបច្ចុប្បន្ន */
+        .history-item.active-hour {
+            background: rgba(0, 230, 118, 0.12);
+            border-left: 4px solid var(--secondary-color);
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.1);
+        }
+        
+        .history-item.active-hour .num-badge {
+            background: var(--secondary-color);
+            color: #000;
+        }
+
+        .time-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .txt-time {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        .txt-date {
+            font-size: 0.8rem;
+            color: #a0a0c0;
+        }
+
+        .num-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* ប៊ូតុងតេស្តសាកល្បង (Optional - ងាយស្រួលបងចុចតេស្តមើលការប្ដូរលេខ) */
+        .test-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #aaa;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            transition: all 0.2s;
+        }
+        .test-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* កែរចនាបថរបារអូស (Scrollbar) */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>១០០០ ទូទាយលេខសំណាង</h1>
+    <div class="subtitle">ប្រព័ន្ធទូទាយ និងកត់ត្រាលេខសំណាងស្វ័យប្រវត្តិ ២៤ ម៉ោង</div>
+    
+    <div class="live-clock-box" id="liveClock">កំពុងផ្ទុកពេលវេលា...</div>
+    
+    <div class="section-title">🔮 លេខសំណាងក្នុងម៉ោងនេះគឺ៖</div>
+    <div class="lucky-display" id="luckyNumberBox">-</div>
+
+    <div class="history-card">
+        <div class="history-header">
+            <h2>📋 ប្រវត្តិនៃការចេញលេខ (ចាប់ពីម៉ោង 07:00 ព្រឹក)</h2>
+        </div>
+        <div class="history-list" id="historyContainer">
+            </div>
+    </div>
+    
+    <button class="test-btn" onclick="forceNewNumbers()">🔄 ចុចទីនេះដើម្បីសាកល្បងប្ដូរលេខចៃដន្យថ្មីភ្លាមៗ</button>
+</div>
+
+<script>
+    // មុខងារបង្កើតលេខចៃដន្យពី ១ ដល់ ១២ ពិតប្រាកដ
+    function getRandomLuckyNumber() {
+        return Math.floor(Math.random() * 12) + 1;
+    }
+
+    // មុខងារទាញយក ឬ បង្កើតទិន្នន័យលេខសំណាងសម្រាប់ថ្ងៃនេះ
+    function getDailyData() {
+        const todayKey = "lucky_data_" + new Date().toDateString();
+        let data = localStorage.getItem(todayKey);
+        
+        if (data) {
+            return JSON.parse(data);
+        } else {
+            // បើមិនទាន់មានទិន្នន័យសម្រាប់ថ្ងៃនេះទេ បង្កើតបញ្ជីចៃដន្យថ្មីសម្រាប់ទាំង ២៤ ម៉ោង
+            let newData = {};
+            for (let i = 0; i < 24; i++) {
+                let loopHour = (7 + i) % 24; // រាប់ចាប់ពីម៉ោង ៧:០០ ព្រឹកទៅ
+                newData[loopHour] = getRandomLuckyNumber();
+            }
+            localStorage.setItem(todayKey, JSON.stringify(newData));
+            return newData;
+        }
+    }
+
+    // មុខងារដំណើរការប្រព័ន្ធចម្បង
+    let lastCheckedHour = -1;
+    function runLuckySystem() {
+        const now = new Date();
+        const currentHour = now.getHours();
+        
+        // ១. បច្ចុប្បន្នភាពនាឡិការស់រវើក
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        document.getElementById('liveClock').innerText = "📅 " + now.toLocaleDateString('km-KH') + " | ⏰ " + now.toLocaleTimeString('km-KH', timeOptions);
+
+        // ទាញយកទិន្នន័យលេខសំណាងចៃដន្យដែលបានរក្សាទុក
+        const dailyNumbers = getDailyData();
+
+        // ២. បង្ហាញលេខសំណាងធំប្រចាំម៉ោងបច្ចុប្បន្ន
+        const currentLucky = dailyNumbers[currentHour] || 1;
+        const numBox = document.getElementById('luckyNumberBox');
+        
+        if (numBox.innerText != currentLucky) {
+            numBox.innerText = currentLucky;
+            // បន្ថែមគំនូរជីវចលវិលត្រេកអរពេលប្ដូរលេខ
+            numBox.classList.remove('spin-animation');
+            void numBox.offsetWidth; // trigger reflow
+            numBox.classList.add('spin-animation');
+        }
+
+        // ៣. បង្ហាញនិងធ្វើបច្ចុប្បន្នភាពបញ្ជីប្រវត្តិ ២៤ ម៉ោង (ធ្វើតែពេលប្ដូរម៉ោងដើម្បីកុំឱ្យទាក់ទំព័រ)
+        if (currentHour !== lastCheckedHour) {
+            lastCheckedHour = currentHour;
+            renderHistoryList(dailyNumbers, currentHour, now.toLocaleDateString('km-KH'));
+        }
+    }
+
+    // មុខងារគូររបារបញ្ជីប្រវត្តិនៅលើអេក្រង់
+    function renderHistoryList(dailyNumbers, currentHour, formattedDate) {
+        const container = document.getElementById('historyContainer');
+        container.innerHTML = ''; // សម្អាតចាស់
+
+        // បង្កើតបញ្ជី ២៤ ម៉ោងចាប់ពីម៉ោង ៧:០០ ព្រឹក
+        for (let i = 0; i < 24; i++) {
+            let loopHour = (7 + i) % 24;
+            let displayHour = (loopHour < 10 ? '0' : '') + loopHour + ':00';
+            let luckyNum = dailyNumbers[loopHour];
+
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            
+            // បើចំម៉ោងបច្ចុប្បន្ន ហាយឡាយពណ៌បៃតង
+            if (loopHour === currentHour) {
+                item.className += ' active-hour';
+                displayHour += ' (ម៉ោងបច្ចុប្បន្ន)';
+            }
+
+            item.innerHTML = `
+                <div class="time-info">
+                    <span class="txt-time">ម៉ោង ${displayHour}</span>
+                    <span class="txt-date">កាលបរិច្ឆេទ៖ ${formattedDate}</span>
+                </div>
+                <div class="num-badge">${luckyNum}</div>
+            `;
+            container.appendChild(item);
+        }
+    }
+
+    // មុខងារពិសេសសម្រាប់បងចុចតេស្តប្ដូរលេខភ្លាមៗដោយចៃដន្យ (មិនបាច់ចាំដល់ដាច់ម៉ោង)
+    function forceNewNumbers() {
+        const todayKey = "lucky_data_" + new Date().toDateString();
+        let newData = {};
+        for (let i = 0; i < 24; i++) {
+            let loopHour = (7 + i) % 24;
+            newData[loopHour] = getRandomLuckyNumber();
+        }
+        localStorage.setItem(todayKey, JSON.stringify(newData));
+        lastCheckedHour = -1; // បង្ខំឱ្យប្រព័ន្ធគូរប្រវត្តិឡើងវិញ
+        runLuckySystem();
+    }
+
+    // ឱ្យប្រព័ន្ធដំណើរការភ្លាមៗ និងរត់រៀងរាល់ ១ វិនាទីម្ដង
+    runLuckySystem();
+    setInterval(runLuckySystem, 1000);
+</script>
+
+</body>
+</html>
