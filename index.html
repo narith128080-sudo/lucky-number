@@ -598,15 +598,15 @@
                             <div id="deliveryCompanyField"><label class="block text-slate-600 dark:text-slate-400 text-[10px] md:text-xs font-medium">ក្រុមហ៊ុនដឹកជញ្ជូន <span class="text-red-500">*</span></label>
                                 <select id="shop-deliv-company" class="w-full p-2 md:p-2.5 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg md:rounded-xl mt-1 text-xs md:text-sm">
                                     <option value="">-- សូមជ្រើសរើសក្រុមហ៊ុន --</option>
-                                    <option>ជីអិនអេច បញ្ជូនរហ័ស (GNH Express)</option>
-                                    <option>សេវាដឹកជញ្ជូន វីង (Ving Delivery)</option>
-                                    <option>ជេនអេច វី (JHV Express)</option>
-                                    <option>សេវាដឹកជញ្ជូន អេសស៊ី (SC Express)</option>
-                                    <option>សេវាដឹកជញ្ជូន ស៊ីជេ (CJ Express)</option>
-                                    <option>សេវាដឹកជញ្ជូន អេនឌី (ND Express)</option>
-                                    <option>ខេមបូឌៀ ប៉ុស្តិ៍ (Cambodia Post)</option>
-                                    <option>ឌីអេចអិល កម្ពុជា (DHL Cambodia)</option>
-                                    <option>អេហ្វអាយធី ឡូជីស្ទីក (FIT Logistics)</option>
+                                    <option>វីរៈប៊ុនថាំ (Vireak Buntham / VET Express)</option>
+                                    <option>J&T Express</option>
+                                    <option>Flash Express</option>
+                                    <option>Capitol, សូរិយា, ឡារីតា (Larita)</option>
+                                    <option>Cambodia Post (ប្រៃសណីយ៍កម្ពុជា)</option>
+                                    <option>Grab (GrabExpress)</option>
+                                    <option>Foodpanda</option>
+                                    <option>Nham24 (Nham24 Express)</option>
+                                    <option>Lalamove</option>
                                     <option>ផ្សេងទៀត (Other)</option>
                                 </select>
                             </div>
@@ -1016,193 +1016,221 @@
             btn.innerText = "បញ្ជូនពាក្យសុំទៅក្រុម HR";
         }
 
-        // ====== SHOP (កែសម្រួលថ្មី - Caption ពេញលេញ) ======
-async function handleProductUpload(event) {
-    event.preventDefault();
-    const userId = document.getElementById('shop-user-id').value;
-    if (!validateUserId(userId)) return;
-    const btn = document.getElementById('btn-shop-submit');
-    btn.disabled = true;
-    btn.innerText = "កំពុងបង្រួមរូបភាព...";
-    
-    // ទទួលប្រភេទផលិតផល
-    let cat = document.getElementById('shop-cat').value;
-    if (cat === 'other') {
-        const customCat = document.getElementById('shop-cat-custom').value.trim();
-        if (!customCat) {
-            showToast('⚠️ សូមបញ្ចូលប្រភេទផលិតផលដោយដៃ!', 'error');
+        // ====== SHOP (កែសម្រួលថ្មី - បង្ហោះជា Album តែមួយ) ======
+        async function handleProductUpload(event) {
+            event.preventDefault();
+            const userId = document.getElementById('shop-user-id').value;
+            if (!validateUserId(userId)) return;
+            const btn = document.getElementById('btn-shop-submit');
+            btn.disabled = true;
+            btn.innerText = "កំពុងបង្រួមរូបភាព...";
+            
+            // ទទួលប្រភេទផលិតផល
+            let cat = document.getElementById('shop-cat').value;
+            if (cat === 'other') {
+                const customCat = document.getElementById('shop-cat-custom').value.trim();
+                if (!customCat) {
+                    showToast('⚠️ សូមបញ្ចូលប្រភេទផលិតផលដោយដៃ!', 'error');
+                    btn.disabled = false;
+                    btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
+                    return;
+                }
+                cat = '📦 ' + customCat;
+            } else if (!cat) {
+                showToast('⚠️ សូមជ្រើសរើសប្រភេទផលិតផល!', 'error');
+                btn.disabled = false;
+                btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
+                return;
+            }
+            
+            const seller = document.getElementById('shop-seller').value;
+            const contact = document.getElementById('shop-contact').value;
+            const item = document.getElementById('shop-item').value;
+            const price = document.getElementById('shop-price').value;
+            const oldPrice = document.getElementById('shop-old-price').value || '';
+            const deliv = document.getElementById('shop-deliv-status')?.value || 'មិនអនុវត្ត';
+            const delivCompany = document.getElementById('shop-deliv-company')?.value || '';
+            const fee = document.getElementById('shop-deliv-fee')?.value || '';
+            const desc = document.getElementById('shop-desc').value;
+            const bankName = document.getElementById('shop-bank-name').value || '';
+            const bankAccount = document.getElementById('shop-bank-account').value || '';
+            
+            let mFile = document.getElementById('shop-main-img').files[0];
+            const moreFiles = document.getElementById('shop-more-imgs').files;
+            const qrFile = document.getElementById('shop-qr-img').files[0];
+            
+            if (!mFile) {
+                showToast('⚠️ សូមជ្រើសរើសរូបភាពចម្បង!', 'error');
+                btn.disabled = false;
+                btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
+                return;
+            }
+            
+            try {
+                // Resize main image
+                mFile = await resizeImage(mFile);
+                
+                // Resize more images
+                const resizedMoreFiles = [];
+                for (let i = 0; i < Math.min(moreFiles.length, 10); i++) {
+                    let cf = await resizeImage(moreFiles[i]);
+                    resizedMoreFiles.push(cf);
+                }
+                
+                let qrFileResized = null;
+                if (qrFile) {
+                    qrFileResized = await resizeImage(qrFile);
+                }
+                
+                // រក្សាទុកក្នុង Local Storage (សម្រាប់បង្ហាញលើទំព័រ)
+                // បម្លែងរូបភាពជា Base64 សម្រាប់រក្សាទុកក្នុង Local Storage
+                const mBase = await toBase64(mFile);
+                const moresBase = [];
+                for (let i = 0; i < resizedMoreFiles.length; i++) {
+                    moresBase.push(await toBase64(resizedMoreFiles[i]));
+                }
+                let qrBase = null;
+                if (qrFileResized) {
+                    qrBase = await toBase64(qrFileResized);
+                }
+                
+                const pObj = {
+                    id: Date.now(),
+                    userId,
+                    seller,
+                    contact,
+                    item,
+                    cat,
+                    price,
+                    oldPrice,
+                    deliv,
+                    delivCompany,
+                    fee: fee || 'មិនបានបញ្ជាក់',
+                    desc,
+                    mainImg: mBase,
+                    moreImgs: moresBase,
+                    qrImg: qrBase,
+                    bankName: bankName || 'មិនបានបញ្ជាក់',
+                    bankAccount: bankAccount || 'មិនបានបញ្ជាក់',
+                    views: 1,
+                    likes: 0,
+                    rating: 0,
+                    ratingCount: 0,
+                    reviews: [],
+                    timestamp: Date.now()
+                };
+                
+                let list = JSON.parse(localStorage.getItem('portal_shop_feeds')) || [];
+                list.unshift(pObj);
+                localStorage.setItem('portal_shop_feeds', JSON.stringify(list));
+                renderFeed();
+                
+                btn.innerText = "កំពុងផ្ញើទៅ Telegram...";
+                
+                // ====== បង្កើត Caption ពេញលេញ ======
+                let caption = `🛍 *មានផលិតផលបង្ហោះលក់ថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
+                caption += `• លេខ ID: \`${userId}\`\n`;
+                caption += `• ទំនិញ: *${item}*\n`;
+                caption += `• ប្រភេទ: ${cat}\n`;
+                caption += `• តម្លៃលក់: *${price}*`;
+                if (oldPrice) caption += ` (ដើម: ${oldPrice})`;
+                caption += `\n`;
+                caption += `• ដឹកជញ្ជូន: ${deliv}\n`;
+                if (delivCompany) caption += `• ក្រុមហ៊ុនដឹកជញ្ជូន: ${delivCompany}\n`;
+                if (fee) caption += `• ថ្លៃដឹកជញ្ជូន: ${fee}\n`;
+                caption += `• អ្នកលក់: ${seller}\n`;
+                caption += `• ទំនាក់ទំនង: ${contact}\n`;
+                if (bankName && bankName !== 'មិនបានបញ្ជាក់') caption += `• ធនាគារ: ${bankName}\n`;
+                if (bankAccount && bankAccount !== 'មិនបានបញ្ជាក់') caption += `• លេខគណនី: ${bankAccount}\n`;
+                caption += `• ព័ត៌មាន: ${desc}\n`;
+                caption += `━━━━━━━━━━━━━━━━━━━━`;
+                
+                // ====== ប្រមូលរូបភាពទាំងអស់សម្រាប់ផ្ញើ ======
+                const allImages = [mFile, ...resizedMoreFiles];
+                if (qrFileResized) {
+                    allImages.push(qrFileResized);
+                }
+                
+                // ====== ផ្ញើទៅ Telegram ======
+                if (allImages.length === 1) {
+                    // បើមានរូបភាពតែមួយ ប្រើ sendPhoto
+                    const formData = new FormData();
+                    formData.append('chat_id', TG_CONFIG.SHOP.chat_id);
+                    formData.append('photo', allImages[0]);
+                    formData.append('caption', caption);
+                    formData.append('parse_mode', 'Markdown');
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.SHOP.token}/sendPhoto`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Telegram API Error:', errorText);
+                        throw new Error('Telegram API error: ' + response.status);
+                    }
+                } else {
+                    // បើមានរូបភាពច្រើន ប្រើ sendMediaGroup (Album)
+                    const mediaFormData = new FormData();
+                    mediaFormData.append('chat_id', TG_CONFIG.SHOP.chat_id);
+                    
+                    const mediaArray = [];
+                    for (let i = 0; i < allImages.length; i++) {
+                        const fieldName = `photo_${i}`;
+                        mediaFormData.append(fieldName, allImages[i]);
+                        
+                        if (i === 0) {
+                            // រូបភាពទីមួយមាន Caption
+                            mediaArray.push({
+                                type: 'photo',
+                                media: `attach://${fieldName}`,
+                                caption: caption,
+                                parse_mode: 'Markdown'
+                            });
+                        } else {
+                            mediaArray.push({
+                                type: 'photo',
+                                media: `attach://${fieldName}`
+                            });
+                        }
+                    }
+                    
+                    mediaFormData.append('media', JSON.stringify(mediaArray));
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.SHOP.token}/sendMediaGroup`, {
+                        method: 'POST',
+                        body: mediaFormData
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Telegram API Error:', errorText);
+                        throw new Error('Telegram API error: ' + response.status);
+                    }
+                }
+                
+                showToast('✅ បង្ហោះផលិតផលជោគជ័យ!', 'success');
+                document.getElementById('shopForm').reset();
+                document.getElementById('main-preview').classList.add('hidden');
+                document.getElementById('more-previews').innerHTML = '';
+                document.getElementById('customCategoryContainer').style.display = 'none';
+                closeFormModal('shop-modal');
+                
+            } catch (err) {
+                console.error('Error details:', err);
+                showToast('❌ ការបង្ហោះមានបញ្ហា! ' + err.message, 'error');
+            }
             btn.disabled = false;
             btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
-            return;
         }
-        cat = '📦 ' + customCat;
-    } else if (!cat) {
-        showToast('⚠️ សូមជ្រើសរើសប្រភេទផលិតផល!', 'error');
-        btn.disabled = false;
-        btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
-        return;
-    }
-    
-    const seller = document.getElementById('shop-seller').value;
-    const contact = document.getElementById('shop-contact').value;
-    const item = document.getElementById('shop-item').value;
-    const price = document.getElementById('shop-price').value;
-    const oldPrice = document.getElementById('shop-old-price').value || '';
-    const deliv = document.getElementById('shop-deliv-status')?.value || 'មិនអនុវត្ត';
-    const delivCompany = document.getElementById('shop-deliv-company')?.value || '';
-    const fee = document.getElementById('shop-deliv-fee')?.value || '';
-    const desc = document.getElementById('shop-desc').value;
-    const bankName = document.getElementById('shop-bank-name').value || '';
-    const bankAccount = document.getElementById('shop-bank-account').value || '';
-    
-    let mFile = document.getElementById('shop-main-img').files[0];
-    const moreFiles = document.getElementById('shop-more-imgs').files;
-    const qrFile = document.getElementById('shop-qr-img').files[0];
-    
-    if (!mFile) {
-        showToast('⚠️ សូមជ្រើសរើសរូបភាពចម្បង!', 'error');
-        btn.disabled = false;
-        btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
-        return;
-    }
-    
-    try {
-        mFile = await resizeImage(mFile);
-        const mBase = await toBase64(mFile);
-        
-        const moresBase = [];
-        const resizedMoreFiles = [];
-        for (let i = 0; i < Math.min(moreFiles.length, 10); i++) {
-            let cf = await resizeImage(moreFiles[i]);
-            resizedMoreFiles.push(cf);
-            moresBase.push(await toBase64(cf));
-        }
-        
-        let qrBase = null;
-        let qrFileResized = null;
-        if (qrFile) {
-            qrFileResized = await resizeImage(qrFile);
-            qrBase = await toBase64(qrFileResized);
-        }
-        
-        // រក្សាទុកក្នុង Local Storage
-        const pObj = {
-            id: Date.now(),
-            userId,
-            seller,
-            contact,
-            item,
-            cat,
-            price,
-            oldPrice,
-            deliv,
-            delivCompany,
-            fee: fee || 'មិនបានបញ្ជាក់',
-            desc,
-            mainImg: mBase,
-            moreImgs: moresBase,
-            qrImg: qrBase,
-            bankName: bankName || 'មិនបានបញ្ជាក់',
-            bankAccount: bankAccount || 'មិនបានបញ្ជាក់',
-            views: 1,
-            likes: 0,
-            rating: 0,
-            ratingCount: 0,
-            reviews: [],
-            timestamp: Date.now()
-        };
-        
-        let list = JSON.parse(localStorage.getItem('portal_shop_feeds')) || [];
-        list.unshift(pObj);
-        localStorage.setItem('portal_shop_feeds', JSON.stringify(list));
-        renderFeed();
-        
-        btn.innerText = "កំពុងផ្ញើទៅ Telegram...";
-        
-        // ====== បង្កើត Caption ពេញលេញ ======
-        let caption = `🛍️ *មានផលិតផលបង្ហោះលក់ថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
-        caption += `• លេខ ID: \`${userId}\`\n`;
-        caption += `• ទំនិញ: *${item}*\n`;
-        caption += `• ប្រភេទ: ${cat}\n`;
-        caption += `• តម្លៃលក់: *${price}*`;
-        if (oldPrice) caption += ` (ដើម: ${oldPrice})`;
-        caption += `\n`;
-        caption += `• ដឹកជញ្ជូន: ${deliv}`;
-        if (delivCompany) caption += `\n• ក្រុមហ៊ុនដឹកជញ្ជូន: ${delivCompany}`;
-        if (fee) caption += `\n• ថ្លៃដឹកជញ្ជូន: ${fee}`;
-        caption += `\n• អ្នកលក់: ${seller}`;
-        caption += `\n• ទំនាក់ទំនង: ${contact}`;
-        if (bankName && bankName !== 'មិនបានបញ្ជាក់') caption += `\n• ធនាគារ: ${bankName}`;
-        if (bankAccount && bankAccount !== 'មិនបានបញ្ជាក់') caption += `\n• លេខគណនី: ${bankAccount}`;
-        caption += `\n• ព័ត៌មាន: ${desc}`;
-        caption += `\n━━━━━━━━━━━━━━━━━━━━`;
-        
-        // ====== បង្ហោះរូបភាពទាំងអស់ ======
-        const allImages = [mFile, ...resizedMoreFiles];
-        
-        if (allImages.length === 1) {
-            const formData = new FormData();
-            formData.append('chat_id', TG_CONFIG.SHOP.chat_id);
-            formData.append('photo', allImages[0]);
-            formData.append('caption', caption);
-            formData.append('parse_mode', 'Markdown');
-            await fetch(`https://api.telegram.org/bot${TG_CONFIG.SHOP.token}/sendPhoto`, {
-                method: 'POST',
-                body: formData
-            });
-        } else {
-            const mediaFormData = new FormData();
-            mediaFormData.append('chat_id', TG_CONFIG.SHOP.chat_id);
-            const mediaArray = [];
-            for (let i = 0; i < allImages.length; i++) {
-                mediaFormData.append(`photo_${i}`, allImages[i]);
-                mediaArray.push({ type: 'photo', media: `attach://photo_${i}` });
-            }
-            mediaFormData.append('media', JSON.stringify(mediaArray));
-            mediaFormData.append('caption', caption);
-            mediaFormData.append('parse_mode', 'Markdown');
-            await fetch(`https://api.telegram.org/bot${TG_CONFIG.SHOP.token}/sendMediaGroup`, {
-                method: 'POST',
-                body: mediaFormData
-            });
-        }
-        
-        // ====== QR Code ======
-        if (qrFileResized) {
-            let qrCap = `📱 *QR Code បង់ប្រាក់*\nផលិតផល: ${item}\nអ្នកលក់: ${seller}`;
-            if (bankName && bankName !== 'មិនបានបញ្ជាក់') qrCap += `\nធនាគារ: ${bankName}`;
-            if (bankAccount && bankAccount !== 'មិនបានបញ្ជាក់') qrCap += `\nលេខគណនី: ${bankAccount}`;
-            const qrData = new FormData();
-            qrData.append('chat_id', TG_CONFIG.SHOP.chat_id);
-            qrData.append('photo', qrFileResized);
-            qrData.append('caption', qrCap);
-            qrData.append('parse_mode', 'Markdown');
-            await fetch(`https://api.telegram.org/bot${TG_CONFIG.SHOP.token}/sendPhoto`, {
-                method: 'POST',
-                body: qrData
-            });
-        }
-        
-        showToast('✅ បង្ហោះផលិតផលជោគជ័យ!', 'success');
-        document.getElementById('shopForm').reset();
-        document.getElementById('main-preview').classList.add('hidden');
-        document.getElementById('more-previews').innerHTML = '';
-        document.getElementById('customCategoryContainer').style.display = 'none';
-        closeFormModal('shop-modal');
-        
-    } catch (err) {
-        console.error('Error:', err);
-        showToast('❌ ការបង្ហោះមានបញ្ហា! សូមពិនិត្យមើលការតភ្ជាប់អ៊ីនធឺណិត', 'error');
-    }
-    btn.disabled = false;
-    btn.innerText = "បង្ហោះលក់ទំនិញភ្លាមៗ";
-}
 
-        // ====== HR POST ======
+        // ====== HR POST (កែសម្រួលថ្មី) ======
         async function submitHRPost(event) {
             event.preventDefault();
             const userId = document.getElementById('hr-user-id').value;
             if (!validateUserId(userId)) return;
+            
             const btn = document.getElementById('btn-hr-submit');
             btn.disabled = true;
             btn.innerText = "កំពុងរៀបចំ...";
@@ -1216,6 +1244,7 @@ async function handleProductUpload(event) {
             const deadline = document.getElementById('hr-deadline').value || '';
             const imageFiles = document.getElementById('hr-images').files;
 
+            // ពិនិត្យថាតើត្រូវបំពេញព័ត៌មានទាំងអស់ហើយឬនៅ
             if (!name || !department || !contact || !location || !desc) {
                 showToast('⚠️ សូមបំពេញព័ត៌មានដែលមានសញ្ញា * ទាំងអស់!', 'error');
                 btn.disabled = false;
@@ -1224,30 +1253,41 @@ async function handleProductUpload(event) {
             }
 
             try {
+                // Resize images (បើមាន)
                 const resizedImages = [];
                 const imageBases = [];
+                
                 if (imageFiles.length > 0) {
+                    btn.innerText = "កំពុងបង្រួមរូបភាព...";
                     for (let i = 0; i < Math.min(imageFiles.length, 4); i++) {
-                        const resized = await resizeImage(imageFiles[i]);
-                        resizedImages.push(resized);
-                        imageBases.push(await toBase64(resized));
+                        try {
+                            const resized = await resizeImage(imageFiles[i]);
+                            resizedImages.push(resized);
+                            const base64 = await toBase64(resized);
+                            imageBases.push(base64);
+                        } catch (imgError) {
+                            console.error('Error processing image:', imgError);
+                            // បន្តទៅរូបភាពបន្ទាប់ប្រសិនបើមានកំហុស
+                        }
                     }
                 }
 
+                // រក្សាទុកក្នុង Local Storage
                 const hrPost = {
                     id: Date.now(),
-                    userId,
-                    name,
-                    department,
-                    contact,
-                    location,
-                    desc,
+                    userId: userId,
+                    name: name,
+                    department: department,
+                    contact: contact,
+                    location: location,
+                    desc: desc,
                     salary: salary || 'មិនបានបញ្ជាក់',
                     deadline: deadline || 'មិនបានបញ្ជាក់',
                     images: imageBases,
                     timestamp: Date.now(),
                     views: 1
                 };
+                
                 let list = JSON.parse(localStorage.getItem('hr_posts')) || [];
                 list.unshift(hrPost);
                 localStorage.setItem('hr_posts', JSON.stringify(list));
@@ -1255,51 +1295,105 @@ async function handleProductUpload(event) {
 
                 btn.innerText = "កំពុងផ្ញើទៅ Telegram...";
 
+                // ====== បង្កើត Caption ======
                 let caption = `📢 *ការជ្រើសរើសបុគ្គលិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
                 caption += `• លេខ ID: \`${userId}\`\n`;
-                caption += `• អ្នកបង្ហោះ: ${name}\n`;
-                caption += `• ផ្នែកដែលត្រូវជ្រើសរើស: *${department}*\n`;
+                caption += `• អ្នកបង្ហោះ: *${name}*\n`;
+                caption += `• ផ្នែកដែលត្រូវជ្រើសរើស: ${department}\n`;
                 caption += `• ទំនាក់ទំនង: ${contact}\n`;
                 caption += `• ទីតាំង: ${location}\n`;
-                if (salary) caption += `• ប្រាក់ខែ: ${salary}\n`;
-                if (deadline) caption += `• ផុតកំណត់: ${new Date(deadline).toLocaleDateString('km-KH')}\n`;
-                caption += `• ពណ៌នា: ${desc}\n`;
+                if (salary && salary.trim() !== '') {
+                    caption += `• 💰 ប្រាក់ខែ: *${salary}*\n`;
+                }
+                if (deadline && deadline.trim() !== '') {
+                    try {
+                        const dateObj = new Date(deadline);
+                        if (!isNaN(dateObj.getTime())) {
+                            caption += `• 📅 ផុតកំណត់: ${dateObj.toLocaleDateString('km-KH')}\n`;
+                        }
+                    } catch (e) {
+                        caption += `• 📅 ផុតកំណត់: ${deadline}\n`;
+                    }
+                }
+                caption += `• 📝 ពណ៌នា: ${desc}\n`;
                 caption += `━━━━━━━━━━━━━━━━━━━━`;
 
+                // ====== ផ្ញើទៅ Telegram ======
                 if (resizedImages.length === 0) {
+                    // ប្រសិនបើគ្មានរូបភាព ផ្ញើតែសារ
                     const formData = new FormData();
                     formData.append('chat_id', TG_CONFIG.HR.chat_id);
                     formData.append('text', caption);
                     formData.append('parse_mode', 'Markdown');
-                    await fetch(`https://api.telegram.org/bot${TG_CONFIG.HR.token}/sendMessage`, {
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.HR.token}/sendMessage`, {
                         method: 'POST',
                         body: formData
                     });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Telegram API Error:', errorText);
+                        throw new Error('Telegram API error: ' + response.status);
+                    }
+                    
                 } else if (resizedImages.length === 1) {
+                    // ប្រសិនបើមានរូបភាពតែមួយ
                     const formData = new FormData();
                     formData.append('chat_id', TG_CONFIG.HR.chat_id);
                     formData.append('photo', resizedImages[0]);
                     formData.append('caption', caption);
                     formData.append('parse_mode', 'Markdown');
-                    await fetch(`https://api.telegram.org/bot${TG_CONFIG.HR.token}/sendPhoto`, {
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.HR.token}/sendPhoto`, {
                         method: 'POST',
                         body: formData
                     });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Telegram API Error:', errorText);
+                        throw new Error('Telegram API error: ' + response.status);
+                    }
+                    
                 } else {
+                    // ប្រសិនបើមានរូបភាពច្រើន (បង្ហោះជា Album)
                     const mediaFormData = new FormData();
                     mediaFormData.append('chat_id', TG_CONFIG.HR.chat_id);
+                    
                     const mediaArray = [];
                     for (let i = 0; i < resizedImages.length; i++) {
-                        mediaFormData.append(`photo_${i}`, resizedImages[i]);
-                        mediaArray.push({ type: 'photo', media: `attach://photo_${i}` });
+                        const fieldName = `photo_${i}`;
+                        mediaFormData.append(fieldName, resizedImages[i]);
+                        
+                        if (i === 0) {
+                            // រូបភាពទីមួយមាន Caption
+                            mediaArray.push({
+                                type: 'photo',
+                                media: `attach://${fieldName}`,
+                                caption: caption,
+                                parse_mode: 'Markdown'
+                            });
+                        } else {
+                            mediaArray.push({
+                                type: 'photo',
+                                media: `attach://${fieldName}`
+                            });
+                        }
                     }
+                    
                     mediaFormData.append('media', JSON.stringify(mediaArray));
-                    mediaFormData.append('caption', caption);
-                    mediaFormData.append('parse_mode', 'Markdown');
-                    await fetch(`https://api.telegram.org/bot${TG_CONFIG.HR.token}/sendMediaGroup`, {
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.HR.token}/sendMediaGroup`, {
                         method: 'POST',
                         body: mediaFormData
                     });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Telegram API Error:', errorText);
+                        throw new Error('Telegram API error: ' + response.status);
+                    }
                 }
 
                 showToast('✅ បង្ហោះការជ្រើសរើសបុគ្គលិកជោគជ័យ!', 'success');
@@ -1308,9 +1402,10 @@ async function handleProductUpload(event) {
                 closeFormModal('hr-modal');
                 
             } catch (err) {
-                console.error('Error:', err);
-                showToast('❌ ការបង្ហោះមានបញ្ហា! សូមពិនិត្យមើលការតភ្ជាប់អ៊ីនធឺណិត', 'error');
+                console.error('Error details:', err);
+                showToast('❌ ការបង្ហោះមានបញ្ហា! ' + err.message, 'error');
             }
+            
             btn.disabled = false;
             btn.innerText = "បង្ហោះការជ្រើសរើសបុគ្គលិក";
         }
@@ -1531,7 +1626,7 @@ async function handleProductUpload(event) {
             document.body.style.overflow = 'hidden';
         }
 
-        // ====== HR DETAILS (កែសម្រួលថ្មី) ======
+        // ====== HR DETAILS ======
         function openHRDetails(id) {
             let list = JSON.parse(localStorage.getItem('hr_posts')) || [];
             let p = list.find(item => item.id === id);
@@ -1546,7 +1641,6 @@ async function handleProductUpload(event) {
             document.getElementById('hrd-user-id').textContent = p.userId;
             document.getElementById('hrd-desc').textContent = p.desc;
             
-            // បង្ហាញប្រាក់ខែ
             const salaryEl = document.getElementById('hrd-salary');
             if (p.salary && p.salary !== 'មិនបានបញ្ជាក់') {
                 salaryEl.textContent = p.salary;
@@ -1555,7 +1649,6 @@ async function handleProductUpload(event) {
                 salaryEl.parentElement.style.display = 'none';
             }
 
-            // បង្ហាញកាលបរិច្ឆេទ
             const deadlineEl = document.getElementById('hrd-deadline');
             if (p.deadline && p.deadline !== 'មិនបានបញ្ជាក់') {
                 deadlineEl.textContent = new Date(p.deadline).toLocaleDateString('km-KH');
