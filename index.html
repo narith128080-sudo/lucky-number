@@ -7,12 +7,12 @@
     
     <!-- ====== STYLES ====== -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700;800&family=Battambang:wght@400;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     
     <style>
         /* ====== BASE ====== */
-        * { font-family: 'Kantumruy Pro', sans-serif; scroll-behavior: smooth; }
+        * { font-family: 'Kantumruy Pro', 'Battambang', sans-serif; scroll-behavior: smooth; letter-spacing: 0.02em; line-height: 1.6; }
         body { background: #0f0f1a; color: #e2e8f0; }
         
         /* ====== SCROLLBAR ====== */
@@ -83,9 +83,9 @@
             border-color: #6366f1 !important;
             box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
         }
-        .form-input::placeholder, .form-textarea::placeholder { color: #64748b; }
+        .form-input::placeholder, .form-textarea::placeholder { color: #94a3b8 !important; opacity: 0.8; }
         .form-select option { background: #1a1a3a; color: #e2e8f0; }
-        .form-label { display: block; color: #94a3b8; font-size: 12px; font-weight: 500; margin-bottom: 4px; }
+        .form-label { display: block; color: #e2e8f0 !important; font-size: 12px; font-weight: 500; margin-bottom: 4px; }
         .form-label .required { color: #ef4444; }
         
         /* ====== PRODUCT GRID ====== */
@@ -101,7 +101,7 @@
         .product-card .info { padding: 16px; }
         .product-card .info .name { font-weight: 600; font-size: 15px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .product-card .info .seller { color: #94a3b8; font-size: 12px; margin-top: 2px; }
-        .product-card .info .meta { display: flex; gap: 12px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #64748b; }
+        .product-card .info .meta { display: flex; gap: 12px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #94a3b8; }
         .product-card .info .meta span { display: flex; align-items: center; gap: 4px; }
         
         /* ====== HR GRID ====== */
@@ -115,7 +115,7 @@
         .hr-card .info .name { font-weight: 600; font-size: 15px; color: white; }
         .hr-card .info .dept { color: #f472b6; font-size: 12px; }
         .hr-card .info .desc { color: #94a3b8; font-size: 13px; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .hr-card .info .meta { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #64748b; }
+        .hr-card .info .meta { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #94a3b8; }
         
         /* ====== CATEGORY BUTTONS ====== */
         .cat-btn { padding: 6px 18px; border-radius: 30px; font-size: 12px; font-weight: 500; background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.06); cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
@@ -167,6 +167,9 @@
             .zodiac-card { padding: 10px 4px; }
             .zodiac-card .icon { font-size: 1.4rem; }
             .zodiac-card .name { font-size: 0.6rem; }
+            body { font-size: 15px; line-height: 1.7; }
+            .form-input, .form-select, .form-textarea { font-size: 15px; padding: 12px 14px; }
+            .text-slate-400, .text-slate-500 { color: #cbd5e1 !important; }
         }
         @media (max-width: 400px) {
             .product-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -176,6 +179,10 @@
         }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        /* ====== FONT FIX FOR KHMER ====== */
+        .text-slate-400, .text-slate-500, .text-slate-600 { color: #cbd5e1 !important; }
+        .form-label { color: #e2e8f0 !important; font-weight: 500; }
     </style>
 </head>
 <body>
@@ -429,8 +436,7 @@
             </div>
         </section>
     </div>
-    
-    <!-- ============================================================ -->
+        <!-- ============================================================ -->
     <!-- ===================== PAGE: ZODIAC ========================== -->
     <!-- ============================================================ -->
     <div id="zodiacPage" style="display:none;">
@@ -942,12 +948,28 @@
                     <div><span class="text-slate-400">ការដឹកជញ្ជូន៖</span> <span id="detailDeliv" class="text-white">-</span></div>
                     <div id="detailCompanyRow"><span class="text-slate-400">ក្រុមហ៊ុន៖</span> <span id="detailCompany" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ថ្លៃដឹកជញ្ជូន៖</span> <span id="detailFee" class="text-white">-</span></div>
+                    <!-- Payment Info Display -->
+                    <div id="detailPaymentInfo" class="hidden mt-2 pt-2 border-t border-white/10">
+                        <div class="text-emerald-400 font-semibold text-xs mb-1">💳 ព័ត៌មានទូទាត់</div>
+                        <div><span class="text-slate-400">🏦 ធនាគារ៖</span> <span id="detailBankName" class="text-white">-</span></div>
+                        <div><span class="text-slate-400">🔢 លេខគណនី៖</span> <span id="detailBankAccount" class="text-white font-mono">-</span></div>
+                        <div id="detailQrRow" class="mt-1">
+                            <span class="text-slate-400">📱 QR Code៖</span>
+                            <img id="detailQrImage" src="" alt="QR Code" class="h-20 w-20 object-contain rounded-lg border border-slate-700 mt-1 hidden">
+                            <span id="detailNoQr" class="text-xs text-slate-500">មិនមាន QR Code</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <p id="detailDesc" class="mt-3 text-sm text-slate-300 bg-slate-800/30 p-3 rounded-xl border border-slate-700/50"></p>
                 
                 <button onclick="shareProduct()" class="btn-primary w-full text-white font-semibold py-2.5 rounded-xl text-sm mt-4">
                     <i class="fa-regular fa-share-from-square mr-2"></i> ចែករំលែក
+                </button>
+                
+                <!-- ====== ORDER BUTTON ====== -->
+                <button onclick="openOrderModal()" class="btn-success w-full text-white font-semibold py-2.5 rounded-xl text-sm mt-2">
+                    <i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ
                 </button>
                 
                 <h4 class="text-xs font-bold text-slate-400 uppercase mt-4 mb-2">🏞️ រូបភាពលម្អិត</h4>
@@ -1015,6 +1037,76 @@
             <button onclick="submitRating()" class="btn-warning w-full text-white font-bold py-3 rounded-xl text-sm">
                 <i class="fa-regular fa-star mr-2"></i> បញ្ជូនការវាយតម្លៃ
             </button>
+        </div>
+    </div>
+    
+    <!-- ====== ORDER MODAL ====== -->
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-content modal-content-sm relative">
+            <button onclick="closeModal('orderModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
+            
+            <div class="modal-title">
+                <i class="fa-solid fa-cart-shopping text-emerald-400"></i>
+                បញ្ជាទិញផលិតផល
+            </div>
+            
+            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-4">
+                <!-- Product Info -->
+                <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                    <p class="text-sm text-slate-400">ផលិតផល៖ <span id="orderProductName" class="text-white font-semibold">-</span></p>
+                    <p class="text-sm text-slate-400">តម្លៃ៖ <span id="orderProductPrice" class="text-emerald-400 font-bold">-</span></p>
+                </div>
+                
+                <div>
+                    <label class="form-label">🆔 លេខ ID របស់អ្នក (អ្នកបញ្ជាទិញ) <span class="required">*</span></label>
+                    <input type="text" id="orderBuyerId" required placeholder="ឧ. ID-12345" class="form-input">
+                </div>
+                
+                <div>
+                    <label class="form-label">📦 ចំនួនទឹកប្រាក់ដែលត្រូវទិញ <span class="required">*</span></label>
+                    <input type="number" id="orderAmount" required min="1" placeholder="ឧ. 1" class="form-input">
+                </div>
+                
+                <div>
+                    <label class="form-label">🚚 ជ្រើសរើសប្រភេទដឹកជញ្ជូន <span class="required">*</span></label>
+                    <select id="orderDeliveryMethod" class="form-select">
+                        <option value="មានសេវាដឹកជញ្ជូនរហ័ស">🚀 មានសេវាដឹកជញ្ជូនរហ័ស</option>
+                        <option value="អតិថិជនមកយកផ្ទាល់">🏠 អតិថិជនមកយកផ្ទាល់</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="form-label">📍 អាសយដ្ឋានទទួលទំនិញ <span class="required">*</span></label>
+                    <textarea id="orderAddress" rows="2" required placeholder="ឧ. ផ្ទះលេខ ១២៣ ភ្នំពេញ" class="form-textarea"></textarea>
+                </div>
+                
+                <div>
+                    <label class="form-label">📱 លេខទូរស័ព្ទ / Telegram <span class="required">*</span></label>
+                    <input type="text" id="orderPhone" required placeholder="ឧ. 012345678 / @sokha" class="form-input">
+                </div>
+                
+                <!-- Payment Info (Bank & QR) -->
+                <div id="orderPaymentInfo" class="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 hidden">
+                    <h4 class="text-sm font-semibold text-emerald-400 mb-2">💳 ព័ត៌មានទូទាត់</h4>
+                    <div id="orderBankDisplay" class="space-y-1 text-sm text-slate-300">
+                        <p>🏦 ធនាគារ៖ <span id="orderBankName" class="text-white">-</span></p>
+                        <p>🔢 លេខគណនី៖ <span id="orderBankAccount" class="text-white font-mono">-</span></p>
+                    </div>
+                    <div id="orderQrDisplay" class="mt-2">
+                        <p class="text-xs text-slate-400 mb-1">📱 QR Code បង់ប្រាក់៖</p>
+                        <img id="orderQrImage" src="" alt="QR Code" class="h-32 w-32 object-contain rounded-lg border border-slate-700 hidden">
+                        <p id="orderNoQr" class="text-xs text-slate-500">មិនមាន QR Code</p>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="orderProductId" value="">
+                <input type="hidden" id="orderSellerId" value="">
+                <input type="hidden" id="orderPrice" value="">
+                
+                <button type="submit" id="orderSubmitBtn" class="btn-success w-full text-white font-bold py-3 rounded-xl text-sm">
+                    <i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ
+                </button>
+            </form>
         </div>
     </div>
     
@@ -1119,7 +1211,9 @@
             REGISTER: { token: '8832988912:AAHopQQf21daUcFIzM4Bl20h9Gzd4IbQ_pI', chat_id: '-5387523552' },
             JOB: { token: '8133960195:AAGss5J-d0GXsFkfsOa3yjQ7p3yp9W5uCFs', chat_id: '-1003791568938' },
             SHOP: { token: '8572743046:AAHyr67sHP-DNpmSgaTucZc2OWe4GYkjnww', chat_id: '-1004319292996' },
-            HR: { token: '8957830113:AAGxikYfnySPxW-jeNe1dEcxITix_pJckZQ', chat_id: '-1004373121052' }
+            HR: { token: '8957830113:AAGxikYfnySPxW-jeNe1dEcxITix_pJckZQ', chat_id: '-1004373121052' },
+            // ====== ORDER BOT ======
+            ORDER: { token: '8608407284:AAFANALKrlmAWhWls7TltxKFTe9zA-73FLU', chat_id: '-1004428412691' }
         };
         
         const ITEMS_PER_PAGE = 6;
@@ -1129,6 +1223,7 @@
         let currentCategory = 'all';
         let currentProductId = null;
         let selectedRating = 0;
+        let currentOrderProduct = null;
         
         // ====== TOAST ======
         function showToast(message, type = 'success') {
@@ -1290,7 +1385,7 @@
         }
         
         // ================================================================
-        // ====== REGISTER (ជាមួយ Emoji) ======
+        // ====== REGISTER ======
         // ================================================================
         async function handleRegister(event) {
             event.preventDefault();
@@ -1325,8 +1420,8 @@
             localStorage.setItem('user_data', JSON.stringify(userData));
             updateIdDisplay();
             
-            // ====== Telegram Message with Emoji ======
-            const text = `🆔 *មានការចុះឈ្មោះសមាជិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n👤 ឈ្មោះពេញ: ${userData.name}\n⚧️ ភេទ: ${userData.gender}\n📅 អាយុ: ${userData.age} ឆ្នាំ\n🎂 ថ្ងៃខែឆ្នាំកំណើត: ${userData.dob}\n💼 មុខរបរ: ${userData.job}\n🎓 កម្រិតសិក្សា: ${userData.edu}\n📱 ទំនាក់ទំនង: ${userData.contact}\n📍 អាសយដ្ឋាន: ${userData.address}\n🆔 លេខ ID: \`${id}\`\n━━━━━━━━━━━━━━━━━━━━`;
+            // ====== Telegram Message with ID on top ======
+            const text = `🆔 *មានការចុះឈ្មោះសមាជិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n🆔 លេខ ID: \`${id}\`\n👤 ឈ្មោះពេញ: ${userData.name}\n⚧️ ភេទ: ${userData.gender}\n📅 អាយុ: ${userData.age} ឆ្នាំ\n🎂 ថ្ងៃខែឆ្នាំកំណើត: ${userData.dob}\n💼 មុខរបរ: ${userData.job}\n🎓 កម្រិតសិក្សា: ${userData.edu}\n📱 ទំនាក់ទំនង: ${userData.contact}\n📍 អាសយដ្ឋាន: ${userData.address}\n━━━━━━━━━━━━━━━━━━━━`;
             
             try {
                 await fetch(`https://api.telegram.org/bot${TG_CONFIG.REGISTER.token}/sendMessage`, {
@@ -1357,7 +1452,7 @@
         }
         
         // ================================================================
-        // ====== JOB SUBMIT (ជាមួយ Emoji) ======
+        // ====== JOB SUBMIT ======
         // ================================================================
         async function handleJobSubmit(event) {
             event.preventDefault();
@@ -1388,8 +1483,8 @@
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងបង្រួមរូបភាព...';
                 const resizedPhoto = await resizeImage(photoFile);
                 
-                // ====== Telegram Message with Emoji ======
-                const text = `💼 *មានបេក្ខជនដាក់ពាក្យធ្វើការ*\n━━━━━━━━━━━━━━━━━━━━\n👤 ឈ្មោះ: ${document.getElementById('jobName').value}\n💼 តំណែង: *${position}*\n📅 អាយុ: ${document.getElementById('jobAge').value} ឆ្នាំ\n📏 កម្ពស់: ${document.getElementById('jobHeight').value} cm\n🎓 កម្រិតសិក្សា: ${document.getElementById('jobEdu').value}\n📱 ទំនាក់ទំនង: ${document.getElementById('jobContact').value}\n💰 ប្រាក់ខែរំពឹងទុក: ${document.getElementById('jobSalary').value}\n⏰ ម៉ោងធ្វើការ: ${document.getElementById('jobTimeType').value}\n📍 អាសយដ្ឋាន: ${document.getElementById('jobAddress').value}\n📝 បទពិសោធន៍: ${document.getElementById('jobExperience').value}\n🆔 លេខ ID: \`${userId}\`\n━━━━━━━━━━━━━━━━━━━━`;
+                // ====== Telegram Message with ID on top ======
+                const text = `💼 *មានបេក្ខជនដាក់ពាក្យធ្វើការ*\n━━━━━━━━━━━━━━━━━━━━\n🆔 លេខ ID: \`${userId}\`\n👤 ឈ្មោះ: ${document.getElementById('jobName').value}\n💼 តំណែង: *${position}*\n📅 អាយុ: ${document.getElementById('jobAge').value} ឆ្នាំ\n📏 កម្ពស់: ${document.getElementById('jobHeight').value} cm\n🎓 កម្រិតសិក្សា: ${document.getElementById('jobEdu').value}\n📱 ទំនាក់ទំនង: ${document.getElementById('jobContact').value}\n💰 ប្រាក់ខែរំពឹងទុក: ${document.getElementById('jobSalary').value}\n⏰ ម៉ោងធ្វើការ: ${document.getElementById('jobTimeType').value}\n📍 អាសយដ្ឋាន: ${document.getElementById('jobAddress').value}\n📝 បទពិសោធន៍: ${document.getElementById('jobExperience').value}\n━━━━━━━━━━━━━━━━━━━━`;
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
                 const formData = new FormData();
@@ -1419,7 +1514,7 @@
         }
         
         // ================================================================
-        // ====== SHOP SUBMIT (ជាមួយ Emoji) ======
+        // ====== SHOP SUBMIT ======
         // ================================================================
         async function handleShopSubmit(event) {
             event.preventDefault();
@@ -1491,10 +1586,10 @@
                     delivFee: document.getElementById('shopDelivFee').value.trim() || '',
                     bankName: document.getElementById('shopBankName').value.trim() || '',
                     bankAccount: document.getElementById('shopBankAccount').value.trim() || '',
+                    qrImg: qrBase,
                     desc: document.getElementById('shopDesc').value.trim(),
                     mainImg: mainBase,
                     moreImgs: moreBase,
-                    qrImg: qrBase,
                     views: 1,
                     likes: 0,
                     rating: 0,
@@ -1507,8 +1602,9 @@
                 products.unshift(product);
                 localStorage.setItem('shop_products', JSON.stringify(products));
                 
-                // ====== Telegram Message with Emoji ======
+                // ====== Telegram Message with ID on top ======
                 let caption = `🛍️ *មានផលិតផលបង្ហោះលក់ថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
+                caption += `🆔 លេខ ID: \`${userId}\`\n`;
                 caption += `📦 ទំនិញ: *${product.item}*\n`;
                 caption += `🏷️ ប្រភេទ: ${cat}\n`;
                 caption += `💰 តម្លៃលក់: *${product.price}*`;
@@ -1518,8 +1614,8 @@
                 caption += `📱 ទំនាក់ទំនង: ${product.contact}\n`;
                 if (product.delivFee) caption += `🚚 ថ្លៃដឹកជញ្ជូន: ${product.delivFee}\n`;
                 if (product.bankName) caption += `🏦 ធនាគារ: ${product.bankName}\n`;
+                if (product.bankAccount) caption += `🔢 លេខគណនី: ${product.bankAccount}\n`;
                 caption += `📝 ព័ត៌មាន: ${product.desc}\n`;
-                caption += `🆔 លេខ ID: \`${userId}\`\n`;
                 caption += `━━━━━━━━━━━━━━━━━━━━`;
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
@@ -1569,7 +1665,7 @@
         }
         
         // ================================================================
-        // ====== HR SUBMIT (ជាមួយ Emoji) ======
+        // ====== HR SUBMIT ======
         // ================================================================
         async function handleHRSubmit(event) {
             event.preventDefault();
@@ -1628,8 +1724,9 @@
                 posts.unshift(hrPost);
                 localStorage.setItem('hr_posts', JSON.stringify(posts));
                 
-                // ====== Telegram Message with Emoji ======
+                // ====== Telegram Message with ID on top ======
                 let caption = `📢 *ការជ្រើសរើសបុគ្គលិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
+                caption += `🆔 លេខ ID: \`${userId}\`\n`;
                 caption += `👤 អ្នកបង្ហោះ: *${name}*\n`;
                 caption += `🏢 ផ្នែក: ${department}\n`;
                 caption += `📱 ទំនាក់ទំនង: ${contact}\n`;
@@ -1637,7 +1734,6 @@
                 if (salary) caption += `💰 ប្រាក់ខែ: *${salary}*\n`;
                 if (deadline) caption += `📅 ផុតកំណត់: ${new Date(deadline).toLocaleDateString('km-KH')}\n`;
                 caption += `📝 ពណ៌នា: ${desc}\n`;
-                caption += `🆔 លេខ ID: \`${userId}\`\n`;
                 caption += `━━━━━━━━━━━━━━━━━━━━`;
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
@@ -1685,6 +1781,171 @@
             
             btn.disabled = false;
             btn.innerHTML = '<i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
+        }
+        
+        // ================================================================
+        // ====== ORDER SYSTEM ======
+        // ================================================================
+        
+        function openOrderModal() {
+            if (!currentProductId) {
+                showToast('⚠️ សូមជ្រើសរើសផលិតផលមុន!', 'error');
+                return;
+            }
+            
+            const userId = getUserId();
+            if (!userId) {
+                showToast('⚠️ សូមចុះឈ្មោះជាមុនសិន!', 'error');
+                return;
+            }
+            
+            let products = JSON.parse(localStorage.getItem('shop_products') || '[]');
+            const p = products.find(item => item.id === currentProductId);
+            if (!p) {
+                showToast('❌ មិនឃើញផលិតផល!', 'error');
+                return;
+            }
+            
+            // Check if product is real estate or vehicle (no payment info)
+            const isSpecial = p.cat.includes('អចលនទ្រព្យ') || p.cat.includes('រថយន្ត') || p.cat.includes('យានយន្ត');
+            
+            currentOrderProduct = p;
+            document.getElementById('orderProductName').textContent = p.item;
+            document.getElementById('orderProductPrice').textContent = p.price;
+            document.getElementById('orderProductId').value = p.id;
+            document.getElementById('orderSellerId').value = p.userId;
+            document.getElementById('orderPrice').value = p.price.replace(/[^0-9.]/g, '');
+            document.getElementById('orderBuyerId').value = userId;
+            document.getElementById('orderAmount').value = 1;
+            document.getElementById('orderAddress').value = '';
+            document.getElementById('orderPhone').value = '';
+            
+            // Show/hide payment info based on product type
+            const paymentInfo = document.getElementById('orderPaymentInfo');
+            if (isSpecial) {
+                paymentInfo.classList.add('hidden');
+            } else {
+                paymentInfo.classList.remove('hidden');
+                // Show bank info
+                document.getElementById('orderBankName').textContent = p.bankName || 'មិនបានបញ្ជាក់';
+                document.getElementById('orderBankAccount').textContent = p.bankAccount || 'មិនបានបញ្ជាក់';
+                
+                // Show QR
+                const qrImg = document.getElementById('orderQrImage');
+                const noQr = document.getElementById('orderNoQr');
+                if (p.qrImg) {
+                    qrImg.src = p.qrImg;
+                    qrImg.classList.remove('hidden');
+                    noQr.classList.add('hidden');
+                } else {
+                    qrImg.classList.add('hidden');
+                    noQr.classList.remove('hidden');
+                }
+            }
+            
+            openModal('orderModal');
+        }
+        
+        async function handleOrderSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('orderSubmitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងបញ្ជូន...';
+            
+            const buyerId = document.getElementById('orderBuyerId').value.trim();
+            const productId = parseInt(document.getElementById('orderProductId').value);
+            const sellerId = document.getElementById('orderSellerId').value;
+            const amount = parseInt(document.getElementById('orderAmount').value);
+            const deliveryMethod = document.getElementById('orderDeliveryMethod').value;
+            const address = document.getElementById('orderAddress').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            const price = parseFloat(document.getElementById('orderPrice').value) || 0;
+            const total = price * amount;
+            
+            // Validate buyer ID
+            if (!validateUserId(buyerId)) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+                return;
+            }
+            
+            if (buyerId === sellerId) {
+                showToast('⚠️ អ្នកមិនអាចបញ្ជាទិញផលិតផលរបស់ខ្លួនឯងបានទេ!', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+                return;
+            }
+            
+            if (!address || !phone) {
+                showToast('⚠️ សូមបំពេញអាសយដ្ឋាន និងលេខទូរស័ព្ទ!', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+                return;
+            }
+            
+            try {
+                // Get product info
+                let products = JSON.parse(localStorage.getItem('shop_products') || '[]');
+                const p = products.find(item => item.id === productId);
+                if (!p) {
+                    showToast('❌ មិនឃើញផលិតផល!', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+                    return;
+                }
+                
+                // Get buyer info
+                const buyerData = JSON.parse(localStorage.getItem('user_data') || '{}');
+                const buyerName = buyerData.name || 'អ្នកប្រើប្រាស់';
+                
+                // ====== Telegram Message with ID on top ======
+                let caption = `🛒 *មានការបញ្ជាទិញថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
+                caption += `🆔 លេខ ID អ្នកបញ្ជាទិញ: \`${buyerId}\`\n`;
+                caption += `👤 ឈ្មោះអ្នកបញ្ជាទិញ: ${buyerName}\n`;
+                caption += `📦 ផលិតផល: *${p.item}*\n`;
+                caption += `🏷️ ប្រភេទ: ${p.cat}\n`;
+                caption += `💰 តម្លៃក្នុងមួយឯកតា: ${p.price}\n`;
+                caption += `🔢 ចំនួន: ${amount}\n`;
+                caption += `💵 សរុប: *${total.toFixed(2)}*`;
+                if (p.price.includes('៛')) caption += `៛`;
+                else caption += `$`;
+                caption += `\n`;
+                caption += `🚚 វិធីដឹកជញ្ជូន: ${deliveryMethod}\n`;
+                caption += `📍 អាសយដ្ឋាន: ${address}\n`;
+                caption += `📱 ទំនាក់ទំនង: ${phone}\n`;
+                caption += `🆔 លេខ ID អ្នកលក់: \`${p.userId}\`\n`;
+                caption += `━━━━━━━━━━━━━━━━━━━━`;
+                
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
+                
+                // Send to Telegram Order Bot
+                const formData = new FormData();
+                formData.append('chat_id', TG_CONFIG.ORDER.chat_id);
+                formData.append('text', caption);
+                formData.append('parse_mode', 'Markdown');
+                
+                const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendMessage`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
+                    document.getElementById('orderForm').reset();
+                    closeModal('orderModal');
+                } else {
+                    const errorText = await response.text();
+                    console.error('Order Telegram Error:', errorText);
+                    showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Order error:', error);
+                showToast('❌ កំហុសប្រព័ន្ធ!', 'error');
+            }
+            
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
         }
         
         // ====== SHOP CATEGORY TOGGLE ======
@@ -1931,6 +2192,27 @@
             document.getElementById('detailCompanyRow').style.display = p.delivCompany ? 'flex' : 'none';
             document.getElementById('detailFee').textContent = p.delivFee || '$0.00';
             document.getElementById('detailDesc').textContent = p.desc;
+            
+            // ====== SHOW PAYMENT INFO ======
+            const isSpecial = p.cat.includes('អចលនទ្រព្យ') || p.cat.includes('រថយន្ត') || p.cat.includes('យានយន្ត');
+            const paymentInfo = document.getElementById('detailPaymentInfo');
+            if (isSpecial) {
+                paymentInfo.classList.add('hidden');
+            } else {
+                paymentInfo.classList.remove('hidden');
+                document.getElementById('detailBankName').textContent = p.bankName || 'មិនបានបញ្ជាក់';
+                document.getElementById('detailBankAccount').textContent = p.bankAccount || 'មិនបានបញ្ជាក់';
+                const qrImg = document.getElementById('detailQrImage');
+                const noQr = document.getElementById('detailNoQr');
+                if (p.qrImg) {
+                    qrImg.src = p.qrImg;
+                    qrImg.classList.remove('hidden');
+                    noQr.classList.add('hidden');
+                } else {
+                    qrImg.classList.add('hidden');
+                    noQr.classList.remove('hidden');
+                }
+            }
             
             const stars = p.rating ? '★'.repeat(Math.round(p.rating)) + '☆'.repeat(5 - Math.round(p.rating)) : '☆☆☆☆☆';
             document.getElementById('detailRating').textContent = stars;
@@ -2701,7 +2983,7 @@
                         cat: '👕 សម្លៀកបំពាក់', price: '$25.00', oldPrice: '$40.00',
                         seller: 'សុខា គឹម', contact: '012345678',
                         delivStatus: 'មានសេវាដឹកជញ្ជូនរហ័ស', delivCompany: 'J&T Express', delivFee: '$2.00',
-                        bankName: '', bankAccount: '',
+                        bankName: 'ACLEDA', bankAccount: '123456789',
                         desc: 'អាវយឺតគុណភាពខ្ពស់ ផលិតពីកប្បាស ១០០%',
                         mainImg: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%236366f1" width="400" height="300"/%3E%3Ctext x="50" y="170" font-family="Kantumruy Pro" font-size="28" fill="white"%3E👕 អាវយឺត%3C/text%3E%3C/svg%3E',
                         moreImgs: [], qrImg: null, views: 15, likes: 3, rating: 4.5, ratingCount: 2,
@@ -2716,7 +2998,7 @@
                         cat: '👜 កាបូប និងស្បែកជើង', price: '៨៩.០០៛', oldPrice: '១២០.០០៛',
                         seller: 'វិសាល ជេង', contact: '098765432',
                         delivStatus: 'អតិថិជនមកយកផ្ទាល់', delivCompany: '', delivFee: '$0.00',
-                        bankName: '', bankAccount: '',
+                        bankName: 'Wing', bankAccount: '987654321',
                         desc: 'ស្បែកជើងប៉ាតាស្បែកពិត ផលិតនៅអ៊ីតាលី',
                         mainImg: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f59e0b" width="400" height="300"/%3E%3Ctext x="50" y="170" font-family="Kantumruy Pro" font-size="28" fill="white"%3E👟 ស្បែកជើង%3C/text%3E%3C/svg%3E',
                         moreImgs: [], qrImg: null, views: 8, likes: 1, rating: 5, ratingCount: 1,
@@ -2750,6 +3032,8 @@
         window.handleJobSubmit = handleJobSubmit;
         window.handleShopSubmit = handleShopSubmit;
         window.handleHRSubmit = handleHRSubmit;
+        window.handleOrderSubmit = handleOrderSubmit;
+        window.openOrderModal = openOrderModal;
         window.filterCategory = filterCategory;
         window.handleSearch = handleSearch;
         window.toggleShopCategory = toggleShopCategory;
