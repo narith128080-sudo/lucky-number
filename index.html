@@ -283,7 +283,7 @@
                 </div>
                 <div onclick="openModal('shopModal')" class="glass-card rounded-2xl p-4 md:p-5 text-center cursor-pointer group">
                     <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mx-auto mb-3 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                        <i class="fa-solid fa-store"></i>
+                        <i class="fa-solid fa-cart-plus"></i>
                     </div>
                     <h3 class="font-bold text-sm md:text-base text-white group-hover:text-emerald-400 transition">បង្ហោះលក់ទំនិញ</h3>
                     <p class="text-slate-400 text-xs mt-1 hidden md:block">បង្ហោះលក់ផលិតផលរបស់អ្នក</p>
@@ -291,7 +291,7 @@
                 </div>
                 <div onclick="openModal('hrModal')" class="glass-card rounded-2xl p-4 md:p-5 text-center cursor-pointer group">
                     <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl mx-auto mb-3 group-hover:bg-pink-500 group-hover:text-white transition-all">
-                        <i class="fa-solid fa-bullhorn"></i>
+                        <i class="fa-solid fa-people-arrows"></i>
                     </div>
                     <h3 class="font-bold text-sm md:text-base text-white group-hover:text-pink-400 transition">បង្ហោះជ្រើសរើសបុគ្គលិក</h3>
                     <p class="text-slate-400 text-xs mt-1 hidden md:block">បង្ហោះការជ្រើសរើសបុគ្គលិកទូទៅ</p>
@@ -728,7 +728,7 @@
             <button onclick="closeModal('shopModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
             <div class="modal-title">
-                <i class="fa-solid fa-store text-emerald-400"></i>
+                <i class="fa-solid fa-cart-plus text-emerald-400"></i>
                 បង្ហោះលក់ផលិតផលថ្មី
             </div>
             
@@ -846,7 +846,7 @@
                 </div>
                 
                 <button type="submit" id="shopSubmitBtn" class="btn-success w-full text-white font-bold py-3 rounded-xl text-sm">
-                    <i class="fa-regular fa-store mr-2"></i> បង្ហោះលក់ទំនិញភ្លាមៗ
+                    <i class="fa-solid fa-cart-plus mr-2"></i> បង្ហោះលក់ទំនិញភ្លាមៗ
                 </button>
             </form>
         </div>
@@ -858,7 +858,7 @@
             <button onclick="closeModal('hrModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
             <div class="modal-title">
-                <i class="fa-solid fa-bullhorn text-pink-400"></i>
+                <i class="fa-solid fa-people-arrows text-pink-400"></i>
                 បង្ហោះជ្រើសរើសបុគ្គលិក
             </div>
             
@@ -905,7 +905,7 @@
                 </div>
                 
                 <button type="submit" id="hrSubmitBtn" class="btn-pink w-full text-white font-bold py-3 rounded-xl text-sm">
-                    <i class="fa-regular fa-bullhorn mr-2"></i> បង្ហោះការជ្រើសរើសបុគ្គលិក
+                    <i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក
                 </button>
             </form>
         </div>
@@ -1109,8 +1109,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- ============================================================ -->
+        <!-- ============================================================ -->
     <!-- ===================== JAVASCRIPT ============================ -->
     <!-- ============================================================ -->
     
@@ -1290,7 +1289,9 @@
             });
         }
         
-        // ====== REGISTER ======
+        // ================================================================
+        // ====== REGISTER (ជាមួយ Emoji) ======
+        // ================================================================
         async function handleRegister(event) {
             event.preventDefault();
             const btn = document.getElementById('regSubmitBtn');
@@ -1324,7 +1325,8 @@
             localStorage.setItem('user_data', JSON.stringify(userData));
             updateIdDisplay();
             
-            const text = `🆔 *មានការចុះឈ្មោះសមាជិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n• លេខ ID: \`${id}\`\n• ឈ្មោះពេញ: ${userData.name}\n• ភេទ/អាយុ: ${userData.gender} / ${userData.age} ឆ្នាំ\n• ទំនាក់ទំនង: ${userData.contact}\n• អាសយដ្ឋាន: ${userData.address}\n━━━━━━━━━━━━━━━━━━━━`;
+            // ====== Telegram Message with Emoji ======
+            const text = `🆔 *មានការចុះឈ្មោះសមាជិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n👤 ឈ្មោះពេញ: ${userData.name}\n⚧️ ភេទ: ${userData.gender}\n📅 អាយុ: ${userData.age} ឆ្នាំ\n🎂 ថ្ងៃខែឆ្នាំកំណើត: ${userData.dob}\n💼 មុខរបរ: ${userData.job}\n🎓 កម្រិតសិក្សា: ${userData.edu}\n📱 ទំនាក់ទំនង: ${userData.contact}\n📍 អាសយដ្ឋាន: ${userData.address}\n🆔 លេខ ID: \`${id}\`\n━━━━━━━━━━━━━━━━━━━━`;
             
             try {
                 await fetch(`https://api.telegram.org/bot${TG_CONFIG.REGISTER.token}/sendMessage`, {
@@ -1354,7 +1356,9 @@
             updateStats();
         }
         
-        // ====== JOB SUBMIT ======
+        // ================================================================
+        // ====== JOB SUBMIT (ជាមួយ Emoji) ======
+        // ================================================================
         async function handleJobSubmit(event) {
             event.preventDefault();
             const userId = document.getElementById('jobUserId').value;
@@ -1384,7 +1388,8 @@
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងបង្រួមរូបភាព...';
                 const resizedPhoto = await resizeImage(photoFile);
                 
-                const text = `💼 *មានបេក្ខជនដាក់ពាក្យធ្វើការ*\n━━━━━━━━━━━━━━━━━━━━\n• លេខ ID: \`${userId}\`\n• ឈ្មោះ: ${document.getElementById('jobName').value}\n• តំណែង: *${position}*\n• អាយុ: ${document.getElementById('jobAge').value} ឆ្នាំ\n• កម្ពស់: ${document.getElementById('jobHeight').value} cm\n• ទំនាក់ទំនង: ${document.getElementById('jobContact').value}\n• ប្រាក់ខែរំពឹងទុក: ${document.getElementById('jobSalary').value}\n• អាសយដ្ឋាន: ${document.getElementById('jobAddress').value}\n• បទពិសោធន៍: ${document.getElementById('jobExperience').value}\n━━━━━━━━━━━━━━━━━━━━`;
+                // ====== Telegram Message with Emoji ======
+                const text = `💼 *មានបេក្ខជនដាក់ពាក្យធ្វើការ*\n━━━━━━━━━━━━━━━━━━━━\n👤 ឈ្មោះ: ${document.getElementById('jobName').value}\n💼 តំណែង: *${position}*\n📅 អាយុ: ${document.getElementById('jobAge').value} ឆ្នាំ\n📏 កម្ពស់: ${document.getElementById('jobHeight').value} cm\n🎓 កម្រិតសិក្សា: ${document.getElementById('jobEdu').value}\n📱 ទំនាក់ទំនង: ${document.getElementById('jobContact').value}\n💰 ប្រាក់ខែរំពឹងទុក: ${document.getElementById('jobSalary').value}\n⏰ ម៉ោងធ្វើការ: ${document.getElementById('jobTimeType').value}\n📍 អាសយដ្ឋាន: ${document.getElementById('jobAddress').value}\n📝 បទពិសោធន៍: ${document.getElementById('jobExperience').value}\n🆔 លេខ ID: \`${userId}\`\n━━━━━━━━━━━━━━━━━━━━`;
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
                 const formData = new FormData();
@@ -1413,7 +1418,9 @@
             btn.innerHTML = '<i class="fa-regular fa-paper-plane mr-2"></i> បញ្ជូនពាក្យសុំ';
         }
         
-        // ====== SHOP SUBMIT ======
+        // ================================================================
+        // ====== SHOP SUBMIT (ជាមួយ Emoji) ======
+        // ================================================================
         async function handleShopSubmit(event) {
             event.preventDefault();
             const userId = document.getElementById('shopUserId').value;
@@ -1429,14 +1436,14 @@
                 if (!customCat) {
                     showToast('⚠️ សូមបញ្ចូលប្រភេទផលិតផល!', 'error');
                     btn.disabled = false;
-                    btn.innerHTML = '<i class="fa-regular fa-store mr-2"></i> បង្ហោះលក់ទំនិញ';
+                    btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បង្ហោះលក់ទំនិញ';
                     return;
                 }
                 cat = '📦 ' + customCat;
             } else if (!cat) {
                 showToast('⚠️ សូមជ្រើសរើសប្រភេទផលិតផល!', 'error');
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fa-regular fa-store mr-2"></i> បង្ហោះលក់ទំនិញ';
+                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បង្ហោះលក់ទំនិញ';
                 return;
             }
             
@@ -1444,7 +1451,7 @@
             if (!mainImg) {
                 showToast('⚠️ សូមជ្រើសរើសរូបភាពចម្បង!', 'error');
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fa-regular fa-store mr-2"></i> បង្ហោះលក់ទំនិញ';
+                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បង្ហោះលក់ទំនិញ';
                 return;
             }
             
@@ -1500,17 +1507,19 @@
                 products.unshift(product);
                 localStorage.setItem('shop_products', JSON.stringify(products));
                 
-                let caption = `🛍 *មានផលិតផលបង្ហោះលក់ថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
-                caption += `• លេខ ID: \`${userId}\`\n`;
-                caption += `• ទំនិញ: *${product.item}*\n`;
-                caption += `• ប្រភេទ: ${cat}\n`;
-                caption += `• តម្លៃលក់: *${product.price}*`;
+                // ====== Telegram Message with Emoji ======
+                let caption = `🛍️ *មានផលិតផលបង្ហោះលក់ថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
+                caption += `📦 ទំនិញ: *${product.item}*\n`;
+                caption += `🏷️ ប្រភេទ: ${cat}\n`;
+                caption += `💰 តម្លៃលក់: *${product.price}*`;
                 if (product.oldPrice) caption += ` (ដើម: ${product.oldPrice})`;
                 caption += `\n`;
-                caption += `• អ្នកលក់: ${product.seller}\n`;
-                caption += `• ទំនាក់ទំនង: ${product.contact}\n`;
-                if (product.delivFee) caption += `• ថ្លៃដឹកជញ្ជូន: ${product.delivFee}\n`;
-                caption += `• ព័ត៌មាន: ${product.desc}\n`;
+                caption += `👤 អ្នកលក់: ${product.seller}\n`;
+                caption += `📱 ទំនាក់ទំនង: ${product.contact}\n`;
+                if (product.delivFee) caption += `🚚 ថ្លៃដឹកជញ្ជូន: ${product.delivFee}\n`;
+                if (product.bankName) caption += `🏦 ធនាគារ: ${product.bankName}\n`;
+                caption += `📝 ព័ត៌មាន: ${product.desc}\n`;
+                caption += `🆔 លេខ ID: \`${userId}\`\n`;
                 caption += `━━━━━━━━━━━━━━━━━━━━`;
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
@@ -1556,10 +1565,12 @@
             }
             
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa-regular fa-store mr-2"></i> បង្ហោះលក់ទំនិញ';
+            btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បង្ហោះលក់ទំនិញ';
         }
         
-        // ====== HR SUBMIT ======
+        // ================================================================
+        // ====== HR SUBMIT (ជាមួយ Emoji) ======
+        // ================================================================
         async function handleHRSubmit(event) {
             event.preventDefault();
             const userId = document.getElementById('hrUserId').value;
@@ -1581,7 +1592,7 @@
                 if (!name || !department || !contact || !location || !desc) {
                     showToast('⚠️ សូមបំពេញព័ត៌មានដែលមានសញ្ញា * ទាំងអស់!', 'error');
                     btn.disabled = false;
-                    btn.innerHTML = '<i class="fa-regular fa-bullhorn mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
+                    btn.innerHTML = '<i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
                     return;
                 }
                 
@@ -1617,15 +1628,16 @@
                 posts.unshift(hrPost);
                 localStorage.setItem('hr_posts', JSON.stringify(posts));
                 
+                // ====== Telegram Message with Emoji ======
                 let caption = `📢 *ការជ្រើសរើសបុគ្គលិកថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
-                caption += `• លេខ ID: \`${userId}\`\n`;
-                caption += `• អ្នកបង្ហោះ: *${name}*\n`;
-                caption += `• ផ្នែក: ${department}\n`;
-                caption += `• ទំនាក់ទំនង: ${contact}\n`;
-                caption += `• ទីតាំង: ${location}\n`;
-                if (salary) caption += `• 💰 ប្រាក់ខែ: *${salary}*\n`;
-                if (deadline) caption += `• 📅 ផុតកំណត់: ${new Date(deadline).toLocaleDateString('km-KH')}\n`;
-                caption += `• 📝 ពណ៌នា: ${desc}\n`;
+                caption += `👤 អ្នកបង្ហោះ: *${name}*\n`;
+                caption += `🏢 ផ្នែក: ${department}\n`;
+                caption += `📱 ទំនាក់ទំនង: ${contact}\n`;
+                caption += `📍 ទីតាំង: ${location}\n`;
+                if (salary) caption += `💰 ប្រាក់ខែ: *${salary}*\n`;
+                if (deadline) caption += `📅 ផុតកំណត់: ${new Date(deadline).toLocaleDateString('km-KH')}\n`;
+                caption += `📝 ពណ៌នា: ${desc}\n`;
+                caption += `🆔 លេខ ID: \`${userId}\`\n`;
                 caption += `━━━━━━━━━━━━━━━━━━━━`;
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
@@ -1672,7 +1684,7 @@
             }
             
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa-regular fa-bullhorn mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
+            btn.innerHTML = '<i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
         }
         
         // ====== SHOP CATEGORY TOGGLE ======
@@ -2186,9 +2198,9 @@
             const p = window._currentHRPost;
             if (!p) return;
             const url = window.location.href;
-            let text = `📢 ការជ្រើសរើសបុគ្គលិក\nផ្នែក: ${p.department}\nទីតាំង: ${p.location}\nទំនាក់ទំនង: ${p.contact}`;
-            if (p.salary && p.salary.trim() !== '') text += `\nប្រាក់ខែ: ${p.salary}`;
-            text += `\n${url}`;
+            let text = `📢 ការជ្រើសរើសបុគ្គលិក\n🏢 ផ្នែក: ${p.department}\n📍 ទីតាំង: ${p.location}\n📱 ទំនាក់ទំនង: ${p.contact}`;
+            if (p.salary && p.salary.trim() !== '') text += `\n💰 ប្រាក់ខែ: ${p.salary}`;
+            text += `\n📱 ${url}`;
             if (navigator.share) { navigator.share({ title: 'ការជ្រើសរើសបុគ្គលិក', text, url }).catch(() => {}); } 
             else { navigator.clipboard.writeText(text).then(() => showToast('📋 ចម្លងភ្ជាប់ហើយ!', 'info')); }
         }
@@ -2523,7 +2535,7 @@
                                 <div style="font-size:0.55rem;color:#888;">📅 ${item.date}</div>
                             </div>
                             <div style="color:${statusColor};font-size:0.75rem;">${statusText}</div>
-                            <div style="font-size:0.6rem;color:#888;">ម៉ោង ${formatHour(item.targetHour)}</div>
+                            <div style="font-size:0.6rem;color:#888;">⏰ ${formatHour(item.targetHour)}</div>
                             ${item.resultZodiac ? `<div style="font-size:0.6rem;color:#aaa;">${item.resultIcon} ${item.resultZodiac}</div>` : ''}
                         </div>`;
             });
@@ -2670,7 +2682,6 @@
             
             document.getElementById('predictBtn').addEventListener('click', performPrediction);
             
-            // Update every second
             setInterval(() => {
                 updateLuckyNumber();
                 updateCountdown();
@@ -2679,9 +2690,10 @@
             }, 1000);
         }
         
+        // ================================================================
         // ====== INIT ======
+        // ================================================================
         function init() {
-            // Sample data
             if (!localStorage.getItem('shop_products')) {
                 const sample = [
                     {
@@ -2724,11 +2736,9 @@
             updateStats();
             updateWishlistBadge();
             
-            // Show shop page by default
             switchPage('shop');
         }
         
-        // Start
         document.addEventListener('DOMContentLoaded', init);
         
         // ====== GLOBAL FUNCTIONS ======
@@ -2766,6 +2776,7 @@
         window.restoreData = restoreData;
         window.clearAllData = clearAllData;
         window.switchHistoryTab = switchHistoryTab;
+        window.initZodiac = initZodiac;
     </script>
     
 </body>
