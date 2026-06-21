@@ -150,39 +150,115 @@
         .history-box { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; max-height: 300px; overflow-y: auto; }
         .history-item { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 8px 12px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; flex-wrap: wrap; gap: 4px; }
         
-        /* ====== RESPONSIVE ====== */
+        /* ====== RESPONSIVE FIXES ====== */
         @media (max-width: 640px) {
-            .modal-content { padding: 20px; border-radius: 20px; max-width: 100%; }
-            .modal-title { font-size: 17px; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .product-card .img-wrap { height: 150px; }
-            .product-card .price-tag { font-size: 13px; padding: 4px 12px; }
-            .product-card .info .name { font-size: 13px; }
-            .hr-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-            .hr-card .img-wrap { height: 120px; }
-            .toast { min-width: auto; font-size: 12px; padding: 12px 16px; }
-            .toast-container { bottom: 12px; right: 12px; left: 12px; }
-            .cat-btn { font-size: 10px; padding: 4px 12px; }
-            .zodiac-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-            .zodiac-card { padding: 10px 4px; }
-            .zodiac-card .icon { font-size: 1.4rem; }
-            .zodiac-card .name { font-size: 0.6rem; }
-            body { font-size: 15px; line-height: 1.7; }
-            .form-input, .form-select, .form-textarea { font-size: 15px; padding: 12px 14px; }
+            .modal-content { padding: 16px; border-radius: 16px; max-width: 100%; }
+            .modal-title { font-size: 16px; }
+            .modal-content { max-height: 95vh; }
+            
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .product-card .img-wrap { height: 140px; }
+            .product-card .price-tag { font-size: 12px; padding: 3px 10px; }
+            .product-card .info .name { font-size: 12px; }
+            .product-card .info { padding: 10px; }
+            .product-card .info .meta { font-size: 9px; gap: 6px; flex-wrap: wrap; }
+            
+            .hr-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .hr-card .img-wrap { height: 110px; }
+            .hr-card .info { padding: 10px; }
+            .hr-card .info .name { font-size: 13px; }
+            .hr-card .info .desc { font-size: 11px; }
+            
+            .toast { min-width: auto; font-size: 12px; padding: 10px 14px; }
+            .toast-container { bottom: 10px; right: 10px; left: 10px; }
+            .cat-btn { font-size: 9px; padding: 3px 10px; }
+            
+            .zodiac-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+            .zodiac-card { padding: 8px 4px; }
+            .zodiac-card .icon { font-size: 1.2rem; }
+            .zodiac-card .name { font-size: 0.55rem; }
+            
+            body { font-size: 14px; line-height: 1.6; }
+            .form-input, .form-select, .form-textarea { font-size: 14px; padding: 10px 12px; }
+            .form-label { font-size: 11px; }
+            
             .text-slate-400, .text-slate-500 { color: #cbd5e1 !important; }
+            
+            .hero-title { font-size: 1.6rem !important; }
+            .hero-sub { font-size: 1.3rem !important; }
+            
+            /* Fix for modal on mobile */
+            .modal-overlay { padding: 8px; align-items: flex-start; padding-top: 20px; }
+            .modal-content { border-radius: 16px; padding: 14px; }
+            .modal-content-sm { max-width: 100%; }
+            
+            /* Fix for grid gaps */
+            .grid.gap-4 { gap: 10px; }
+            .grid.gap-3 { gap: 6px; }
+            
+            /* Fix for service cards */
+            #services .glass-card { padding: 10px !important; }
+            #services .glass-card .w-12.h-12 { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+            #services .glass-card h3 { font-size: 10px !important; }
+            #services .glass-card p { display: none !important; }
+            #services .glass-card span { font-size: 7px !important; }
+            
+            /* Fix for buttons */
+            .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-pink, .btn-orange {
+                padding: 10px 14px !important;
+                font-size: 12px !important;
+                border-radius: 10px !important;
+            }
+            
+            /* Fix for navbar */
+            nav .flex.gap-3 { gap: 6px !important; }
+            nav .text-xl { font-size: 16px !important; }
+            nav .p-2 { padding: 6px !important; }
+            nav .px-3 { padding-left: 8px !important; padding-right: 8px !important; }
+            nav .py-3 { padding-top: 8px !important; padding-bottom: 8px !important; }
+            
+            /* Fix for footer */
+            footer .grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+            footer .text-xs { font-size: 10px !important; }
+            
+            /* Fix for pagination */
+            #pagination button, #hrPagination button { padding: 4px 10px !important; font-size: 11px !important; }
         }
+        
         @media (max-width: 400px) {
-            .product-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .product-card .img-wrap { height: 120px; }
+            .product-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .product-card .img-wrap { height: 110px; }
             .hr-grid { grid-template-columns: 1fr; }
             .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal-content { padding: 12px; }
+            .modal-title { font-size: 14px; }
         }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .product-card .img-wrap { height: 170px; }
+            .hr-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        }
+        
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         
         /* ====== FONT FIX FOR KHMER ====== */
         .text-slate-400, .text-slate-500, .text-slate-600 { color: #cbd5e1 !important; }
         .form-label { color: #e2e8f0 !important; font-weight: 500; }
+        
+        /* ====== HERO TEXT WHITE ====== */
+        .hero-title-white { color: #ffffff !important; }
+        .hero-sub-white { color: #ffffff !important; }
+        
+        /* ====== DATE INPUT FIX ====== */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+        input[type="date"] {
+            color-scheme: dark;
+        }
     </style>
 </head>
 <body>
@@ -192,40 +268,40 @@
     
     <!-- ====== NAVBAR ====== -->
     <nav class="sticky top-0 z-50 glass-dark border-b border-white/5">
-        <div class="container mx-auto max-w-7xl px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="bg-gradient-to-br from-indigo-500 to-purple-600 p-2.5 rounded-xl shadow-lg shadow-indigo-500/30">
-                    <i class="fa-solid fa-store text-white text-lg"></i>
+        <div class="container mx-auto max-w-7xl px-3 md:px-4 py-2 md:py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="bg-gradient-to-br from-indigo-500 to-purple-600 p-2 md:p-2.5 rounded-lg md:rounded-xl shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid fa-store text-white text-sm md:text-lg"></i>
                 </div>
                 <div>
-                    <span class="text-xl font-extrabold gradient-text">SmartMarket</span>
-                    <span class="hidden sm:inline text-[10px] font-bold text-indigo-400 bg-indigo-500/20 px-2 py-0.5 rounded-full border border-indigo-500/30 ml-1">Pro</span>
+                    <span class="text-base md:text-xl font-extrabold gradient-text">SmartMarket</span>
+                    <span class="hidden sm:inline text-[8px] md:text-[10px] font-bold text-indigo-400 bg-indigo-500/20 px-2 py-0.5 rounded-full border border-indigo-500/30 ml-1">Pro</span>
                 </div>
             </div>
             
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 md:gap-3">
                 <!-- Page Tabs -->
-                <button onclick="switchPage('shop')" id="tabShop" class="text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 px-3 py-1 transition">ផ្សារ</button>
-                <button onclick="switchPage('zodiac')" id="tabZodiac" class="text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white px-3 py-1 transition">🌟 ឆ្នាំសំណាង</button>
+                <button onclick="switchPage('shop')" id="tabShop" class="text-xs md:text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 px-2 md:px-3 py-1 transition">ផ្សារ</button>
+                <button onclick="switchPage('zodiac')" id="tabZodiac" class="text-xs md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white px-2 md:px-3 py-1 transition">🌟 ឆ្នាំសំណាង</button>
                 
-                <div class="h-6 w-px bg-white/10"></div>
+                <div class="h-5 md:h-6 w-px bg-white/10"></div>
                 
-                <div id="idDisplay" class="hidden sm:flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 px-3 py-1.5 rounded-full">
-                    <i class="fa-regular fa-id-card text-indigo-400 text-xs"></i>
-                    <span id="idText" class="text-indigo-300 font-medium text-xs">មិនទាន់ចុះឈ្មោះ</span>
+                <div id="idDisplay" class="hidden sm:flex items-center gap-1 md:gap-2 bg-indigo-500/10 border border-indigo-500/30 px-2 md:px-3 py-1 md:py-1.5 rounded-full">
+                    <i class="fa-regular fa-id-card text-indigo-400 text-[8px] md:text-xs"></i>
+                    <span id="idText" class="text-indigo-300 font-medium text-[8px] md:text-xs max-w-[60px] md:max-w-[100px] truncate">មិនទាន់ចុះឈ្មោះ</span>
                 </div>
                 
-                <button onclick="openDashboard()" class="text-slate-300 hover:text-white transition p-2 rounded-full hover:bg-white/10 relative">
-                    <i class="fa-regular fa-user text-lg"></i>
-                    <span id="wishlistBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[8px] font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                <button onclick="openDashboard()" class="text-slate-300 hover:text-white transition p-1.5 md:p-2 rounded-full hover:bg-white/10 relative">
+                    <i class="fa-regular fa-user text-base md:text-lg"></i>
+                    <span id="wishlistBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[7px] md:text-[8px] font-bold rounded-full w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hidden">0</span>
                 </button>
                 
-                <button onclick="toggleTheme()" class="text-slate-300 hover:text-white transition p-2 rounded-full hover:bg-white/10">
-                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                <button onclick="toggleTheme()" class="text-slate-300 hover:text-white transition p-1.5 md:p-2 rounded-full hover:bg-white/10">
+                    <i id="themeIcon" class="fa-solid fa-moon text-base md:text-lg"></i>
                 </button>
                 
-                <div class="h-6 w-px bg-white/10 hidden md:block"></div>
-                <span class="text-xs text-slate-400 hidden md:block"><i class="fa-regular fa-clock mr-1"></i><span id="liveClock">00:00:00</span></span>
+                <div class="h-5 md:h-6 w-px bg-white/10 hidden md:block"></div>
+                <span class="text-[8px] md:text-xs text-slate-400 hidden md:block"><i class="fa-regular fa-clock mr-1"></i><span id="liveClock">00:00:00</span></span>
             </div>
         </div>
     </nav>
@@ -235,98 +311,98 @@
     <!-- ============================================================ -->
     <div id="shopPage">
         <!-- HERO -->
-        <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 py-16 md:py-20">
+        <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 py-12 md:py-20">
             <div class="absolute inset-0 opacity-20">
                 <div class="absolute top-10 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
                 <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
             </div>
             <div class="container mx-auto max-w-6xl px-4 relative z-10 text-center">
-                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium text-indigo-200 mb-4">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-sm font-medium text-indigo-200 mb-3 md:mb-4">
                     <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>
                     ប្រព័ន្ធដំណើរការ ២៤/៧
                 </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-                    <span class="gradient-text">ផ្សារអនឡាញ</span><br>
-                    <span class="text-white">ឆ្លាតវៃ និងទំនើប</span>
+                <h1 class="text-2xl md:text-6xl font-extrabold leading-tight hero-title-white">
+                    <span class="hero-title-white">ផ្សារអនឡាញ</span><br>
+                    <span class="hero-sub-white">ឆ្លាតវៃ និងទំនើប</span>
                 </h1>
-                <p class="text-slate-300 text-sm md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
+                <p class="text-slate-300 text-xs md:text-lg max-w-2xl mx-auto mt-3 md:mt-4 leading-relaxed">
                     ចុះឈ្មោះសមាជិក ដាក់ពាក្យសុំការងារ បង្ហោះលក់ទំនិញ និងជ្រើសរើសបុគ្គលិក
                 </p>
-                <div class="flex flex-wrap justify-center gap-3 mt-6">
-                    <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" class="btn-primary text-white font-semibold px-6 py-3 rounded-xl flex items-center gap-2 text-sm">
+                <div class="flex flex-wrap justify-center gap-2 md:gap-3 mt-4 md:mt-6">
+                    <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" class="btn-primary text-white font-semibold px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl flex items-center gap-2 text-xs md:text-sm">
                         <i class="fa-solid fa-rocket"></i> ចាប់ផ្តើមប្រើប្រាស់
                     </button>
-                    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="glass hover:bg-white/10 text-white font-medium px-6 py-3 rounded-xl border border-white/20 flex items-center gap-2 text-sm transition">
+                    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="glass hover:bg-white/10 text-white font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-white/20 flex items-center gap-2 text-xs md:text-sm transition">
                         <i class="fa-regular fa-eye"></i> មើលផលិតផល
                     </button>
                 </div>
-                <div class="grid grid-cols-3 gap-4 max-w-sm mx-auto mt-8 pt-6 border-t border-white/10">
-                    <div><div class="text-2xl font-bold text-white"><span id="statProducts">0</span>+</div><div class="text-xs text-slate-400">ផលិតផល</div></div>
-                    <div><div class="text-2xl font-bold text-white"><span id="statMembers">0</span>+</div><div class="text-xs text-slate-400">សមាជិក</div></div>
-                    <div><div class="text-2xl font-bold text-white"><span id="statViews">0</span>k</div><div class="text-xs text-slate-400">ទស្សនា</div></div>
+                <div class="grid grid-cols-3 gap-2 md:gap-4 max-w-xs md:max-w-sm mx-auto mt-6 md:mt-8 pt-4 md:pt-6 border-t border-white/10">
+                    <div><div class="text-lg md:text-2xl font-bold text-white"><span id="statProducts">0</span>+</div><div class="text-[8px] md:text-xs text-slate-400">ផលិតផល</div></div>
+                    <div><div class="text-lg md:text-2xl font-bold text-white"><span id="statMembers">0</span>+</div><div class="text-[8px] md:text-xs text-slate-400">សមាជិក</div></div>
+                    <div><div class="text-lg md:text-2xl font-bold text-white"><span id="statViews">0</span>k</div><div class="text-[8px] md:text-xs text-slate-400">ទស្សនា</div></div>
                 </div>
             </div>
         </header>
         
         <!-- SERVICES -->
-        <section id="services" class="container mx-auto max-w-6xl px-4 -mt-8 relative z-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                <div onclick="openModal('registerModal')" class="glass-card rounded-2xl p-4 md:p-5 text-center cursor-pointer group">
-                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl mx-auto mb-3 group-hover:bg-blue-500 group-hover:text-white transition-all">
+        <section id="services" class="container mx-auto max-w-6xl px-4 -mt-6 md:-mt-8 relative z-20">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                <div onclick="openModal('registerModal')" class="glass-card rounded-xl md:rounded-2xl p-3 md:p-5 text-center cursor-pointer group">
+                    <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-base md:text-xl mx-auto mb-2 md:mb-3 group-hover:bg-blue-500 group-hover:text-white transition-all">
                         <i class="fa-solid fa-id-card"></i>
                     </div>
-                    <h3 class="font-bold text-sm md:text-base text-white group-hover:text-blue-400 transition">ចុះឈ្មោះយក ID</h3>
-                    <p class="text-slate-400 text-xs mt-1 hidden md:block">ចុះឈ្មោះសមាជិក និងបង្កើត ID</p>
-                    <span class="inline-block mt-2 text-blue-400 text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីចាប់ផ្តើម</span>
+                    <h3 class="font-bold text-[10px] md:text-base text-white group-hover:text-blue-400 transition">ចុះឈ្មោះយក ID</h3>
+                    <p class="text-slate-400 text-[8px] md:text-xs mt-0.5 hidden md:block">ចុះឈ្មោះសមាជិក និងបង្កើត ID</p>
+                    <span class="inline-block mt-1 md:mt-2 text-blue-400 text-[7px] md:text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីចាប់ផ្តើម</span>
                 </div>
-                <div onclick="openModal('jobModal')" class="glass-card rounded-2xl p-4 md:p-5 text-center cursor-pointer group">
-                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-xl mx-auto mb-3 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                <div onclick="openModal('jobModal')" class="glass-card rounded-xl md:rounded-2xl p-3 md:p-5 text-center cursor-pointer group">
+                    <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-base md:text-xl mx-auto mb-2 md:mb-3 group-hover:bg-orange-500 group-hover:text-white transition-all">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
-                    <h3 class="font-bold text-sm md:text-base text-white group-hover:text-orange-400 transition">ដាក់ពាក្យបម្រើការងារ</h3>
-                    <p class="text-slate-400 text-xs mt-1 hidden md:block">ដាក់ពាក្យសុំបម្រើការងារតាមជំនាញ</p>
-                    <span class="inline-block mt-2 text-orange-400 text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីដាក់ពាក្យ</span>
+                    <h3 class="font-bold text-[10px] md:text-base text-white group-hover:text-orange-400 transition">ដាក់ពាក្យបម្រើការងារ</h3>
+                    <p class="text-slate-400 text-[8px] md:text-xs mt-0.5 hidden md:block">ដាក់ពាក្យសុំបម្រើការងារតាមជំនាញ</p>
+                    <span class="inline-block mt-1 md:mt-2 text-orange-400 text-[7px] md:text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីដាក់ពាក្យ</span>
                 </div>
-                <div onclick="openModal('shopModal')" class="glass-card rounded-2xl p-4 md:p-5 text-center cursor-pointer group">
-                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mx-auto mb-3 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                <div onclick="openModal('shopModal')" class="glass-card rounded-xl md:rounded-2xl p-3 md:p-5 text-center cursor-pointer group">
+                    <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base md:text-xl mx-auto mb-2 md:mb-3 group-hover:bg-emerald-500 group-hover:text-white transition-all">
                         <i class="fa-solid fa-cart-plus"></i>
                     </div>
-                    <h3 class="font-bold text-sm md:text-base text-white group-hover:text-emerald-400 transition">បង្ហោះលក់ទំនិញ</h3>
-                    <p class="text-slate-400 text-xs mt-1 hidden md:block">បង្ហោះលក់ផលិតផលរបស់អ្នក</p>
-                    <span class="inline-block mt-2 text-emerald-400 text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីបង្ហោះ</span>
+                    <h3 class="font-bold text-[10px] md:text-base text-white group-hover:text-emerald-400 transition">បង្ហោះលក់ទំនិញ</h3>
+                    <p class="text-slate-400 text-[8px] md:text-xs mt-0.5 hidden md:block">បង្ហោះលក់ផលិតផលរបស់អ្នក</p>
+                    <span class="inline-block mt-1 md:mt-2 text-emerald-400 text-[7px] md:text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីបង្ហោះ</span>
                 </div>
-                <div onclick="openModal('hrModal')" class="glass-card rounded-2xl p-4 md:p-5 text-center cursor-pointer group">
-                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl mx-auto mb-3 group-hover:bg-pink-500 group-hover:text-white transition-all">
+                <div onclick="openModal('hrModal')" class="glass-card rounded-xl md:rounded-2xl p-3 md:p-5 text-center cursor-pointer group">
+                    <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-base md:text-xl mx-auto mb-2 md:mb-3 group-hover:bg-pink-500 group-hover:text-white transition-all">
                         <i class="fa-solid fa-people-arrows"></i>
                     </div>
-                    <h3 class="font-bold text-sm md:text-base text-white group-hover:text-pink-400 transition">បង្ហោះជ្រើសរើសបុគ្គលិក</h3>
-                    <p class="text-slate-400 text-xs mt-1 hidden md:block">បង្ហោះការជ្រើសរើសបុគ្គលិកទូទៅ</p>
-                    <span class="inline-block mt-2 text-pink-400 text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីបង្ហោះ</span>
+                    <h3 class="font-bold text-[10px] md:text-base text-white group-hover:text-pink-400 transition">បង្ហោះជ្រើសរើសបុគ្គលិក</h3>
+                    <p class="text-slate-400 text-[8px] md:text-xs mt-0.5 hidden md:block">បង្ហោះការជ្រើសរើសបុគ្គលិកទូទៅ</p>
+                    <span class="inline-block mt-1 md:mt-2 text-pink-400 text-[7px] md:text-xs font-medium group-hover:translate-x-1 transition">→ ចុចដើម្បីបង្ហោះ</span>
                 </div>
             </div>
         </section>
         
         <!-- PRODUCTS -->
-        <section id="products" class="container mx-auto max-w-6xl px-4 py-8 md:py-12">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+        <section id="products" class="container mx-auto max-w-6xl px-4 py-6 md:py-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-4 mb-4 md:mb-6">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
-                        <span class="w-1.5 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
+                    <h2 class="text-lg md:text-3xl font-bold text-white flex items-center gap-2 md:gap-3">
+                        <span class="w-1 h-6 md:w-1.5 md:h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full"></span>
                         ផលិតផលកំពុងដាក់លក់
-                        <span id="productCount" class="text-sm font-normal text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-full">0</span>
+                        <span id="productCount" class="text-xs md:text-sm font-normal text-slate-400 bg-slate-800 px-2 md:px-2.5 py-0.5 rounded-full">0</span>
                     </h2>
-                    <p class="text-slate-400 text-sm mt-1">ស្វែងរកផលិតផលដែលអ្នកចូលចិត្ត</p>
+                    <p class="text-slate-400 text-[10px] md:text-sm mt-0.5">ស្វែងរកផលិតផលដែលអ្នកចូលចិត្ត</p>
                 </div>
                 <div class="flex flex-wrap gap-2 w-full md:w-auto">
                     <div class="relative flex-1 md:min-w-[200px]">
-                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs md:text-sm"></i>
                         <input type="text" id="searchInput" placeholder="ស្វែងរកទំនិញ..." 
                                oninput="handleSearch()"
-                               class="w-full pl-9 pr-3 py-2 bg-slate-800/50 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
+                               class="w-full pl-7 md:pl-9 pr-3 py-1.5 md:py-2 bg-slate-800/50 border border-slate-700 rounded-lg md:rounded-xl text-xs md:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
                     </div>
                     <select id="sortSelect" onchange="renderProducts()" 
-                            class="form-select w-auto min-w-[120px] py-2 px-3 text-sm">
+                            class="form-select w-auto min-w-[100px] md:min-w-[120px] py-1.5 md:py-2 px-2 md:px-3 text-xs md:text-sm">
                         <option value="newest">ថ្មីបំផុត</option>
                         <option value="price-low">តម្លៃទាប→ខ្ពស់</option>
                         <option value="price-high">តម្លៃខ្ពស់→ទាប</option>
@@ -336,7 +412,7 @@
                 </div>
             </div>
             
-            <div id="categoryFilters" class="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-2">
+            <div id="categoryFilters" class="flex flex-wrap gap-1 md:gap-2 mb-4 md:mb-6 overflow-x-auto pb-1 md:pb-2">
                 <button onclick="filterCategory('all')" class="cat-btn active" data-cat="all">ទាំងអស់</button>
                 <button onclick="filterCategory('សម្លៀកបំពាក់')" class="cat-btn" data-cat="សម្លៀកបំពាក់">👕 សម្លៀកបំពាក់</button>
                 <button onclick="filterCategory('កាបូប')" class="cat-btn" data-cat="កាបូប">👜 កាបូប</button>
@@ -349,81 +425,81 @@
             </div>
             
             <div id="productGrid" class="product-grid"></div>
-            <div id="emptyProducts" class="hidden text-center py-12">
-                <i class="fa-regular fa-face-frown text-5xl text-slate-600 mb-4"></i>
-                <p class="text-slate-400 text-lg">មិនទាន់មានផលិតផលណាមួយឡើយ</p>
-                <p class="text-slate-500 text-sm">សូមចុចបង្ហោះលក់ទំនិញដើម្បីចាប់ផ្តើម</p>
+            <div id="emptyProducts" class="hidden text-center py-8 md:py-12">
+                <i class="fa-regular fa-face-frown text-3xl md:text-5xl text-slate-600 mb-3 md:mb-4"></i>
+                <p class="text-slate-400 text-base md:text-lg">មិនទាន់មានផលិតផលណាមួយឡើយ</p>
+                <p class="text-slate-500 text-xs md:text-sm">សូមចុចបង្ហោះលក់ទំនិញដើម្បីចាប់ផ្តើម</p>
             </div>
-            <div id="pagination" class="flex justify-center gap-2 mt-6"></div>
+            <div id="pagination" class="flex justify-center gap-1 md:gap-2 mt-4 md:mt-6"></div>
         </section>
         
         <!-- HR POSTS -->
-        <section id="hr-posts" class="container mx-auto max-w-6xl px-4 py-8 border-t border-white/5">
-            <div class="flex justify-between items-center mb-6">
+        <section id="hr-posts" class="container mx-auto max-w-6xl px-4 py-6 md:py-8 border-t border-white/5">
+            <div class="flex justify-between items-center mb-4 md:mb-6">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
-                        <span class="w-1.5 h-8 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>
+                    <h2 class="text-lg md:text-3xl font-bold text-white flex items-center gap-2 md:gap-3">
+                        <span class="w-1 h-6 md:w-1.5 md:h-8 bg-gradient-to-b from-pink-500 to-rose-500 rounded-full"></span>
                         ការជ្រើសរើសបុគ្គលិក
-                        <span id="hrCount" class="text-sm font-normal text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-full">0</span>
+                        <span id="hrCount" class="text-xs md:text-sm font-normal text-slate-400 bg-slate-800 px-2 md:px-2.5 py-0.5 rounded-full">0</span>
                     </h2>
-                    <p class="text-slate-400 text-sm mt-1">មើលការជ្រើសរើសបុគ្គលិកពីក្រុមហ៊ុនផ្សេងៗ</p>
+                    <p class="text-slate-400 text-[10px] md:text-sm mt-0.5">មើលការជ្រើសរើសបុគ្គលិកពីក្រុមហ៊ុនផ្សេងៗ</p>
                 </div>
             </div>
             <div id="hrGrid" class="hr-grid"></div>
-            <div id="emptyHR" class="hidden text-center py-12">
-                <i class="fa-regular fa-face-frown text-5xl text-slate-600 mb-4"></i>
-                <p class="text-slate-400 text-lg">មិនទាន់មានការបង្ហោះជ្រើសរើសបុគ្គលិកណាមួយឡើយ</p>
-                <p class="text-slate-500 text-sm">សូមចុកបង្ហោះជ្រើសរើសបុគ្គលិកដើម្បីចាប់ផ្តើម</p>
+            <div id="emptyHR" class="hidden text-center py-8 md:py-12">
+                <i class="fa-regular fa-face-frown text-3xl md:text-5xl text-slate-600 mb-3 md:mb-4"></i>
+                <p class="text-slate-400 text-base md:text-lg">មិនទាន់មានការបង្ហោះជ្រើសរើសបុគ្គលិកណាមួយឡើយ</p>
+                <p class="text-slate-500 text-xs md:text-sm">សូមចុកបង្ហោះជ្រើសរើសបុគ្គលិកដើម្បីចាប់ផ្តើម</p>
             </div>
-            <div id="hrPagination" class="flex justify-center gap-2 mt-6"></div>
+            <div id="hrPagination" class="flex justify-center gap-1 md:gap-2 mt-4 md:mt-6"></div>
         </section>
         
         <!-- ABOUT -->
-        <section class="container mx-auto max-w-6xl px-4 py-12 border-t border-white/5">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
+        <section class="container mx-auto max-w-6xl px-4 py-8 md:py-12 border-t border-white/5">
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                 <div>
-                    <span class="text-indigo-400 font-semibold text-sm flex items-center gap-2">
+                    <span class="text-indigo-400 font-semibold text-xs md:text-sm flex items-center gap-2">
                         <i class="fa-solid fa-circle-info"></i> អំពីយើង
                     </span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">
+                    <h2 class="text-xl md:text-3xl font-bold text-white mt-2">
                         SmartMarket — <span class="gradient-text">វេទិកាឌីជីថលទំនើប</span>
                     </h2>
-                    <p class="text-slate-300 text-sm leading-relaxed mt-4">
+                    <p class="text-slate-300 text-xs md:text-sm leading-relaxed mt-3 md:mt-4">
                         SmartMarket គឺជាប្រព័ន្ធគ្រប់គ្រងសមាជិក និងផ្សារអនឡាញដែលត្រូវបានរចនាឡើងដើម្បីជួយសម្រួលដល់ការគ្រប់គ្រងទិន្នន័យ ការជ្រើសរើសបុគ្គលិក និងការលក់ទំនិញតាមអនឡាញ។
                     </p>
-                    <div class="grid grid-cols-2 gap-4 mt-6">
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-shield-check text-indigo-400 text-lg mt-0.5"></i>
-                            <div><h4 class="font-semibold text-white text-sm">សុវត្ថិភាពខ្ពស់</h4><p class="text-slate-400 text-xs">ទិន្នន័យត្រូវបានការពារ</p></div>
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-4 md:mt-6">
+                        <div class="flex items-start gap-2 md:gap-3">
+                            <i class="fa-solid fa-shield-check text-indigo-400 text-base md:text-lg mt-0.5"></i>
+                            <div><h4 class="font-semibold text-white text-xs md:text-sm">សុវត្ថិភាពខ្ពស់</h4><p class="text-slate-400 text-[10px] md:text-xs">ទិន្នន័យត្រូវបានការពារ</p></div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-bolt text-indigo-400 text-lg mt-0.5"></i>
-                            <div><h4 class="font-semibold text-white text-sm">លឿនរហ័ស</h4><p class="text-slate-400 text-xs">ដំណើរការស្វ័យប្រវត្តិ</p></div>
+                        <div class="flex items-start gap-2 md:gap-3">
+                            <i class="fa-solid fa-bolt text-indigo-400 text-base md:text-lg mt-0.5"></i>
+                            <div><h4 class="font-semibold text-white text-xs md:text-sm">លឿនរហ័ស</h4><p class="text-slate-400 text-[10px] md:text-xs">ដំណើរការស្វ័យប្រវត្តិ</p></div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-users text-indigo-400 text-lg mt-0.5"></i>
-                            <div><h4 class="font-semibold text-white text-sm">សហគមន៍ធំ</h4><p class="text-slate-400 text-xs">សមាជិករាប់ពាន់នាក់</p></div>
+                        <div class="flex items-start gap-2 md:gap-3">
+                            <i class="fa-solid fa-users text-indigo-400 text-base md:text-lg mt-0.5"></i>
+                            <div><h4 class="font-semibold text-white text-xs md:text-sm">សហគមន៍ធំ</h4><p class="text-slate-400 text-[10px] md:text-xs">សមាជិករាប់ពាន់នាក់</p></div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-headset text-indigo-400 text-lg mt-0.5"></i>
-                            <div><h4 class="font-semibold text-white text-sm">ជំនួយ ២៤/៧</h4><p class="text-slate-400 text-xs">ឆ្លើយតបគ្រប់ពេល</p></div>
+                        <div class="flex items-start gap-2 md:gap-3">
+                            <i class="fa-solid fa-headset text-indigo-400 text-base md:text-lg mt-0.5"></i>
+                            <div><h4 class="font-semibold text-white text-xs md:text-sm">ជំនួយ ២៤/៧</h4><p class="text-slate-400 text-[10px] md:text-xs">ឆ្លើយតបគ្រប់ពេល</p></div>
                         </div>
                     </div>
                 </div>
-                <div class="glass-card rounded-2xl p-6 border-indigo-500/20">
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://ui-avatars.com/api/?name=Smart+Market&background=6366f1&color=fff&size=64" class="w-14 h-14 rounded-xl" alt="SmartMarket">
+                <div class="glass-card rounded-xl md:rounded-2xl p-4 md:p-6 border-indigo-500/20">
+                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                        <img src="https://ui-avatars.com/api/?name=Smart+Market&background=6366f1&color=fff&size=64" class="w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl" alt="SmartMarket">
                         <div>
-                            <h3 class="font-bold text-lg text-white">SmartMarket Team</h3>
-                            <p class="text-slate-400 text-sm">ប្រតិបត្តិការតាំងពីឆ្នាំ ២០២៤</p>
+                            <h3 class="font-bold text-base md:text-lg text-white">SmartMarket Team</h3>
+                            <p class="text-slate-400 text-[10px] md:text-sm">ប្រតិបត្តិការតាំងពីឆ្នាំ ២០២៤</p>
                         </div>
                     </div>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between border-b border-white/5 pb-2">
+                    <div class="space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                        <div class="flex justify-between border-b border-white/5 pb-1.5 md:pb-2">
                             <span class="text-slate-400">សមាជិកសរុប</span>
                             <span class="font-semibold text-white" id="statMembers2">១,២៤៧</span>
                         </div>
-                        <div class="flex justify-between border-b border-white/5 pb-2">
+                        <div class="flex justify-between border-b border-white/5 pb-1.5 md:pb-2">
                             <span class="text-slate-400">ផលិតផលសរុប</span>
                             <span class="font-semibold text-white" id="statProducts2">២៨៤</span>
                         </div>
@@ -436,37 +512,37 @@
             </div>
         </section>
     </div>
-        <!-- ============================================================ -->
+    <!-- ============================================================ -->
     <!-- ===================== PAGE: ZODIAC ========================== -->
     <!-- ============================================================ -->
     <div id="zodiacPage" style="display:none;">
-        <div class="container mx-auto max-w-4xl px-4 py-8">
+        <div class="container mx-auto max-w-4xl px-4 py-6 md:py-8">
             <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-extrabold gradient-gold">
+                <h1 class="text-2xl md:text-4xl font-extrabold gradient-gold">
                     🎁 ឆ្នាំសំណាងទាំង ១២ 🎉
                 </h1>
-                <p class="text-slate-400 text-sm mt-2">ប្រព័ន្ធទស្សន៍ទាយឆ្នាំសំណាង ២៤ ម៉ោង</p>
+                <p class="text-slate-400 text-xs md:text-sm mt-1 md:mt-2">ប្រព័ន្ធទស្សន៍ទាយឆ្នាំសំណាង ២៤ ម៉ោង</p>
             </div>
             
             <!-- Notification -->
-            <div class="glass-card rounded-2xl p-4 md:p-5 mt-4 border-emerald-500/20">
-                <div class="flex items-start gap-3">
-                    <div class="text-2xl mt-1">🎁</div>
+            <div class="glass-card rounded-xl md:rounded-2xl p-3 md:p-5 mt-3 md:mt-4 border-emerald-500/20">
+                <div class="flex items-start gap-2 md:gap-3">
+                    <div class="text-xl md:text-2xl mt-0.5">🎁</div>
                     <div>
-                        <h3 class="text-sm font-bold text-emerald-300 mb-1">អត្ថប្រយោជន៍នៃការទស្សន៍ទាយ!</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
+                        <h3 class="text-xs md:text-sm font-bold text-emerald-300 mb-0.5 md:mb-1">អត្ថប្រយោជន៍នៃការទស្សន៍ទាយ!</h3>
+                        <p class="text-[10px] md:text-xs text-slate-300 leading-relaxed">
                             សមាជិកទាំងអស់ដែលបានចុះឈ្មោះ អាចទទួលបានរង្វាន់ដ៏ច្រើន រួមមាន៖
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/5">💰 ទឹកប្រាក់</span>
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/5">👕 សំលៀកបំពាក់</span>
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/5">📱 ទូរស័ព្ទដៃ</span>
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/5">💻 កុំព្យូទ័រ</span>
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/5">🛵 ម៉ូតូ</span>
-                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs border border-white/5">🚗 រថយន្ត</span>
+                        <div class="flex flex-wrap gap-1 md:gap-2 mt-1.5 md:mt-2">
+                            <span class="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[8px] md:text-xs border border-white/5">💰 ទឹកប្រាក់</span>
+                            <span class="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[8px] md:text-xs border border-white/5">👕 សំលៀកបំពាក់</span>
+                            <span class="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[8px] md:text-xs border border-white/5">📱 ទូរស័ព្ទដៃ</span>
+                            <span class="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[8px] md:text-xs border border-white/5">💻 កុំព្យូទ័រ</span>
+                            <span class="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[8px] md:text-xs border border-white/5">🛵 ម៉ូតូ</span>
+                            <span class="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[8px] md:text-xs border border-white/5">🚗 រថយន្ត</span>
                         </div>
-                        <p class="text-[10px] text-emerald-400/70 mt-2">
-                            <i class="fa-regular fa-star mr-1"></i>
+                        <p class="text-[8px] md:text-[10px] text-emerald-400/70 mt-1.5 md:mt-2">
+                            <i class="fa-regular fa-star mr-0.5 md:mr-1"></i>
                             ការទស្សន៍ទាយត្រឹមត្រូវ អ្នកនឹងទទួលបានរង្វាន់ភ្លាមៗ!
                             <span class="text-yellow-400">ចុះឈ្មោះថ្ងៃនេះ ដើម្បីកុំឱ្យខកឱកាស!</span>
                         </p>
@@ -475,58 +551,58 @@
             </div>
             
             <!-- Live Status -->
-            <div class="text-center mt-4">
-                <div class="text-indigo-300 text-sm font-medium" id="currentHourText">🔮 ឆ្នាំសំណាងបច្ចុប្បន្ន៖</div>
-                <div class="lucky-circle" id="luckyNumber">?</div>
-                <div class="countdown-box">
+            <div class="text-center mt-3 md:mt-4">
+                <div class="text-indigo-300 text-[10px] md:text-sm font-medium" id="currentHourText">🔮 ឆ្នាំសំណាងបច្ចុប្បន្ន៖</div>
+                <div class="lucky-circle text-base md:text-xl py-2 md:py-3 px-4 md:px-7 mt-1 md:mt-2">?</div>
+                <div class="countdown-box text-xs md:text-sm py-1.5 md:py-2 px-3 md:px-5 mt-1 md:mt-2">
                     <span>លទ្ធផលបន្ទាប់ចេញក្នុង៖ </span>
-                    <span class="countdown-time" id="countdownTimer">--:--</span>
+                    <span class="countdown-time font-bold" id="countdownTimer">--:--</span>
                 </div>
             </div>
             
-            <div class="text-center text-sm text-slate-400 mt-2">
+            <div class="text-center text-[10px] md:text-sm text-slate-400 mt-1 md:mt-2">
                 នៅសល់: <span id="remainingPredictions" class="text-emerald-400 font-bold">0</span> ដង / ថ្ងៃ
             </div>
             
             <!-- Zodiac Grid -->
-            <div class="glass-card rounded-2xl p-4 mt-4">
-                <div class="text-amber-300 text-sm font-medium mb-3">🗓️ តារាងឆ្នាំសំណាងទាំង ១២ (ចុចជ្រើសរើស)</div>
+            <div class="glass-card rounded-xl md:rounded-2xl p-3 md:p-4 mt-3 md:mt-4">
+                <div class="text-amber-300 text-[10px] md:text-sm font-medium mb-2 md:mb-3">🗓️ តារាងឆ្នាំសំណាងទាំង ១២ (ចុចជ្រើសរើស)</div>
                 <div class="zodiac-grid" id="zodiacGrid"></div>
             </div>
             
             <!-- Selected & Predict -->
-            <div class="glass-card rounded-2xl p-4 mt-4">
-                <div class="flex justify-between items-center flex-wrap gap-2">
-                    <span class="text-sm">⭐ ឆ្នាំដែលបានជ្រើសរើស៖</span>
-                    <span id="selectedZodiacDisplay" class="font-semibold text-emerald-300">មិនទាន់ជ្រើសរើស</span>
+            <div class="glass-card rounded-xl md:rounded-2xl p-3 md:p-4 mt-3 md:mt-4">
+                <div class="flex justify-between items-center flex-wrap gap-1 md:gap-2">
+                    <span class="text-[10px] md:text-sm">⭐ ឆ្នាំដែលបានជ្រើសរើស៖</span>
+                    <span id="selectedZodiacDisplay" class="font-semibold text-emerald-300 text-[10px] md:text-sm">មិនទាន់ជ្រើសរើស</span>
                 </div>
-                <button id="predictBtn" class="btn-warning w-full mt-3 text-white font-bold py-3 rounded-xl text-lg transition">
+                <button id="predictBtn" class="btn-warning w-full mt-2 md:mt-3 text-white font-bold py-2 md:py-3 rounded-lg md:rounded-xl text-sm md:text-lg transition">
                     🎲 ទស្សន៍ទាយឥឡូវនេះ
                 </button>
             </div>
             
             <!-- History -->
-            <div class="glass-card rounded-2xl p-4 mt-4">
-                <div class="flex justify-between items-center flex-wrap gap-2 mb-2">
-                    <h3 class="text-sm font-semibold text-amber-300">📜 ប្រវត្តិទស្សន៍ទាយ</h3>
-                    <div class="flex gap-2">
-                        <button onclick="switchHistoryTab('result')" id="historyTabResult" class="px-3 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white">លទ្ធផល</button>
-                        <button onclick="switchHistoryTab('history')" id="historyTabHistory" class="px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">ប្រវត្តិ</button>
-                        <button id="toggleHistoryBtn" class="text-xs text-slate-400 hover:text-white transition">👁️ លាក់</button>
+            <div class="glass-card rounded-xl md:rounded-2xl p-3 md:p-4 mt-3 md:mt-4">
+                <div class="flex justify-between items-center flex-wrap gap-1 md:gap-2 mb-1.5 md:mb-2">
+                    <h3 class="text-[10px] md:text-sm font-semibold text-amber-300">📜 ប្រវត្តិទស្សន៍ទាយ</h3>
+                    <div class="flex gap-1 md:gap-2">
+                        <button onclick="switchHistoryTab('result')" id="historyTabResult" class="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-xs font-medium bg-indigo-600 text-white">លទ្ធផល</button>
+                        <button onclick="switchHistoryTab('history')" id="historyTabHistory" class="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition">ប្រវត្តិ</button>
+                        <button id="toggleHistoryBtn" class="text-[8px] md:text-xs text-slate-400 hover:text-white transition">👁️ លាក់</button>
                     </div>
                 </div>
-                <div class="history-box" id="historyBox">
+                <div class="history-box text-[10px] md:text-xs" id="historyBox">
                     <div id="resultTabContent"><div id="scheduleList"></div></div>
                     <div id="historyTabContent" style="display:none;"><div id="predictHistoryList"></div></div>
                 </div>
             </div>
             
             <!-- Register Button -->
-            <div class="mt-4 text-center">
-                <button onclick="openModal('registerModal')" class="btn-primary text-white font-semibold py-2 px-6 rounded-xl text-sm transition">
-                    <i class="fa-regular fa-user-plus mr-2"></i> ចុះឈ្មោះ / បង់ប្រាក់
+            <div class="mt-3 md:mt-4 text-center">
+                <button onclick="openModal('registerModal')" class="btn-primary text-white font-semibold py-1.5 md:py-2 px-4 md:px-6 rounded-lg md:rounded-xl text-xs md:text-sm transition">
+                    <i class="fa-regular fa-user-plus mr-1 md:mr-2"></i> ចុះឈ្មោះ / បង់ប្រាក់
                 </button>
-                <p class="text-[10px] text-slate-500 mt-2">
+                <p class="text-[8px] md:text-[10px] text-slate-500 mt-1 md:mt-2">
                     <span id="idStatusFull">មិនទាន់ចុះឈ្មោះ</span>
                 </p>
             </div>
@@ -534,25 +610,25 @@
     </div>
     
     <!-- ====== FOOTER ====== -->
-    <footer class="bg-slate-900/50 border-t border-white/5 py-8 mt-8">
+    <footer class="bg-slate-900/50 border-t border-white/5 py-6 md:py-8 mt-6 md:mt-8">
         <div class="container mx-auto max-w-6xl px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <div class="bg-indigo-600 p-1.5 rounded-lg"><i class="fa-solid fa-store text-white text-sm"></i></div>
-                        <span class="text-white font-bold">SmartMarket</span>
+                    <div class="flex items-center gap-2 mb-2 md:mb-3">
+                        <div class="bg-indigo-600 p-1.5 rounded-lg"><i class="fa-solid fa-store text-white text-xs md:text-sm"></i></div>
+                        <span class="text-white font-bold text-sm md:text-base">SmartMarket</span>
                     </div>
-                    <p class="text-slate-400 text-xs leading-relaxed">ប្រព័ន្ធគ្រប់គ្រងសមាជិក និងផ្សារអនឡាញទំនើបប្រចាំប្រទេសកម្ពុជា។</p>
-                    <div class="flex gap-3 mt-3">
-                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-telegram"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-tiktok"></i></a>
+                    <p class="text-slate-400 text-[10px] md:text-xs leading-relaxed">ប្រព័ន្ធគ្រប់គ្រងសមាជិក និងផ្សារអនឡាញទំនើបប្រចាំប្រទេសកម្ពុជា។</p>
+                    <div class="flex gap-2 md:gap-3 mt-2 md:mt-3">
+                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-facebook text-sm md:text-base"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-telegram text-sm md:text-base"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-youtube text-sm md:text-base"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-indigo-400 transition"><i class="fa-brands fa-tiktok text-sm md:text-base"></i></a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold text-sm mb-3">តំណភ្ជាប់រហ័ស</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
+                    <h4 class="text-white font-semibold text-xs md:text-sm mb-2 md:mb-3">តំណភ្ជាប់រហ័ស</h4>
+                    <ul class="space-y-1 md:space-y-2 text-[10px] md:text-xs text-slate-400">
                         <li><a href="#" class="hover:text-indigo-400 transition">អំពីយើង</a></li>
                         <li><a href="#" class="hover:text-indigo-400 transition">សេវាកម្ម</a></li>
                         <li><a href="#" class="hover:text-indigo-400 transition">ផលិតផល</a></li>
@@ -560,28 +636,28 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold text-sm mb-3">ជំនួយ</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
+                    <h4 class="text-white font-semibold text-xs md:text-sm mb-2 md:mb-3">ជំនួយ</h4>
+                    <ul class="space-y-1 md:space-y-2 text-[10px] md:text-xs text-slate-400">
                         <li><a href="#" class="hover:text-indigo-400 transition">សំណួរញឹកញាប់</a></li>
                         <li><a href="#" class="hover:text-indigo-400 transition">លក្ខខណ្ឌប្រើប្រាស់</a></li>
                         <li><a href="#" class="hover:text-indigo-400 transition">គោលការណ៍ឯកជន</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold text-sm mb-3">ទំនាក់ទំនង</h4>
-                    <ul class="space-y-2 text-xs text-slate-400">
-                        <li><i class="fa-regular fa-envelope w-5"></i> support@smartmarket.com</li>
-                        <li><i class="fa-regular fa-phone w-5"></i> +855 12 345 678</li>
-                        <li><i class="fa-regular fa-location-dot w-5"></i> ភ្នំពេញ, កម្ពុជា</li>
+                    <h4 class="text-white font-semibold text-xs md:text-sm mb-2 md:mb-3">ទំនាក់ទំនង</h4>
+                    <ul class="space-y-1 md:space-y-2 text-[10px] md:text-xs text-slate-400">
+                        <li><i class="fa-regular fa-envelope w-4 md:w-5"></i> support@smartmarket.com</li>
+                        <li><i class="fa-regular fa-phone w-4 md:w-5"></i> +855 12 345 678</li>
+                        <li><i class="fa-regular fa-location-dot w-4 md:w-5"></i> ភ្នំពេញ, កម្ពុជា</li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-white/5 mt-6 pt-6 text-center text-xs text-slate-500">
+            <div class="border-t border-white/5 mt-4 md:mt-6 pt-4 md:pt-6 text-center text-[8px] md:text-xs text-slate-500">
                 &copy; 2026 SmartMarket Pro. All rights reserved. <span class="text-indigo-400">❤️</span> Made with passion in Cambodia.
             </div>
         </div>
     </footer>
-        <!-- ============================================================ -->
+    <!-- ============================================================ -->
     <!-- ===================== MODALS ================================ -->
     <!-- ============================================================ -->
     
@@ -590,13 +666,13 @@
         <div class="modal-content relative">
             <button onclick="closeModal('registerModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-solid fa-id-card text-indigo-400"></i>
                 ទម្រង់ចុះឈ្មោះព័ត៌មានផ្ទាល់ខ្លួន
             </div>
             
-            <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-3 md:space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div>
                         <label class="form-label">ឈ្មោះពេញ <span class="required">*</span></label>
                         <input type="text" id="regName" required placeholder="ឧ. សុខា គឹម" class="form-input">
@@ -635,12 +711,12 @@
                     </div>
                 </div>
                 
-                <button type="submit" id="regSubmitBtn" class="btn-primary w-full text-white font-bold py-3 rounded-xl text-sm">
+                <button type="submit" id="regSubmitBtn" class="btn-primary w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
                     <i class="fa-regular fa-id-card mr-2"></i> បង្កើត ID និងបញ្ជាក់
                 </button>
             </form>
             
-            <div id="regResult" class="hidden mt-4 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-center text-emerald-400 font-semibold text-sm"></div>
+            <div id="regResult" class="hidden mt-3 md:mt-4 p-3 md:p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg md:rounded-xl text-center text-emerald-400 font-semibold text-xs md:text-sm"></div>
         </div>
     </div>
     
@@ -649,13 +725,13 @@
         <div class="modal-content relative">
             <button onclick="closeModal('jobModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-solid fa-user-tie text-orange-400"></i>
                 ទម្រង់ដាក់ពាក្យសុំបម្រើការងារ
             </div>
             
-            <form id="jobForm" onsubmit="handleJobSubmit(event)" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form id="jobForm" onsubmit="handleJobSubmit(event)" class="space-y-3 md:space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div class="md:col-span-2">
                         <label class="form-label text-red-400">🆔 លេខ ID របស់អ្នក <span class="required">*</span></label>
                         <input type="text" id="jobUserId" required placeholder="ឧ. ID-12345" class="form-input border-red-500/30 focus:border-red-500">
@@ -711,9 +787,9 @@
                         <label class="form-label">អាសយដ្ឋានបច្ចុប្បន្ន <span class="required">*</span></label>
                         <textarea id="jobAddress" rows="2" required placeholder="ឧ. ផ្ទះលេខ ៤៥ សង្កាត់បឹងកេងកង" class="form-textarea"></textarea>
                     </div>
-                    <div class="md:col-span-2 p-4 border border-dashed border-orange-500/30 rounded-xl bg-orange-500/5">
+                    <div class="md:col-span-2 p-3 md:p-4 border border-dashed border-orange-500/30 rounded-lg md:rounded-xl bg-orange-500/5">
                         <label class="form-label text-orange-400">📸 បង្ហោះរូបថតបេក្ខជន <span class="required">*</span></label>
-                        <input type="file" id="jobPhoto" accept="image/*" required class="w-full text-sm text-slate-400">
+                        <input type="file" id="jobPhoto" accept="image/*" required class="w-full text-xs md:text-sm text-slate-400">
                     </div>
                     <div class="md:col-span-2">
                         <label class="form-label">បទពិសោធន៍ការងារ <span class="required">*</span></label>
@@ -721,25 +797,25 @@
                     </div>
                 </div>
                 
-                <button type="submit" id="jobSubmitBtn" class="btn-orange w-full text-white font-bold py-3 rounded-xl text-sm">
+                <button type="submit" id="jobSubmitBtn" class="btn-orange w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
                     <i class="fa-regular fa-paper-plane mr-2"></i> បញ្ជូនពាក្យសុំទៅក្រុម HR
                 </button>
             </form>
         </div>
     </div>
     
-    <!-- ====== SHOP MODAL (កែប្រែ - លុបក្រុមហ៊ុនដឹកជញ្ជូន) ====== -->
+    <!-- ====== SHOP MODAL ====== -->
     <div id="shopModal" class="modal-overlay">
         <div class="modal-content relative">
             <button onclick="closeModal('shopModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-solid fa-cart-plus text-emerald-400"></i>
                 បង្ហោះលក់ផលិតផលថ្មី
             </div>
             
-            <form id="shopForm" onsubmit="handleShopSubmit(event)" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form id="shopForm" onsubmit="handleShopSubmit(event)" class="space-y-3 md:space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div class="md:col-span-2">
                         <label class="form-label text-red-400">🆔 លេខ ID របស់អ្នក <span class="required">*</span></label>
                         <input type="text" id="shopUserId" required placeholder="ឧ. ID-12345" class="form-input border-red-500/30 focus:border-red-500">
@@ -784,7 +860,6 @@
                         <input type="text" id="shopOldPrice" placeholder="ឧ. 40.00" class="form-input">
                     </div>
                     
-                    <!-- ====== លុបក្រុមហ៊ុនដឹកជញ្ជូនចេញ ====== -->
                     <div id="deliveryGroup" class="md:col-span-2">
                         <div>
                             <label class="form-label">ស្ថានភាពដឹកជញ្ជូន <span class="required">*</span></label>
@@ -800,7 +875,7 @@
                         <input type="text" id="shopDelivFee" placeholder="ឧ. 2.00" class="form-input">
                     </div>
                     
-                    <div id="bankFields" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div id="bankFields" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                         <div>
                             <label class="form-label">🏦 ឈ្មោះធនាគារ (ស្រេចចិត្ត)</label>
                             <input type="text" id="shopBankName" placeholder="ឧ. ACLEDA" class="form-input">
@@ -811,23 +886,23 @@
                         </div>
                     </div>
                     
-                    <div id="qrField" class="md:col-span-2 p-4 border border-dashed border-purple-500/30 rounded-xl bg-purple-500/5">
+                    <div id="qrField" class="md:col-span-2 p-3 md:p-4 border border-dashed border-purple-500/30 rounded-lg md:rounded-xl bg-purple-500/5">
                         <label class="form-label text-purple-400">📱 QR Code បង់ប្រាក់ (ស្រេចចិត្ត)</label>
-                        <input type="file" id="shopQrImg" accept="image/*" class="w-full text-sm text-slate-400">
+                        <input type="file" id="shopQrImg" accept="image/*" class="w-full text-xs md:text-sm text-slate-400">
                     </div>
                     
-                    <div class="md:col-span-2 p-4 border border-dashed border-emerald-500/30 rounded-xl bg-emerald-500/5">
+                    <div class="md:col-span-2 p-3 md:p-4 border border-dashed border-emerald-500/30 rounded-lg md:rounded-xl bg-emerald-500/5">
                         <label class="form-label text-emerald-400">📸 រូបភាពចម្បង <span class="required">*</span></label>
-                        <input type="file" id="shopMainImg" accept="image/*" required onchange="previewMainImage(this)" class="w-full text-sm text-slate-400">
+                        <input type="file" id="shopMainImg" accept="image/*" required onchange="previewMainImage(this)" class="w-full text-xs md:text-sm text-slate-400">
                         <div id="mainPreview" class="hidden mt-2">
-                            <img id="mainPreviewImg" class="h-16 w-16 object-cover rounded-lg border border-slate-700">
+                            <img id="mainPreviewImg" class="h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-slate-700">
                         </div>
                     </div>
                     
-                    <div class="md:col-span-2 p-4 border border-dashed border-blue-500/30 rounded-xl bg-blue-500/5">
+                    <div class="md:col-span-2 p-3 md:p-4 border border-dashed border-blue-500/30 rounded-lg md:rounded-xl bg-blue-500/5">
                         <label class="form-label text-blue-400">🖼️ រូបភាពបន្ថែម (ស្រេចចិត្ត)</label>
-                        <input type="file" id="shopMoreImgs" accept="image/*" multiple onchange="previewMoreImages(this)" class="w-full text-sm text-slate-400">
-                        <div id="morePreviews" class="flex flex-wrap gap-2 mt-2"></div>
+                        <input type="file" id="shopMoreImgs" accept="image/*" multiple onchange="previewMoreImages(this)" class="w-full text-xs md:text-sm text-slate-400">
+                        <div id="morePreviews" class="flex flex-wrap gap-1 md:gap-2 mt-1 md:mt-2"></div>
                     </div>
                     
                     <div class="md:col-span-2">
@@ -836,7 +911,7 @@
                     </div>
                 </div>
                 
-                <button type="submit" id="shopSubmitBtn" class="btn-success w-full text-white font-bold py-3 rounded-xl text-sm">
+                <button type="submit" id="shopSubmitBtn" class="btn-success w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
                     <i class="fa-solid fa-cart-plus mr-2"></i> បង្ហោះលក់ទំនិញភ្លាមៗ
                 </button>
             </form>
@@ -848,13 +923,13 @@
         <div class="modal-content relative">
             <button onclick="closeModal('hrModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-solid fa-people-arrows text-pink-400"></i>
                 បង្ហោះជ្រើសរើសបុគ្គលិក
             </div>
             
-            <form id="hrForm" onsubmit="handleHRSubmit(event)" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form id="hrForm" onsubmit="handleHRSubmit(event)" class="space-y-3 md:space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div class="md:col-span-2">
                         <label class="form-label text-red-400">🆔 លេខ ID អ្នកបង្ហោះ <span class="required">*</span></label>
                         <input type="text" id="hrUserId" required placeholder="ឧ. ID-12345" class="form-input border-red-500/30 focus:border-red-500">
@@ -887,15 +962,15 @@
                         <label class="form-label">ពណ៌នាអំពីការជ្រើសរើសបុគ្គលិក <span class="required">*</span></label>
                         <textarea id="hrDesc" rows="3" required placeholder="រៀបរាប់ពីតម្រូវការ បទពិសោធន៍ និងលក្ខខណ្ឌការងារ..." class="form-textarea"></textarea>
                     </div>
-                    <div class="md:col-span-2 p-4 border border-dashed border-pink-500/30 rounded-xl bg-pink-500/5">
+                    <div class="md:col-span-2 p-3 md:p-4 border border-dashed border-pink-500/30 rounded-lg md:rounded-xl bg-pink-500/5">
                         <label class="form-label text-pink-400">📸 បង្ហោះរូបភាព (ស្រេចចិត្ត)</label>
-                        <input type="file" id="hrImages" accept="image/*" multiple onchange="previewHRImages(this)" class="w-full text-sm text-slate-400">
-                        <div id="hrPreviews" class="flex flex-wrap gap-2 mt-2"></div>
-                        <p class="text-xs text-slate-500 mt-1">💡 អ្នកអាចបង្ហោះរូបភាព ឬទុកចោលក៏បាន</p>
+                        <input type="file" id="hrImages" accept="image/*" multiple onchange="previewHRImages(this)" class="w-full text-xs md:text-sm text-slate-400">
+                        <div id="hrPreviews" class="flex flex-wrap gap-1 md:gap-2 mt-1 md:mt-2"></div>
+                        <p class="text-[8px] md:text-xs text-slate-500 mt-1">💡 អ្នកអាចបង្ហោះរូបភាព ឬទុកចោលក៏បាន</p>
                     </div>
                 </div>
                 
-                <button type="submit" id="hrSubmitBtn" class="btn-pink w-full text-white font-bold py-3 rounded-xl text-sm">
+                <button type="submit" id="hrSubmitBtn" class="btn-pink w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
                     <i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក
                 </button>
             </form>
@@ -908,56 +983,56 @@
             <button onclick="closeModal('detailModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
             <div id="detailContent">
-                <span id="detailCategory" class="text-xs font-bold text-indigo-400 bg-indigo-500/20 px-3 py-1 rounded-full">ប្រភេទ</span>
-                <h3 id="detailTitle" class="text-2xl font-bold text-white mt-2">ឈ្មោះទំនិញ</h3>
+                <span id="detailCategory" class="text-[8px] md:text-xs font-bold text-indigo-400 bg-indigo-500/20 px-2 md:px-3 py-0.5 md:py-1 rounded-full">ប្រភេទ</span>
+                <h3 id="detailTitle" class="text-lg md:text-2xl font-bold text-white mt-1 md:mt-2">ឈ្មោះទំនិញ</h3>
                 
-                <div class="flex items-baseline gap-3 mt-1">
-                    <span id="detailPrice" class="text-2xl font-bold text-emerald-400">$0.00</span>
-                    <span id="detailOldPrice" class="text-sm text-slate-500 line-through"></span>
+                <div class="flex items-baseline gap-2 md:gap-3 mt-1">
+                    <span id="detailPrice" class="text-xl md:text-2xl font-bold text-emerald-400">$0.00</span>
+                    <span id="detailOldPrice" class="text-xs md:text-sm text-slate-500 line-through"></span>
                 </div>
                 
-                <div class="flex flex-wrap items-center gap-3 mt-3">
-                    <div id="detailRating" class="text-yellow-400 text-sm">☆☆☆☆☆</div>
-                    <span id="detailRatingCount" class="text-xs text-slate-500">(0)</span>
-                    <button onclick="openRatingModal()" class="text-xs bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full hover:bg-yellow-500/30 transition">
-                        <i class="fa-regular fa-star mr-1"></i> វាយតម្លៃ
+                <div class="flex flex-wrap items-center gap-2 md:gap-3 mt-2 md:mt-3">
+                    <div id="detailRating" class="text-yellow-400 text-xs md:text-sm">☆☆☆☆☆</div>
+                    <span id="detailRatingCount" class="text-[8px] md:text-xs text-slate-500">(0)</span>
+                    <button onclick="openRatingModal()" class="text-[8px] md:text-xs bg-yellow-500/20 text-yellow-400 px-2 md:px-3 py-0.5 md:py-1 rounded-full hover:bg-yellow-500/30 transition">
+                        <i class="fa-regular fa-star mr-0.5 md:mr-1"></i> វាយតម្លៃ
                     </button>
-                    <button onclick="toggleWishlist()" id="detailWishlistBtn" class="text-xs bg-red-500/20 text-red-400 px-3 py-1 rounded-full hover:bg-red-500/30 transition">
-                        <i class="fa-regular fa-heart mr-1"></i> ចូលចិត្ត
+                    <button onclick="toggleWishlist()" id="detailWishlistBtn" class="text-[8px] md:text-xs bg-red-500/20 text-red-400 px-2 md:px-3 py-0.5 md:py-1 rounded-full hover:bg-red-500/30 transition">
+                        <i class="fa-regular fa-heart mr-0.5 md:mr-1"></i> ចូលចិត្ត
                     </button>
                 </div>
                 
-                <div class="mt-4 p-4 bg-slate-800/50 rounded-xl space-y-1 text-sm">
+                <div class="mt-3 md:mt-4 p-3 md:p-4 bg-slate-800/50 rounded-lg md:rounded-xl space-y-0.5 md:space-y-1 text-xs md:text-sm">
                     <div><span class="text-slate-400">អ្នកលក់៖</span> <span id="detailSeller" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ទំនាក់ទំនង៖</span> <span id="detailContact" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ការដឹកជញ្ជូន៖</span> <span id="detailDeliv" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ថ្លៃដឹកជញ្ជូន៖</span> <span id="detailFee" class="text-white">-</span></div>
                     <!-- Payment Info Display -->
-                    <div id="detailPaymentInfo" class="hidden mt-2 pt-2 border-t border-white/10">
-                        <div class="text-emerald-400 font-semibold text-xs mb-1">💳 ព័ត៌មានទូទាត់</div>
+                    <div id="detailPaymentInfo" class="hidden mt-1.5 md:mt-2 pt-1.5 md:pt-2 border-t border-white/10">
+                        <div class="text-emerald-400 font-semibold text-[8px] md:text-xs mb-0.5 md:mb-1">💳 ព័ត៌មានទូទាត់</div>
                         <div><span class="text-slate-400">🏦 ធនាគារ៖</span> <span id="detailBankName" class="text-white">-</span></div>
                         <div><span class="text-slate-400">🔢 លេខគណនី៖</span> <span id="detailBankAccount" class="text-white font-mono">-</span></div>
                         <div id="detailQrRow" class="mt-1">
                             <span class="text-slate-400">📱 QR Code៖</span>
-                            <img id="detailQrImage" src="" alt="QR Code" class="h-20 w-20 object-contain rounded-lg border border-slate-700 mt-1 hidden">
-                            <span id="detailNoQr" class="text-xs text-slate-500">មិនមាន QR Code</span>
+                            <img id="detailQrImage" src="" alt="QR Code" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-lg border border-slate-700 mt-1 hidden">
+                            <span id="detailNoQr" class="text-[8px] md:text-xs text-slate-500">មិនមាន QR Code</span>
                         </div>
                     </div>
                 </div>
                 
-                <p id="detailDesc" class="mt-3 text-sm text-slate-300 bg-slate-800/30 p-3 rounded-xl border border-slate-700/50"></p>
+                <p id="detailDesc" class="mt-3 text-xs md:text-sm text-slate-300 bg-slate-800/30 p-2 md:p-3 rounded-lg md:rounded-xl border border-slate-700/50"></p>
                 
-                <button onclick="shareProduct()" class="btn-primary w-full text-white font-semibold py-2.5 rounded-xl text-sm mt-4">
-                    <i class="fa-regular fa-share-from-square mr-2"></i> ចែករំលែក
+                <button onclick="shareProduct()" class="btn-primary w-full text-white font-semibold py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm mt-3 md:mt-4">
+                    <i class="fa-regular fa-share-from-square mr-1 md:mr-2"></i> ចែករំលែក
                 </button>
                 
                 <!-- ====== ORDER BUTTON ====== -->
-                <button onclick="openOrderModal()" class="btn-success w-full text-white font-semibold py-2.5 rounded-xl text-sm mt-2">
-                    <i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ
+                <button onclick="openOrderModal()" class="btn-success w-full text-white font-semibold py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm mt-1.5 md:mt-2">
+                    <i class="fa-solid fa-cart-plus mr-1 md:mr-2"></i> បញ្ជាទិញឥឡូវនេះ
                 </button>
                 
-                <h4 class="text-xs font-bold text-slate-400 uppercase mt-4 mb-2">🏞️ រូបភាពលម្អិត</h4>
-                <div id="detailGallery" class="grid grid-cols-3 gap-2"></div>
+                <h4 class="text-[8px] md:text-xs font-bold text-slate-400 uppercase mt-3 md:mt-4 mb-1.5 md:mb-2">🏞️ រូបភាពលម្អិត</h4>
+                <div id="detailGallery" class="grid grid-cols-3 gap-1 md:gap-2"></div>
             </div>
         </div>
     </div>
@@ -968,10 +1043,10 @@
             <button onclick="closeModal('hrDetailModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
             <div id="hrDetailContent">
-                <span class="text-xs font-bold text-pink-400 bg-pink-500/20 px-3 py-1 rounded-full">ការជ្រើសរើសបុគ្គលិក</span>
-                <h3 id="hrDetailTitle" class="text-2xl font-bold text-white mt-2">ឈ្មោះអ្នកបង្ហោះ</h3>
+                <span class="text-[8px] md:text-xs font-bold text-pink-400 bg-pink-500/20 px-2 md:px-3 py-0.5 md:py-1 rounded-full">ការជ្រើសរើសបុគ្គលិក</span>
+                <h3 id="hrDetailTitle" class="text-lg md:text-2xl font-bold text-white mt-1 md:mt-2">ឈ្មោះអ្នកបង្ហោះ</h3>
                 
-                <div class="mt-4 p-4 bg-slate-800/50 rounded-xl space-y-1 text-sm">
+                <div class="mt-3 md:mt-4 p-3 md:p-4 bg-slate-800/50 rounded-lg md:rounded-xl space-y-0.5 md:space-y-1 text-xs md:text-sm">
                     <div><span class="text-slate-400">ផ្នែកដែលត្រូវជ្រើសរើស៖</span> <span id="hrDetailDept" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ទំនាក់ទំនង៖</span> <span id="hrDetailContact" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ទីតាំង៖</span> <span id="hrDetailLocation" class="text-white">-</span></div>
@@ -980,14 +1055,14 @@
                     <div><span class="text-slate-400">លេខ ID៖</span> <span id="hrDetailUserId" class="text-white font-mono">-</span></div>
                 </div>
                 
-                <p id="hrDetailDesc" class="mt-3 text-sm text-slate-300 bg-slate-800/30 p-3 rounded-xl border border-slate-700/50"></p>
+                <p id="hrDetailDesc" class="mt-3 text-xs md:text-sm text-slate-300 bg-slate-800/30 p-2 md:p-3 rounded-lg md:rounded-xl border border-slate-700/50"></p>
                 
-                <button onclick="shareHR()" class="btn-pink w-full text-white font-semibold py-2.5 rounded-xl text-sm mt-4">
-                    <i class="fa-regular fa-share-from-square mr-2"></i> ចែករំលែក
+                <button onclick="shareHR()" class="btn-pink w-full text-white font-semibold py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm mt-3 md:mt-4">
+                    <i class="fa-regular fa-share-from-square mr-1 md:mr-2"></i> ចែករំលែក
                 </button>
                 
-                <h4 class="text-xs font-bold text-slate-400 uppercase mt-4 mb-2">🏞️ រូបភាពភ្ជាប់</h4>
-                <div id="hrDetailGallery" class="grid grid-cols-3 gap-2"></div>
+                <h4 class="text-[8px] md:text-xs font-bold text-slate-400 uppercase mt-3 md:mt-4 mb-1.5 md:mb-2">🏞️ រូបភាពភ្ជាប់</h4>
+                <div id="hrDetailGallery" class="grid grid-cols-3 gap-1 md:gap-2"></div>
             </div>
         </div>
     </div>
@@ -997,48 +1072,48 @@
         <div class="modal-content modal-content-sm relative">
             <button onclick="closeModal('ratingModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-solid fa-star text-yellow-400"></i>
                 វាយតម្លៃផលិតផល
             </div>
             
-            <p id="ratingProductName" class="text-sm text-slate-400 mb-4">ផលិតផល: -</p>
+            <p id="ratingProductName" class="text-xs md:text-sm text-slate-400 mb-3 md:mb-4">ផលិតផល: -</p>
             
-            <div class="flex gap-2 justify-center mb-4">
-                <span class="rating-star text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="1" onclick="setRating(1)">★</span>
-                <span class="rating-star text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="2" onclick="setRating(2)">★</span>
-                <span class="rating-star text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="3" onclick="setRating(3)">★</span>
-                <span class="rating-star text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="4" onclick="setRating(4)">★</span>
-                <span class="rating-star text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="5" onclick="setRating(5)">★</span>
+            <div class="flex gap-1 md:gap-2 justify-center mb-3 md:mb-4">
+                <span class="rating-star text-2xl md:text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="1" onclick="setRating(1)">★</span>
+                <span class="rating-star text-2xl md:text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="2" onclick="setRating(2)">★</span>
+                <span class="rating-star text-2xl md:text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="3" onclick="setRating(3)">★</span>
+                <span class="rating-star text-2xl md:text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="4" onclick="setRating(4)">★</span>
+                <span class="rating-star text-2xl md:text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition" data-star="5" onclick="setRating(5)">★</span>
             </div>
             
-            <p id="ratingText" class="text-center text-sm text-slate-500 mb-4">សូមជ្រើសរើសផ្កាយ</p>
+            <p id="ratingText" class="text-center text-xs md:text-sm text-slate-500 mb-3 md:mb-4">សូមជ្រើសរើសផ្កាយ</p>
             
-            <textarea id="ratingComment" rows="2" placeholder="បន្ថែមមតិយោបល់ (ស្រេចចិត្ត)..." class="form-textarea mb-4"></textarea>
+            <textarea id="ratingComment" rows="2" placeholder="បន្ថែមមតិយោបល់ (ស្រេចចិត្ត)..." class="form-textarea mb-3 md:mb-4"></textarea>
             
             <input type="hidden" id="ratingProductId" value="">
             
-            <button onclick="submitRating()" class="btn-warning w-full text-white font-bold py-3 rounded-xl text-sm">
+            <button onclick="submitRating()" class="btn-warning w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
                 <i class="fa-regular fa-star mr-2"></i> បញ្ជូនការវាយតម្លៃ
             </button>
         </div>
     </div>
     
-    <!-- ====== ORDER MODAL (កែប្រែ - បន្ថែមក្រុមហ៊ុនដឹកជញ្ជូន និងកែឈ្មោះ) ====== -->
+    <!-- ====== ORDER MODAL ====== -->
     <div id="orderModal" class="modal-overlay">
         <div class="modal-content modal-content-sm relative">
             <button onclick="closeModal('orderModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-solid fa-cart-shopping text-emerald-400"></i>
                 បញ្ជាទិញផលិតផល
             </div>
             
-            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-4">
+            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-3 md:space-y-4">
                 <!-- Product Info -->
-                <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                    <p class="text-sm text-slate-400">ផលិតផល៖ <span id="orderProductName" class="text-white font-semibold">-</span></p>
-                    <p class="text-sm text-slate-400">តម្លៃ៖ <span id="orderProductPrice" class="text-emerald-400 font-bold">-</span></p>
+                <div class="p-3 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
+                    <p class="text-xs md:text-sm text-slate-400">ផលិតផល៖ <span id="orderProductName" class="text-white font-semibold">-</span></p>
+                    <p class="text-xs md:text-sm text-slate-400">តម្លៃ៖ <span id="orderProductPrice" class="text-emerald-400 font-bold">-</span></p>
                 </div>
                 
                 <div>
@@ -1059,7 +1134,6 @@
                     </select>
                 </div>
                 
-                <!-- ====== ក្រុមហ៊ុនដឹកជញ្ជូន ====== -->
                 <div>
                     <label class="form-label">🚚 ជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន <span class="required">*</span></label>
                     <select id="orderDeliveryCompany" class="form-select">
@@ -1088,24 +1162,34 @@
                 </div>
                 
                 <!-- Payment Info (Bank & QR) -->
-                <div id="orderPaymentInfo" class="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 hidden">
-                    <h4 class="text-sm font-semibold text-emerald-400 mb-2">💳 ព័ត៌មានទូទាត់</h4>
-                    <div id="orderBankDisplay" class="space-y-1 text-sm text-slate-300">
+                <div id="orderPaymentInfo" class="p-3 bg-emerald-500/10 rounded-lg md:rounded-xl border border-emerald-500/20 hidden">
+                    <h4 class="text-xs md:text-sm font-semibold text-emerald-400 mb-1.5 md:mb-2">💳 ព័ត៌មានទូទាត់</h4>
+                    <div id="orderBankDisplay" class="space-y-0.5 md:space-y-1 text-xs md:text-sm text-slate-300">
                         <p>🏦 ធនាគារ៖ <span id="orderBankName" class="text-white">-</span></p>
                         <p>🔢 លេខគណនី៖ <span id="orderBankAccount" class="text-white font-mono">-</span></p>
                     </div>
-                    <div id="orderQrDisplay" class="mt-2">
-                        <p class="text-xs text-slate-400 mb-1">📱 QR Code បង់ប្រាក់៖</p>
-                        <img id="orderQrImage" src="" alt="QR Code" class="h-32 w-32 object-contain rounded-lg border border-slate-700 hidden">
-                        <p id="orderNoQr" class="text-xs text-slate-500">មិនមាន QR Code</p>
+                    <div id="orderQrDisplay" class="mt-1.5 md:mt-2">
+                        <p class="text-[8px] md:text-xs text-slate-400 mb-0.5 md:mb-1">📱 QR Code បង់ប្រាក់៖</p>
+                        <img id="orderQrImage" src="" alt="QR Code" class="h-24 w-24 md:h-32 md:w-32 object-contain rounded-lg border border-slate-700 hidden">
+                        <p id="orderNoQr" class="text-[8px] md:text-xs text-slate-500">មិនមាន QR Code</p>
                     </div>
+                </div>
+                
+                <!-- ====== SCREENSHOT UPLOAD ====== -->
+                <div class="p-3 md:p-4 border border-dashed border-yellow-500/30 rounded-lg md:rounded-xl bg-yellow-500/5">
+                    <label class="form-label text-yellow-400">📸 ភ្ជាប់រូបភាពថតអេក្រង់ការទូទាត់ (ស្រេចចិត្ត)</label>
+                    <input type="file" id="orderScreenshot" accept="image/*" onchange="previewScreenshot(this)" class="w-full text-xs md:text-sm text-slate-400">
+                    <div id="screenshotPreview" class="hidden mt-2">
+                        <img id="screenshotImg" class="h-20 w-20 md:h-32 md:w-32 object-cover rounded-lg border border-slate-700">
+                    </div>
+                    <p class="text-[8px] md:text-xs text-slate-500 mt-1">💡 សូមភ្ជាប់រូបភាពថតអេក្រង់បន្ទាប់ពីបានបង់ប្រាក់រួច</p>
                 </div>
                 
                 <input type="hidden" id="orderProductId" value="">
                 <input type="hidden" id="orderSellerId" value="">
                 <input type="hidden" id="orderPrice" value="">
                 
-                <button type="submit" id="orderSubmitBtn" class="btn-success w-full text-white font-bold py-3 rounded-xl text-sm">
+                <button type="submit" id="orderSubmitBtn" class="btn-success w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
                     <i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ
                 </button>
             </form>
@@ -1117,33 +1201,33 @@
         <div class="modal-content relative">
             <button onclick="closeModal('dashboardModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="modal-title">
+            <div class="modal-title text-sm md:text-lg">
                 <i class="fa-regular fa-user text-indigo-400"></i>
                 ផ្ទាំងគ្រប់គ្រងផ្ទាល់ខ្លួន
             </div>
             
-            <div class="flex gap-2 border-b border-white/5 mb-4 overflow-x-auto pb-2">
-                <button onclick="switchDashTab('profile')" class="dash-tab px-4 py-2 text-sm font-medium text-indigo-400 border-b-2 border-indigo-400" data-tab="profile">
-                    <i class="fa-regular fa-user mr-1"></i> ព័ត៌មាន
+            <div class="flex gap-1 md:gap-2 border-b border-white/5 mb-3 md:mb-4 overflow-x-auto pb-1 md:pb-2">
+                <button onclick="switchDashTab('profile')" class="dash-tab px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm font-medium text-indigo-400 border-b-2 border-indigo-400" data-tab="profile">
+                    <i class="fa-regular fa-user mr-0.5 md:mr-1"></i> ព័ត៌មាន
                 </button>
-                <button onclick="switchDashTab('wishlist')" class="dash-tab px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition" data-tab="wishlist">
-                    <i class="fa-regular fa-heart mr-1"></i> ចូលចិត្ត
-                    <span id="dashWishlistCount" class="bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full text-xs ml-1">0</span>
+                <button onclick="switchDashTab('wishlist')" class="dash-tab px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition" data-tab="wishlist">
+                    <i class="fa-regular fa-heart mr-0.5 md:mr-1"></i> ចូលចិត្ត
+                    <span id="dashWishlistCount" class="bg-red-500/20 text-red-400 px-1.5 md:px-2 py-0.5 rounded-full text-[8px] md:text-xs ml-0.5 md:ml-1">0</span>
                 </button>
-                <button onclick="switchDashTab('reviews')" class="dash-tab px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition" data-tab="reviews">
-                    <i class="fa-regular fa-star mr-1"></i> ការវាយតម្លៃ
+                <button onclick="switchDashTab('reviews')" class="dash-tab px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition" data-tab="reviews">
+                    <i class="fa-regular fa-star mr-0.5 md:mr-1"></i> ការវាយតម្លៃ
                 </button>
-                <button onclick="switchDashTab('data')" class="dash-tab px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition" data-tab="data">
-                    <i class="fa-solid fa-database mr-1"></i> ទិន្នន័យ
+                <button onclick="switchDashTab('data')" class="dash-tab px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition" data-tab="data">
+                    <i class="fa-solid fa-database mr-0.5 md:mr-1"></i> ទិន្នន័យ
                 </button>
             </div>
             
             <!-- Profile Tab -->
             <div id="dashProfile" class="dash-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                        <h4 class="font-semibold text-sm text-white mb-3">ព័ត៌មានផ្ទាល់ខ្លួន</h4>
-                        <div class="space-y-2 text-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                    <div class="p-3 md:p-4 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
+                        <h4 class="font-semibold text-xs md:text-sm text-white mb-2 md:mb-3">ព័ត៌មានផ្ទាល់ខ្លួន</h4>
+                        <div class="space-y-1.5 md:space-y-2 text-xs md:text-sm">
                             <div class="flex justify-between"><span class="text-slate-400">លេខ ID</span><span id="dashId" class="text-indigo-400 font-mono font-bold">-</span></div>
                             <div class="flex justify-between"><span class="text-slate-400">ឈ្មោះ</span><span id="dashName" class="text-white">-</span></div>
                             <div class="flex justify-between"><span class="text-slate-400">ភេទ</span><span id="dashGender" class="text-white">-</span></div>
@@ -1152,16 +1236,16 @@
                             <div class="flex justify-between"><span class="text-slate-400">ទំនាក់ទំនង</span><span id="dashContact" class="text-white">-</span></div>
                         </div>
                     </div>
-                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                        <h4 class="font-semibold text-sm text-white mb-3">ស្ថិតិ</h4>
-                        <div class="space-y-2 text-sm">
+                    <div class="p-3 md:p-4 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
+                        <h4 class="font-semibold text-xs md:text-sm text-white mb-2 md:mb-3">ស្ថិតិ</h4>
+                        <div class="space-y-1.5 md:space-y-2 text-xs md:text-sm">
                             <div class="flex justify-between"><span class="text-slate-400">ផលិតផលបានបង្ហោះ</span><span id="dashProducts" class="text-emerald-400 font-bold">0</span></div>
                             <div class="flex justify-between"><span class="text-slate-400">ពាក្យសុំការងារ</span><span id="dashJobs" class="text-orange-400 font-bold">0</span></div>
                             <div class="flex justify-between"><span class="text-slate-400">ការចូលចិត្ត</span><span id="dashLikes" class="text-red-400 font-bold">0</span></div>
                             <div class="flex justify-between"><span class="text-slate-400">ការវាយតម្លៃ</span><span id="dashReviews" class="text-yellow-400 font-bold">0</span></div>
                         </div>
-                        <button onclick="logoutUser()" class="btn-danger w-full text-white font-semibold py-2 rounded-xl text-sm mt-4">
-                            <i class="fa-solid fa-sign-out-alt mr-2"></i> ចាកចេញ
+                        <button onclick="logoutUser()" class="btn-danger w-full text-white font-semibold py-1.5 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm mt-3 md:mt-4">
+                            <i class="fa-solid fa-sign-out-alt mr-1 md:mr-2"></i> ចាកចេញ
                         </button>
                     </div>
                 </div>
@@ -1169,41 +1253,41 @@
             
             <!-- Wishlist Tab -->
             <div id="dashWishlist" class="dash-content hidden">
-                <div id="wishlistContainer" class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <p class="col-span-full text-center text-slate-400 py-8 text-sm">មិនទាន់មានផលិតផលក្នុងបញ្ជីចូលចិត្តទេ</p>
+                <div id="wishlistContainer" class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+                    <p class="col-span-full text-center text-slate-400 py-6 md:py-8 text-xs md:text-sm">មិនទាន់មានផលិតផលក្នុងបញ្ជីចូលចិត្តទេ</p>
                 </div>
             </div>
             
             <!-- Reviews Tab -->
             <div id="dashReviews" class="dash-content hidden">
-                <div id="reviewsContainer" class="space-y-3">
-                    <p class="text-center text-slate-400 py-8 text-sm">មិនទាន់មានការវាយតម្លៃណាមួយទេ</p>
+                <div id="reviewsContainer" class="space-y-2 md:space-y-3">
+                    <p class="text-center text-slate-400 py-6 md:py-8 text-xs md:text-sm">មិនទាន់មានការវាយតម្លៃណាមួយទេ</p>
                 </div>
             </div>
             
             <!-- Data Tab -->
             <div id="dashData" class="dash-content hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <button onclick="exportData()" class="btn-success text-white font-semibold py-3 rounded-xl text-sm">
-                        <i class="fa-solid fa-download mr-2"></i> ទាញយកទិន្នន័យ (CSV)
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
+                    <button onclick="exportData()" class="btn-success text-white font-semibold py-2 md:py-3 rounded-lg md:rounded-xl text-xs md:text-sm">
+                        <i class="fa-solid fa-download mr-1 md:mr-2"></i> ទាញយកទិន្នន័យ (CSV)
                     </button>
-                    <button onclick="backupData()" class="btn-primary text-white font-semibold py-3 rounded-xl text-sm">
-                        <i class="fa-solid fa-cloud-upload-alt mr-2"></i> បម្រុងទុកទិន្នន័យ
+                    <button onclick="backupData()" class="btn-primary text-white font-semibold py-2 md:py-3 rounded-lg md:rounded-xl text-xs md:text-sm">
+                        <i class="fa-solid fa-cloud-upload-alt mr-1 md:mr-2"></i> បម្រុងទុកទិន្នន័យ
                     </button>
-                    <button onclick="restoreData()" class="btn-warning text-white font-semibold py-3 rounded-xl text-sm">
-                        <i class="fa-solid fa-cloud-download-alt mr-2"></i> ស្ដារទិន្នន័យ
+                    <button onclick="restoreData()" class="btn-warning text-white font-semibold py-2 md:py-3 rounded-lg md:rounded-xl text-xs md:text-sm">
+                        <i class="fa-solid fa-cloud-download-alt mr-1 md:mr-2"></i> ស្ដារទិន្នន័យ
                     </button>
-                    <button onclick="clearAllData()" class="btn-danger text-white font-semibold py-3 rounded-xl text-sm">
-                        <i class="fa-solid fa-trash-alt mr-2"></i> លុបទិន្នន័យទាំងអស់
+                    <button onclick="clearAllData()" class="btn-danger text-white font-semibold py-2 md:py-3 rounded-lg md:rounded-xl text-xs md:text-sm">
+                        <i class="fa-solid fa-trash-alt mr-1 md:mr-2"></i> លុបទិន្នន័យទាំងអស់
                     </button>
                 </div>
-                <div class="mt-4 p-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                    <p class="text-xs text-slate-500">📌 ទិន្នន័យត្រូវបានរក្សាទុកក្នុង Local Storage របស់កម្មវិធីរុករករបស់អ្នក។</p>
+                <div class="mt-3 md:mt-4 p-2 md:p-3 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
+                    <p class="text-[8px] md:text-xs text-slate-500">📌 ទិន្នន័យត្រូវបានរក្សាទុកក្នុង Local Storage របស់កម្មវិធីរុករករបស់អ្នក។</p>
                 </div>
             </div>
         </div>
     </div>
-        <!-- ============================================================ -->
+    <!-- ============================================================ -->
     <!-- ===================== JAVASCRIPT ============================ -->
     <!-- ============================================================ -->
     
@@ -1224,6 +1308,13 @@
         let currentCategory = 'all';
         let currentProductId = null;
         let selectedRating = 0;
+        
+        // ====== PRODUCT ID COUNTER ======
+        function generateProductId() {
+            let counter = parseInt(localStorage.getItem('product_id_counter') || '0') + 1;
+            localStorage.setItem('product_id_counter', counter.toString());
+            return 'P' + String(counter).padStart(6, '0');
+        }
         
         // ====== TOAST ======
         function showToast(message, type = 'success') {
@@ -1280,15 +1371,15 @@
             if (page === 'shop') {
                 shopPage.style.display = 'block';
                 zodiacPage.style.display = 'none';
-                tabShop.className = 'text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 px-3 py-1 transition';
-                tabZodiac.className = 'text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white px-3 py-1 transition';
+                tabShop.className = 'text-xs md:text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 px-2 md:px-3 py-1 transition';
+                tabZodiac.className = 'text-xs md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white px-2 md:px-3 py-1 transition';
                 renderProducts();
                 renderHR();
             } else {
                 shopPage.style.display = 'none';
                 zodiacPage.style.display = 'block';
-                tabShop.className = 'text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white px-3 py-1 transition';
-                tabZodiac.className = 'text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 px-3 py-1 transition';
+                tabShop.className = 'text-xs md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white px-2 md:px-3 py-1 transition';
+                tabZodiac.className = 'text-xs md:text-sm font-medium text-indigo-400 border-b-2 border-indigo-400 px-2 md:px-3 py-1 transition';
                 initZodiac();
             }
         }
@@ -1297,11 +1388,46 @@
         function openModal(id) {
             document.getElementById(id).classList.add('show');
             document.body.style.overflow = 'hidden';
+            
+            // Auto-fill data from register
+            if (id === 'jobModal' || id === 'shopModal' || id === 'hrModal') {
+                setTimeout(autoFillFromRegister, 150);
+            }
         }
         
         function closeModal(id) {
             document.getElementById(id).classList.remove('show');
             document.body.style.overflow = '';
+        }
+        
+        // ====== AUTO-FILL DATA FROM REGISTER ======
+        function autoFillFromRegister() {
+            const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+            const userId = localStorage.getItem('user_id') || '';
+            
+            // For Job Modal
+            if (document.getElementById('jobUserId')) {
+                document.getElementById('jobUserId').value = userId;
+                document.getElementById('jobName').value = userData.name || '';
+                document.getElementById('jobAge').value = userData.age || '';
+                document.getElementById('jobEdu').value = userData.edu || '';
+                document.getElementById('jobContact').value = userData.contact || '';
+                document.getElementById('jobAddress').value = userData.address || '';
+            }
+            
+            // For Shop Modal
+            if (document.getElementById('shopUserId')) {
+                document.getElementById('shopUserId').value = userId;
+                document.getElementById('shopSeller').value = userData.name || '';
+                document.getElementById('shopContact').value = userData.contact || '';
+            }
+            
+            // For HR Modal
+            if (document.getElementById('hrUserId')) {
+                document.getElementById('hrUserId').value = userId;
+                document.getElementById('hrName').value = userData.name || '';
+                document.getElementById('hrContact').value = userData.contact || '';
+            }
         }
         
         // ====== ID DISPLAY ======
@@ -1314,12 +1440,12 @@
             if (storedId) {
                 display.classList.remove('hidden');
                 text.textContent = 'ID: ' + storedId;
-                text.className = 'text-emerald-400 font-medium text-xs';
+                text.className = 'text-emerald-400 font-medium text-[8px] md:text-xs max-w-[60px] md:max-w-[100px] truncate';
                 if (statusFull) statusFull.textContent = 'ID: ' + storedId + ' (សមាជិក)';
             } else {
                 display.classList.remove('hidden');
                 text.textContent = 'មិនទាន់ចុះឈ្មោះ';
-                text.className = 'text-amber-400 font-medium text-xs';
+                text.className = 'text-amber-400 font-medium text-[8px] md:text-xs max-w-[60px] md:max-w-[100px] truncate';
                 if (statusFull) statusFull.textContent = 'មិនទាន់ចុះឈ្មោះ';
             }
         }
@@ -1384,6 +1510,16 @@
             });
         }
         
+        // ====== PREVIEW SCREENSHOT ======
+        function previewScreenshot(input) {
+            if (input.files && input.files[0]) {
+                const preview = document.getElementById('screenshotPreview');
+                const img = document.getElementById('screenshotImg');
+                img.src = URL.createObjectURL(input.files[0]);
+                preview.classList.remove('hidden');
+            }
+        }
+        
         // ================================================================
         // ====== REGISTER ======
         // ================================================================
@@ -1431,7 +1567,7 @@
                 });
                 
                 const result = document.getElementById('regResult');
-                result.innerHTML = `🎉 លេខ ID របស់អ្នកគឺ៖ <span class="text-2xl text-emerald-400">${id}</span>`;
+                result.innerHTML = `🎉 លេខ ID របស់អ្នកគឺ៖ <span class="text-xl md:text-2xl text-emerald-400">${id}</span>`;
                 result.classList.remove('hidden');
                 document.getElementById('registerForm').reset();
                 showToast('✅ ចុះឈ្មោះសមាជិកជោគជ័យ!', 'success');
@@ -1572,8 +1708,12 @@
                 let qrBase = null;
                 if (qrResized) qrBase = await toBase64(qrResized);
                 
+                // ====== GENERATE PRODUCT ID ======
+                const productId = generateProductId();
+                
                 const product = {
                     id: Date.now(),
+                    productId: productId,
                     userId: userId,
                     item: document.getElementById('shopItem').value.trim(),
                     cat: cat,
@@ -1603,7 +1743,8 @@
                 
                 // ====== Telegram Message with ID on top ======
                 let caption = `🛍️ *មានផលិតផលបង្ហោះលក់ថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
-                caption += `🆔 លេខ ID: \`${userId}\`\n`;
+                caption += `🆔 លេខ ID អ្នកលក់: \`${userId}\`\n`;
+                caption += `🏷️ លេខទំនិញ: *${productId}*\n`;
                 caption += `📦 ទំនិញ: *${product.item}*\n`;
                 caption += `🏷️ ប្រភេទ: ${cat}\n`;
                 caption += `💰 តម្លៃលក់: *${product.price}*`;
@@ -1781,7 +1922,6 @@
             btn.disabled = false;
             btn.innerHTML = '<i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
         }
-        
         // ================================================================
         // ====== ORDER SYSTEM ======
         // ================================================================
@@ -1808,7 +1948,7 @@
             // Check if product is real estate or vehicle (no payment info)
             const isSpecial = p.cat.includes('អចលនទ្រព្យ') || p.cat.includes('រថយន្ត') || p.cat.includes('យានយន្ត');
             
-            document.getElementById('orderProductName').textContent = p.item;
+            document.getElementById('orderProductName').textContent = p.item + ' (លេខទំនិញ: ' + (p.productId || 'N/A') + ')';
             document.getElementById('orderProductPrice').textContent = p.price;
             document.getElementById('orderProductId').value = p.id;
             document.getElementById('orderSellerId').value = p.userId;
@@ -1817,6 +1957,8 @@
             document.getElementById('orderAmount').value = 1;
             document.getElementById('orderAddress').value = '';
             document.getElementById('orderPhone').value = '';
+            document.getElementById('orderScreenshot').value = '';
+            document.getElementById('screenshotPreview').classList.add('hidden');
             
             // Show/hide payment info based on product type
             const paymentInfo = document.getElementById('orderPaymentInfo');
@@ -1860,6 +2002,7 @@
             const phone = document.getElementById('orderPhone').value.trim();
             const price = parseFloat(document.getElementById('orderPrice').value) || 0;
             const total = price * amount;
+            const screenshotFile = document.getElementById('orderScreenshot').files[0];
             
             // Validate buyer ID
             if (!validateUserId(buyerId)) {
@@ -1902,6 +2045,7 @@
                 caption += `🆔 លេខ ID អ្នកបញ្ជាទិញ: \`${buyerId}\`\n`;
                 caption += `👤 ឈ្មោះអ្នកបញ្ជាទិញ: ${buyerName}\n`;
                 caption += `📦 ផលិតផល: *${p.item}*\n`;
+                caption += `🏷️ លេខទំនិញ: ${p.productId || 'N/A'}\n`;
                 caption += `🏷️ ប្រភេទ: ${p.cat}\n`;
                 caption += `💰 តម្លៃក្នុងមួយឯកតា: ${p.price}\n`;
                 caption += `🔢 ចំនួន: ${amount}\n`;
@@ -1918,25 +2062,51 @@
                 
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
                 
-                // Send to Telegram Order Bot
+                // ====== Send Order with Screenshot ======
                 const formData = new FormData();
                 formData.append('chat_id', TG_CONFIG.ORDER.chat_id);
-                formData.append('text', caption);
-                formData.append('parse_mode', 'Markdown');
                 
-                const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendMessage`, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (response.ok) {
-                    showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
-                    document.getElementById('orderForm').reset();
-                    closeModal('orderModal');
+                if (screenshotFile) {
+                    // Resize screenshot
+                    const resizedScreenshot = await resizeImage(screenshotFile);
+                    formData.append('photo', resizedScreenshot);
+                    formData.append('caption', caption);
+                    formData.append('parse_mode', 'Markdown');
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendPhoto`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
+                        document.getElementById('orderForm').reset();
+                        document.getElementById('screenshotPreview').classList.add('hidden');
+                        closeModal('orderModal');
+                    } else {
+                        const errorText = await response.text();
+                        console.error('Order Telegram Error:', errorText);
+                        showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
+                    }
                 } else {
-                    const errorText = await response.text();
-                    console.error('Order Telegram Error:', errorText);
-                    showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
+                    // Send as text only
+                    formData.append('text', caption);
+                    formData.append('parse_mode', 'Markdown');
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendMessage`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
+                        document.getElementById('orderForm').reset();
+                        closeModal('orderModal');
+                    } else {
+                        const errorText = await response.text();
+                        console.error('Order Telegram Error:', errorText);
+                        showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
+                    }
                 }
                 
             } catch (error) {
@@ -1993,7 +2163,7 @@
             for (let i = 0; i < Math.min(input.files.length, 10); i++) {
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(input.files[i]);
-                img.className = 'h-16 w-16 object-cover rounded-lg border border-slate-700';
+                img.className = 'h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-slate-700';
                 container.appendChild(img);
             }
         }
@@ -2004,7 +2174,7 @@
             for (let i = 0; i < Math.min(input.files.length, 4); i++) {
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(input.files[i]);
-                img.className = 'h-16 w-16 object-cover rounded-lg border border-pink-500/30';
+                img.className = 'h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-pink-500/30';
                 container.appendChild(img);
             }
         }
@@ -2060,6 +2230,7 @@
                             <span class="badge">${p.cat.split(' ')[0] || '📦'}</span>
                             <span class="price-tag">${displayPrice}</span>
                             ${displayOldPrice ? `<span class="old-price">${displayOldPrice}</span>` : ''}
+                            ${p.productId ? `<span class="absolute top-12 left-3 bg-slate-900/80 text-white text-[8px] px-2 py-0.5 rounded-full">${p.productId}</span>` : ''}
                         </div>
                         <div class="info">
                             <div class="name">${p.item}</div>
@@ -2078,7 +2249,7 @@
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement('button');
                 btn.textContent = i;
-                btn.className = `px-3.5 py-1.5 rounded-lg text-sm font-medium transition ${
+                btn.className = `px-2 md:px-3.5 py-1 md:py-1.5 rounded-lg text-[10px] md:text-sm font-medium transition ${
                     i === currentPage ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30' : 'bg-slate-700/50 text-slate-300 hover:bg-slate-600/50'
                 }`;
                 btn.onclick = () => { currentPage = i; renderProducts(); document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
@@ -2136,7 +2307,7 @@
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement('button');
                 btn.textContent = i;
-                btn.className = `px-3.5 py-1.5 rounded-lg text-sm font-medium transition ${
+                btn.className = `px-2 md:px-3.5 py-1 md:py-1.5 rounded-lg text-[10px] md:text-sm font-medium transition ${
                     i === hrCurrentPage ? 'bg-pink-600 text-white shadow-lg shadow-pink-500/30' : 'bg-slate-700/50 text-slate-300 hover:bg-slate-600/50'
                 }`;
                 btn.onclick = () => { hrCurrentPage = i; renderHR(); document.getElementById('hr-posts').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
@@ -2177,7 +2348,7 @@
             currentProductId = id;
             
             document.getElementById('detailCategory').textContent = p.cat;
-            document.getElementById('detailTitle').textContent = p.item;
+            document.getElementById('detailTitle').textContent = p.item + (p.productId ? ' (' + p.productId + ')' : '');
             
             const displayPrice = p.price.includes('៛') ? p.price : '$' + p.price.replace('$', '');
             document.getElementById('detailPrice').textContent = displayPrice;
@@ -2223,10 +2394,10 @@
             if (p.qrImg) allImages.push(p.qrImg);
             
             if (allImages.length === 0) {
-                gallery.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm">មិនមានរូបភាពបន្ថែម</p>';
+                gallery.innerHTML = '<p class="col-span-full text-center text-slate-500 text-xs md:text-sm">មិនមានរូបភាពបន្ថែម</p>';
             } else {
                 gallery.innerHTML = allImages.map((img, idx) => `
-                    <div class="h-20 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 cursor-pointer hover:scale-105 transition" onclick="event.stopPropagation(); openLightbox(${idx})">
+                    <div class="h-16 md:h-20 bg-slate-800 rounded-lg md:rounded-xl overflow-hidden border border-slate-700 cursor-pointer hover:scale-105 transition" onclick="event.stopPropagation(); openLightbox(${idx})">
                         <img src="${img}" class="w-full h-full object-cover">
                     </div>
                 `).join('');
@@ -2273,10 +2444,10 @@
             
             const gallery = document.getElementById('hrDetailGallery');
             if (!p.images || p.images.length === 0) {
-                gallery.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm">មិនមានរូបភាព</p>';
+                gallery.innerHTML = '<p class="col-span-full text-center text-slate-500 text-xs md:text-sm">មិនមានរូបភាព</p>';
             } else {
                 gallery.innerHTML = p.images.map(img => `
-                    <div class="h-20 bg-slate-800 rounded-xl overflow-hidden border border-pink-500/30 cursor-pointer hover:scale-105 transition" onclick="event.stopPropagation(); openLightboxHR('${img}')">
+                    <div class="h-16 md:h-20 bg-slate-800 rounded-lg md:rounded-xl overflow-hidden border border-pink-500/30 cursor-pointer hover:scale-105 transition" onclick="event.stopPropagation(); openLightboxHR('${img}')">
                         <img src="${img}" class="w-full h-full object-cover">
                     </div>
                 `).join('');
@@ -2383,10 +2554,10 @@
             let wishlist = JSON.parse(localStorage.getItem('wishlist_' + userId) || '[]');
             if (wishlist.includes(currentProductId)) {
                 btn.innerHTML = '<i class="fa-solid fa-heart text-red-500 mr-1"></i> បានចូលចិត្ត';
-                btn.className = 'text-xs bg-red-500/30 text-red-400 px-3 py-1 rounded-full hover:bg-red-500/40 transition';
+                btn.className = 'text-[8px] md:text-xs bg-red-500/30 text-red-400 px-2 md:px-3 py-0.5 md:py-1 rounded-full hover:bg-red-500/40 transition';
             } else {
                 btn.innerHTML = '<i class="fa-regular fa-heart mr-1"></i> ចូលចិត្ត';
-                btn.className = 'text-xs bg-red-500/20 text-red-400 px-3 py-1 rounded-full hover:bg-red-500/30 transition';
+                btn.className = 'text-[8px] md:text-xs bg-red-500/20 text-red-400 px-2 md:px-3 py-0.5 md:py-1 rounded-full hover:bg-red-500/30 transition';
             }
         }
         
@@ -2421,7 +2592,7 @@
             document.getElementById('ratingProductName').textContent = 'ផលិតផល: ' + p.item;
             document.getElementById('ratingProductId').value = currentProductId;
             selectedRating = 0;
-            document.querySelectorAll('.rating-star').forEach(s => s.className = 'rating-star text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition');
+            document.querySelectorAll('.rating-star').forEach(s => s.className = 'rating-star text-2xl md:text-4xl text-slate-600 hover:text-yellow-400 cursor-pointer transition');
             document.getElementById('ratingText').textContent = 'សូមជ្រើសរើសផ្កាយ';
             document.getElementById('ratingComment').value = '';
             openModal('ratingModal');
@@ -2431,7 +2602,7 @@
             selectedRating = star;
             document.querySelectorAll('.rating-star').forEach(s => {
                 const val = parseInt(s.dataset.star);
-                s.className = `rating-star text-4xl cursor-pointer transition ${val <= star ? 'text-yellow-400' : 'text-slate-600 hover:text-yellow-400'}`;
+                s.className = `rating-star text-2xl md:text-4xl cursor-pointer transition ${val <= star ? 'text-yellow-400' : 'text-slate-600 hover:text-yellow-400'}`;
             });
             document.getElementById('ratingText').textContent = star + ' ★ - ការវាយតម្លៃរបស់អ្នក';
         }
@@ -2469,7 +2640,7 @@
             const p = products.find(item => item.id === currentProductId);
             if (!p) return;
             const url = window.location.href;
-            const text = `🛍️ មើលផលិតផល: ${p.item}\n💰 តម្លៃ: ${p.price}\n👤 អ្នកលក់: ${p.seller}\n📱 ${url}`;
+            const text = `🛍️ មើលផលិតផល: ${p.item}\n🏷️ លេខទំនិញ: ${p.productId || 'N/A'}\n💰 តម្លៃ: ${p.price}\n👤 អ្នកលក់: ${p.seller}\n📱 ${url}`;
             if (navigator.share) { navigator.share({ title: p.item, text, url }).catch(() => {}); } 
             else { navigator.clipboard.writeText(text).then(() => showToast('📋 ចម្លងភ្ជាប់ហើយ!', 'info')); }
         }
@@ -2513,16 +2684,16 @@
             
             const wishlistContainer = document.getElementById('wishlistContainer');
             if (wishlist.length === 0) {
-                wishlistContainer.innerHTML = '<p class="col-span-full text-center text-slate-400 py-8 text-sm">មិនទាន់មានផលិតផលក្នុងបញ្ជីចូលចិត្តទេ</p>';
+                wishlistContainer.innerHTML = '<p class="col-span-full text-center text-slate-400 py-6 md:py-8 text-xs md:text-sm">មិនទាន់មានផលិតផលក្នុងបញ្ជីចូលចិត្តទេ</p>';
             } else {
                 const wishlistItems = products.filter(p => wishlist.includes(p.id));
                 wishlistContainer.innerHTML = wishlistItems.map(p => `
-                    <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50 cursor-pointer hover:border-indigo-500/50 transition" onclick="openProductDetail(${p.id}); closeModal('dashboardModal');">
-                        <img src="${p.mainImg}" class="h-20 w-full object-cover rounded-lg mb-2">
-                        <p class="text-sm font-semibold text-white line-clamp-1">${p.item}</p>
-                        <p class="text-sm text-emerald-400 font-bold">${p.price}</p>
-                        <button onclick="event.stopPropagation(); removeFromWishlist(${p.id})" class="text-xs text-red-400 hover:text-red-300 transition mt-1">
-                            <i class="fa-regular fa-trash-can mr-1"></i> ដកចេញ
+                    <div class="bg-slate-800/50 p-2 md:p-3 rounded-lg md:rounded-xl border border-slate-700/50 cursor-pointer hover:border-indigo-500/50 transition" onclick="openProductDetail(${p.id}); closeModal('dashboardModal');">
+                        <img src="${p.mainImg}" class="h-16 md:h-20 w-full object-cover rounded-lg mb-1 md:mb-2">
+                        <p class="text-[10px] md:text-sm font-semibold text-white line-clamp-1">${p.item}</p>
+                        <p class="text-[10px] md:text-sm text-emerald-400 font-bold">${p.price}</p>
+                        <button onclick="event.stopPropagation(); removeFromWishlist(${p.id})" class="text-[8px] md:text-xs text-red-400 hover:text-red-300 transition mt-0.5 md:mt-1">
+                            <i class="fa-regular fa-trash-can mr-0.5 md:mr-1"></i> ដកចេញ
                         </button>
                     </div>
                 `).join('');
@@ -2534,19 +2705,19 @@
             allReviews.sort((a, b) => b.timestamp - a.timestamp);
             
             if (allReviews.length === 0) {
-                reviewsContainer.innerHTML = '<p class="text-center text-slate-400 py-8 text-sm">មិនទាន់មានការវាយតម្លៃណាមួយទេ</p>';
+                reviewsContainer.innerHTML = '<p class="text-center text-slate-400 py-6 md:py-8 text-xs md:text-sm">មិនទាន់មានការវាយតម្លៃណាមួយទេ</p>';
             } else {
                 reviewsContainer.innerHTML = allReviews.slice(0, 10).map(r => `
-                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                    <div class="p-2 md:p-3 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
                         <div class="flex justify-between items-start">
                             <div>
-                                <span class="font-semibold text-sm text-white">${r.userName}</span>
-                                <span class="text-yellow-400 text-sm ml-2">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+                                <span class="font-semibold text-[10px] md:text-sm text-white">${r.userName}</span>
+                                <span class="text-yellow-400 text-[10px] md:text-sm ml-1 md:ml-2">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
                             </div>
-                            <span class="text-xs text-slate-500">${new Date(r.timestamp).toLocaleDateString('km-KH')}</span>
+                            <span class="text-[8px] md:text-xs text-slate-500">${new Date(r.timestamp).toLocaleDateString('km-KH')}</span>
                         </div>
-                        <p class="text-sm text-slate-300 mt-1">${r.comment || 'គ្មានមតិយោបល់'}</p>
-                        <p class="text-xs text-slate-500 mt-1">ផលិតផល: ${r.productName}</p>
+                        <p class="text-[10px] md:text-sm text-slate-300 mt-0.5">${r.comment || 'គ្មានមតិយោបល់'}</p>
+                        <p class="text-[8px] md:text-xs text-slate-500 mt-0.5">ផលិតផល: ${r.productName}</p>
                     </div>
                 `).join('');
             }
@@ -2561,9 +2732,9 @@
         function switchDashTab(tab) {
             document.querySelectorAll('.dash-tab').forEach(t => {
                 if (t.dataset.tab === tab) {
-                    t.className = 'dash-tab px-4 py-2 text-sm font-medium text-indigo-400 border-b-2 border-indigo-400';
+                    t.className = 'dash-tab px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm font-medium text-indigo-400 border-b-2 border-indigo-400';
                 } else {
-                    t.className = 'dash-tab px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition';
+                    t.className = 'dash-tab px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white transition';
                 }
             });
             document.querySelectorAll('.dash-content').forEach(c => c.classList.add('hidden'));
@@ -2598,9 +2769,9 @@
         // ====== DATA MANAGEMENT ======
         function exportData() {
             const products = JSON.parse(localStorage.getItem('shop_products') || '[]');
-            let csv = 'ID,Item,Price,Seller,Category,Views,Likes,Rating\n';
+            let csv = 'ID,ProductID,Item,Price,Seller,Category,Views,Likes,Rating\n';
             products.forEach(p => {
-                csv += `${p.id},"${p.item}",${p.price},"${p.seller}","${p.cat}",${p.views||0},${p.likes||0},${p.rating||0}\n`;
+                csv += `${p.id},${p.productId || 'N/A'},"${p.item}",${p.price},"${p.seller}","${p.cat}",${p.views||0},${p.likes||0},${p.rating||0}\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
@@ -2618,6 +2789,7 @@
                 hr_posts: JSON.parse(localStorage.getItem('hr_posts') || '[]'),
                 user_data: localStorage.getItem('user_data') || null,
                 user_id: localStorage.getItem('user_id') || null,
+                product_id_counter: localStorage.getItem('product_id_counter') || '0',
                 backupDate: new Date().toISOString()
             };
             const json = JSON.stringify(data, null, 2);
@@ -2646,6 +2818,7 @@
                         if (data.hr_posts) localStorage.setItem('hr_posts', JSON.stringify(data.hr_posts));
                         if (data.user_data) localStorage.setItem('user_data', data.user_data);
                         if (data.user_id) localStorage.setItem('user_id', data.user_id);
+                        if (data.product_id_counter) localStorage.setItem('product_id_counter', data.product_id_counter);
                         updateIdDisplay();
                         renderProducts();
                         renderHR();
@@ -2665,6 +2838,7 @@
                 localStorage.removeItem('user_data');
                 localStorage.removeItem('user_id');
                 localStorage.removeItem('user_name');
+                localStorage.removeItem('product_id_counter');
                 const userId = getUserId();
                 if (userId) localStorage.removeItem('wishlist_' + userId);
                 updateIdDisplay();
@@ -2675,7 +2849,6 @@
                 showToast('🗑️ បានលុបទិន្នន័យទាំងអស់!', 'info');
             }
         }
-        
         // ================================================================
         // ====== ZODIAC SYSTEM ======
         // ================================================================
@@ -2929,13 +3102,13 @@
             if (tab === 'result') {
                 resultTab.style.display = 'block';
                 historyTab.style.display = 'none';
-                btnResult.className = 'px-3 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white';
-                btnHistory.className = 'px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition';
+                btnResult.className = 'px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-xs font-medium bg-indigo-600 text-white';
+                btnHistory.className = 'px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition';
             } else {
                 resultTab.style.display = 'none';
                 historyTab.style.display = 'block';
-                btnResult.className = 'px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition';
-                btnHistory.className = 'px-3 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white';
+                btnResult.className = 'px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-xs font-medium bg-slate-700 text-slate-300 hover:bg-slate-600 transition';
+                btnHistory.className = 'px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-xs font-medium bg-indigo-600 text-white';
             }
         }
         
@@ -2977,7 +3150,7 @@
             if (!localStorage.getItem('shop_products')) {
                 const sample = [
                     {
-                        id: 1, userId: 'ID-12345', item: 'អាវយឺតបុរស Premium',
+                        id: 1, productId: 'P000001', userId: 'ID-12345', item: 'អាវយឺតបុរស Premium',
                         cat: '👕 សម្លៀកបំពាក់', price: '$25.00', oldPrice: '$40.00',
                         seller: 'សុខា គឹម', contact: '012345678',
                         delivStatus: 'មានសេវាដឹកជញ្ជូនរហ័ស', delivFee: '$2.00',
@@ -2992,7 +3165,7 @@
                         timestamp: Date.now() - 86400000
                     },
                     {
-                        id: 2, userId: 'ID-67890', item: 'ស្បែកជើងប៉ាតាស្បែក',
+                        id: 2, productId: 'P000002', userId: 'ID-67890', item: 'ស្បែកជើងប៉ាតាស្បែក',
                         cat: '👜 កាបូប និងស្បែកជើង', price: '៨៩.០០៛', oldPrice: '១២០.០០៛',
                         seller: 'វិសាល ជេង', contact: '098765432',
                         delivStatus: 'អតិថិជនមកយកផ្ទាល់', delivFee: '$0.00',
@@ -3005,6 +3178,7 @@
                     }
                 ];
                 localStorage.setItem('shop_products', JSON.stringify(sample));
+                localStorage.setItem('product_id_counter', '2');
             }
             
             if (!localStorage.getItem('hr_posts')) {
@@ -3038,6 +3212,7 @@
         window.previewMainImage = previewMainImage;
         window.previewMoreImages = previewMoreImages;
         window.previewHRImages = previewHRImages;
+        window.previewScreenshot = previewScreenshot;
         window.openProductDetail = openProductDetail;
         window.openHRDetail = openHRDetail;
         window.openLightbox = openLightbox;
@@ -3059,6 +3234,8 @@
         window.clearAllData = clearAllData;
         window.switchHistoryTab = switchHistoryTab;
         window.initZodiac = initZodiac;
+        window.autoFillFromRegister = autoFillFromRegister;
+        window.generateProductId = generateProductId;
     </script>
     
 </body>
