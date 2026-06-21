@@ -728,7 +728,7 @@
         </div>
     </div>
     
-    <!-- ====== SHOP MODAL ====== -->
+    <!-- ====== SHOP MODAL (កែប្រែ - លុបក្រុមហ៊ុនដឹកជញ្ជូន) ====== -->
     <div id="shopModal" class="modal-overlay">
         <div class="modal-content relative">
             <button onclick="closeModal('shopModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
@@ -784,28 +784,13 @@
                         <input type="text" id="shopOldPrice" placeholder="ឧ. 40.00" class="form-input">
                     </div>
                     
-                    <div id="deliveryGroup" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- ====== លុបក្រុមហ៊ុនដឹកជញ្ជូនចេញ ====== -->
+                    <div id="deliveryGroup" class="md:col-span-2">
                         <div>
                             <label class="form-label">ស្ថានភាពដឹកជញ្ជូន <span class="required">*</span></label>
                             <select id="shopDelivStatus" class="form-select">
                                 <option>មានសេវាដឹកជញ្ជូនរហ័ស</option>
                                 <option>អតិថិជនមកយកផ្ទាល់</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label">ក្រុមហ៊ុនដឹកជញ្ជូន <span class="required">*</span></label>
-                            <select id="shopDelivCompany" class="form-select">
-                                <option value="">-- សូមជ្រើសរើស --</option>
-                                <option>វីរៈប៊ុនថាំ (VET Express)</option>
-                                <option>J&T Express</option>
-                                <option>Flash Express</option>
-                                <option>Capitol / សូរិយា / ឡារីតា</option>
-                                <option>Cambodia Post</option>
-                                <option>GrabExpress</option>
-                                <option>Foodpanda</option>
-                                <option>Nham24 Express</option>
-                                <option>Lalamove</option>
-                                <option>ផ្សេងទៀត</option>
                             </select>
                         </div>
                     </div>
@@ -946,7 +931,6 @@
                     <div><span class="text-slate-400">អ្នកលក់៖</span> <span id="detailSeller" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ទំនាក់ទំនង៖</span> <span id="detailContact" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ការដឹកជញ្ជូន៖</span> <span id="detailDeliv" class="text-white">-</span></div>
-                    <div id="detailCompanyRow"><span class="text-slate-400">ក្រុមហ៊ុន៖</span> <span id="detailCompany" class="text-white">-</span></div>
                     <div><span class="text-slate-400">ថ្លៃដឹកជញ្ជូន៖</span> <span id="detailFee" class="text-white">-</span></div>
                     <!-- Payment Info Display -->
                     <div id="detailPaymentInfo" class="hidden mt-2 pt-2 border-t border-white/10">
@@ -1040,7 +1024,7 @@
         </div>
     </div>
     
-    <!-- ====== ORDER MODAL ====== -->
+    <!-- ====== ORDER MODAL (កែប្រែ - បន្ថែមក្រុមហ៊ុនដឹកជញ្ជូន និងកែឈ្មោះ) ====== -->
     <div id="orderModal" class="modal-overlay">
         <div class="modal-content modal-content-sm relative">
             <button onclick="closeModal('orderModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
@@ -1063,7 +1047,7 @@
                 </div>
                 
                 <div>
-                    <label class="form-label">📦 ចំនួនទឹកប្រាក់ដែលត្រូវទិញ <span class="required">*</span></label>
+                    <label class="form-label">📦 សូមបញ្ជាក់ចំនួនទឹកប្រាក់ដែលត្រូវទិញ <span class="required">*</span></label>
                     <input type="number" id="orderAmount" required min="1" placeholder="ឧ. 1" class="form-input">
                 </div>
                 
@@ -1072,6 +1056,24 @@
                     <select id="orderDeliveryMethod" class="form-select">
                         <option value="មានសេវាដឹកជញ្ជូនរហ័ស">🚀 មានសេវាដឹកជញ្ជូនរហ័ស</option>
                         <option value="អតិថិជនមកយកផ្ទាល់">🏠 អតិថិជនមកយកផ្ទាល់</option>
+                    </select>
+                </div>
+                
+                <!-- ====== ក្រុមហ៊ុនដឹកជញ្ជូន ====== -->
+                <div>
+                    <label class="form-label">🚚 ជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន <span class="required">*</span></label>
+                    <select id="orderDeliveryCompany" class="form-select">
+                        <option value="">-- សូមជ្រើសរើស --</option>
+                        <option>វីរៈប៊ុនថាំ (VET Express)</option>
+                        <option>J&T Express</option>
+                        <option>Flash Express</option>
+                        <option>Capitol / សូរិយា / ឡារីតា</option>
+                        <option>Cambodia Post</option>
+                        <option>GrabExpress</option>
+                        <option>Foodpanda</option>
+                        <option>Nham24 Express</option>
+                        <option>Lalamove</option>
+                        <option>ផ្សេងទៀត</option>
                     </select>
                 </div>
                 
@@ -1212,7 +1214,6 @@
             JOB: { token: '8133960195:AAGss5J-d0GXsFkfsOa3yjQ7p3yp9W5uCFs', chat_id: '-1003791568938' },
             SHOP: { token: '8572743046:AAHyr67sHP-DNpmSgaTucZc2OWe4GYkjnww', chat_id: '-1004319292996' },
             HR: { token: '8957830113:AAGxikYfnySPxW-jeNe1dEcxITix_pJckZQ', chat_id: '-1004373121052' },
-            // ====== ORDER BOT ======
             ORDER: { token: '8608407284:AAFANALKrlmAWhWls7TltxKFTe9zA-73FLU', chat_id: '-1004428412691' }
         };
         
@@ -1223,7 +1224,6 @@
         let currentCategory = 'all';
         let currentProductId = null;
         let selectedRating = 0;
-        let currentOrderProduct = null;
         
         // ====== TOAST ======
         function showToast(message, type = 'success') {
@@ -1582,7 +1582,6 @@
                     seller: document.getElementById('shopSeller').value.trim(),
                     contact: document.getElementById('shopContact').value.trim(),
                     delivStatus: document.getElementById('shopDelivStatus').value,
-                    delivCompany: document.getElementById('shopDelivCompany').value || '',
                     delivFee: document.getElementById('shopDelivFee').value.trim() || '',
                     bankName: document.getElementById('shopBankName').value.trim() || '',
                     bankAccount: document.getElementById('shopBankAccount').value.trim() || '',
@@ -1809,7 +1808,6 @@
             // Check if product is real estate or vehicle (no payment info)
             const isSpecial = p.cat.includes('អចលនទ្រព្យ') || p.cat.includes('រថយន្ត') || p.cat.includes('យានយន្ត');
             
-            currentOrderProduct = p;
             document.getElementById('orderProductName').textContent = p.item;
             document.getElementById('orderProductPrice').textContent = p.price;
             document.getElementById('orderProductId').value = p.id;
@@ -1857,6 +1855,7 @@
             const sellerId = document.getElementById('orderSellerId').value;
             const amount = parseInt(document.getElementById('orderAmount').value);
             const deliveryMethod = document.getElementById('orderDeliveryMethod').value;
+            const deliveryCompany = document.getElementById('orderDeliveryCompany').value || 'មិនបានបញ្ជាក់';
             const address = document.getElementById('orderAddress').value.trim();
             const phone = document.getElementById('orderPhone').value.trim();
             const price = parseFloat(document.getElementById('orderPrice').value) || 0;
@@ -1911,6 +1910,7 @@
                 else caption += `$`;
                 caption += `\n`;
                 caption += `🚚 វិធីដឹកជញ្ជូន: ${deliveryMethod}\n`;
+                caption += `🏢 ក្រុមហ៊ុនដឹកជញ្ជូន: ${deliveryCompany}\n`;
                 caption += `📍 អាសយដ្ឋាន: ${address}\n`;
                 caption += `📱 ទំនាក់ទំនង: ${phone}\n`;
                 caption += `🆔 លេខ ID អ្នកលក់: \`${p.userId}\`\n`;
@@ -1970,7 +1970,7 @@
                 bankFields.style.display = 'none';
                 qrField.style.display = 'none';
             } else {
-                deliveryGroup.style.display = 'grid';
+                deliveryGroup.style.display = 'block';
                 deliveryFeeField.style.display = 'block';
                 bankFields.style.display = 'grid';
                 qrField.style.display = 'block';
@@ -2188,8 +2188,6 @@
             document.getElementById('detailSeller').textContent = p.seller;
             document.getElementById('detailContact').textContent = p.contact;
             document.getElementById('detailDeliv').textContent = p.delivStatus;
-            document.getElementById('detailCompany').textContent = p.delivCompany || 'មិនបានបញ្ជាក់';
-            document.getElementById('detailCompanyRow').style.display = p.delivCompany ? 'flex' : 'none';
             document.getElementById('detailFee').textContent = p.delivFee || '$0.00';
             document.getElementById('detailDesc').textContent = p.desc;
             
@@ -2982,7 +2980,7 @@
                         id: 1, userId: 'ID-12345', item: 'អាវយឺតបុរស Premium',
                         cat: '👕 សម្លៀកបំពាក់', price: '$25.00', oldPrice: '$40.00',
                         seller: 'សុខា គឹម', contact: '012345678',
-                        delivStatus: 'មានសេវាដឹកជញ្ជូនរហ័ស', delivCompany: 'J&T Express', delivFee: '$2.00',
+                        delivStatus: 'មានសេវាដឹកជញ្ជូនរហ័ស', delivFee: '$2.00',
                         bankName: 'ACLEDA', bankAccount: '123456789',
                         desc: 'អាវយឺតគុណភាពខ្ពស់ ផលិតពីកប្បាស ១០០%',
                         mainImg: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%236366f1" width="400" height="300"/%3E%3Ctext x="50" y="170" font-family="Kantumruy Pro" font-size="28" fill="white"%3E👕 អាវយឺត%3C/text%3E%3C/svg%3E',
@@ -2997,7 +2995,7 @@
                         id: 2, userId: 'ID-67890', item: 'ស្បែកជើងប៉ាតាស្បែក',
                         cat: '👜 កាបូប និងស្បែកជើង', price: '៨៩.០០៛', oldPrice: '១២០.០០៛',
                         seller: 'វិសាល ជេង', contact: '098765432',
-                        delivStatus: 'អតិថិជនមកយកផ្ទាល់', delivCompany: '', delivFee: '$0.00',
+                        delivStatus: 'អតិថិជនមកយកផ្ទាល់', delivFee: '$0.00',
                         bankName: 'Wing', bankAccount: '987654321',
                         desc: 'ស្បែកជើងប៉ាតាស្បែកពិត ផលិតនៅអ៊ីតាលី',
                         mainImg: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f59e0b" width="400" height="300"/%3E%3Ctext x="50" y="170" font-family="Kantumruy Pro" font-size="28" fill="white"%3E👟 ស្បែកជើង%3C/text%3E%3C/svg%3E',
