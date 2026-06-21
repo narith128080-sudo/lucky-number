@@ -861,14 +861,14 @@
                     </div>
                     
                     <div id="deliveryGroup" class="md:col-span-2">
-                        <div>
-                            <label class="form-label">ស្ថានភាពដឹកជញ្ជូន <span class="required">*</span></label>
-                            <select id="shopDelivStatus" class="form-select">
-                                <option>មានសេវាដឹកជញ្ជូនរហ័ស</option>
-                                <option>អតិថិជនមកយកផ្ទាល់</option>
-                            </select>
-                        </div>
-                    </div>
+    <div>
+        <label class="form-label">ស្ថានភាពដឹកជញ្ជូន <span class="required">*</span></label>
+        <select id="shopDelivStatus" class="form-select">
+            <option value="មានសេវាដឹកជញ្ជូនរហ័ស">🚀 មានសេវាដឹកជញ្ជូនរហ័ស</option>
+            <option value="អតិថិជនមកយកផ្ទាល់">🏠 អតិថិជនមកយកផ្ទាល់</option>
+        </select>
+    </div>
+</div>
                     
                     <div id="deliveryFeeField">
                         <label class="form-label">ថ្លៃដឹកជញ្ជូន (ស្រេចចិត្ត)</label>
@@ -1099,102 +1099,103 @@
         </div>
     </div>
     
-    <!-- ====== ORDER MODAL ====== -->
-    <div id="orderModal" class="modal-overlay">
-        <div class="modal-content modal-content-sm relative">
-            <button onclick="closeModal('orderModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
-            
-            <div class="modal-title text-sm md:text-lg">
-                <i class="fa-solid fa-cart-shopping text-emerald-400"></i>
-                បញ្ជាទិញផលិតផល
+<!-- ====== ORDER MODAL ====== -->
+<div id="orderModal" class="modal-overlay">
+    <div class="modal-content modal-content-sm relative">
+        <button onclick="closeModal('orderModal')" class="modal-close"><i class="fa-solid fa-circle-xmark"></i></button>
+        
+        <div class="modal-title text-sm md:text-lg">
+            <i class="fa-solid fa-cart-shopping text-emerald-400"></i>
+            បញ្ជាទិញផលិតផល
+        </div>
+        
+        <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-3 md:space-y-4">
+            <!-- Product Info -->
+            <div class="p-3 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
+                <p class="text-xs md:text-sm text-slate-400">ផលិតផល៖ <span id="orderProductName" class="text-white font-semibold">-</span></p>
+                <p class="text-xs md:text-sm text-slate-400">តម្លៃ៖ <span id="orderProductPrice" class="text-emerald-400 font-bold">-</span></p>
+                <p class="text-xs md:text-sm text-slate-400">ស្ថានភាពដឹកជញ្ជូន៖ <span id="orderDelivStatusDisplay" class="text-white font-semibold">-</span></p>
             </div>
             
-            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-3 md:space-y-4">
-                <!-- Product Info -->
-                <div class="p-3 bg-slate-800/50 rounded-lg md:rounded-xl border border-slate-700/50">
-                    <p class="text-xs md:text-sm text-slate-400">ផលិតផល៖ <span id="orderProductName" class="text-white font-semibold">-</span></p>
-                    <p class="text-xs md:text-sm text-slate-400">តម្លៃ៖ <span id="orderProductPrice" class="text-emerald-400 font-bold">-</span></p>
+            <div>
+                <label class="form-label">🆔 លេខ ID របស់អ្នក (អ្នកបញ្ជាទិញ) <span class="required">*</span></label>
+                <input type="text" id="orderBuyerId" required placeholder="ឧ. ID-12345" class="form-input">
+            </div>
+            
+            <div>
+                <label class="form-label">📦 សូមបញ្ជាក់ចំនួនទឹកប្រាក់ដែលត្រូវទិញ <span class="required">*</span></label>
+                <input type="number" id="orderAmount" required min="1" placeholder="ឧ. 1" class="form-input">
+            </div>
+            
+            <!-- ====== ប្រភេទដឹកជញ្ជូន (អានតែប៉ុណ្ណោះ) ====== -->
+            <div>
+                <label class="form-label">🚚 ប្រភេទដឹកជញ្ជូន (កំណត់ដោយអ្នកលក់)</label>
+                <input type="text" id="orderDeliveryMethod" readonly class="form-input bg-slate-700/50 cursor-not-allowed" value="មានសេវាដឹកជញ្ជូនរហ័ស">
+            </div>
+            
+            <!-- ====== ក្រុមហ៊ុនដឹកជញ្ជូន (បង្ហាញ/លាក់) ====== -->
+            <div id="orderCompanyContainer">
+                <label class="form-label">🚚 ជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន <span class="required" id="companyRequired">*</span></label>
+                <select id="orderDeliveryCompany" class="form-select">
+                    <option value="">-- សូមជ្រើសរើស --</option>
+                    <option>វីរៈប៊ុនថាំ (VET Express)</option>
+                    <option>J&T Express</option>
+                    <option>Flash Express</option>
+                    <option>Capitol / សូរិយា / ឡារីតា</option>
+                    <option>Cambodia Post</option>
+                    <option>GrabExpress</option>
+                    <option>Foodpanda</option>
+                    <option>Nham24 Express</option>
+                    <option>Lalamove</option>
+                    <option>ផ្សេងទៀត</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="form-label">📍 អាសយដ្ឋានទទួលទំនិញ <span class="required">*</span></label>
+                <textarea id="orderAddress" rows="2" required placeholder="ឧ. ផ្ទះលេខ ១២៣ ភ្នំពេញ" class="form-textarea"></textarea>
+            </div>
+            
+            <div>
+                <label class="form-label">📱 លេខទូរស័ព្ទ / Telegram <span class="required">*</span></label>
+                <input type="text" id="orderPhone" required placeholder="ឧ. 012345678 / @sokha" class="form-input">
+            </div>
+            
+            <!-- Payment Info (Bank & QR) -->
+            <div id="orderPaymentInfo" class="p-3 bg-emerald-500/10 rounded-lg md:rounded-xl border border-emerald-500/20 hidden">
+                <h4 class="text-xs md:text-sm font-semibold text-emerald-400 mb-1.5 md:mb-2">💳 ព័ត៌មានទូទាត់</h4>
+                <div id="orderBankDisplay" class="space-y-0.5 md:space-y-1 text-xs md:text-sm text-slate-300">
+                    <p>🏦 ធនាគារ៖ <span id="orderBankName" class="text-white">-</span></p>
+                    <p>🔢 លេខគណនី៖ <span id="orderBankAccount" class="text-white font-mono">-</span></p>
                 </div>
-                
-                <div>
-                    <label class="form-label">🆔 លេខ ID របស់អ្នក (អ្នកបញ្ជាទិញ) <span class="required">*</span></label>
-                    <input type="text" id="orderBuyerId" required placeholder="ឧ. ID-12345" class="form-input">
+                <div id="orderQrDisplay" class="mt-1.5 md:mt-2">
+                    <p class="text-[8px] md:text-xs text-slate-400 mb-0.5 md:mb-1">📱 QR Code បង់ប្រាក់៖</p>
+                    <img id="orderQrImage" src="" alt="QR Code" class="h-24 w-24 md:h-32 md:w-32 object-contain rounded-lg border border-slate-700 hidden">
+                    <p id="orderNoQr" class="text-[8px] md:text-xs text-slate-500">មិនមាន QR Code</p>
                 </div>
-                
-                <div>
-                    <label class="form-label">📦 សូមបញ្ជាក់ចំនួនទឹកប្រាក់ដែលត្រូវទិញ <span class="required">*</span></label>
-                    <input type="number" id="orderAmount" required min="1" placeholder="ឧ. 1" class="form-input">
+            </div>
+            
+            <!-- Screenshot Upload -->
+            <div class="p-3 md:p-4 border border-dashed border-yellow-500/30 rounded-lg md:rounded-xl bg-yellow-500/5">
+                <label class="form-label text-yellow-400">📸 ភ្ជាប់រូបភាពថតអេក្រង់ការទូទាត់ (ស្រេចចិត្ត)</label>
+                <input type="file" id="orderScreenshot" accept="image/*" onchange="previewScreenshot(this)" class="w-full text-xs md:text-sm text-slate-400">
+                <div id="screenshotPreview" class="hidden mt-2">
+                    <img id="screenshotImg" class="h-20 w-20 md:h-32 md:w-32 object-cover rounded-lg border border-slate-700">
                 </div>
-                
-                <div>
-                    <label class="form-label">🚚 ជ្រើសរើសប្រភេទដឹកជញ្ជូន <span class="required">*</span></label>
-                    <select id="orderDeliveryMethod" class="form-select">
-                        <option value="មានសេវាដឹកជញ្ជូនរហ័ស">🚀 មានសេវាដឹកជញ្ជូនរហ័ស</option>
-                        <option value="អតិថិជនមកយកផ្ទាល់">🏠 អតិថិជនមកយកផ្ទាល់</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="form-label">🚚 ជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន <span class="required">*</span></label>
-                    <select id="orderDeliveryCompany" class="form-select">
-                        <option value="">-- សូមជ្រើសរើស --</option>
-                        <option>វីរៈប៊ុនថាំ (VET Express)</option>
-                        <option>J&T Express</option>
-                        <option>Flash Express</option>
-                        <option>Capitol / សូរិយា / ឡារីតា</option>
-                        <option>Cambodia Post</option>
-                        <option>GrabExpress</option>
-                        <option>Foodpanda</option>
-                        <option>Nham24 Express</option>
-                        <option>Lalamove</option>
-                        <option>ផ្សេងទៀត</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="form-label">📍 អាសយដ្ឋានទទួលទំនិញ <span class="required">*</span></label>
-                    <textarea id="orderAddress" rows="2" required placeholder="ឧ. ផ្ទះលេខ ១២៣ ភ្នំពេញ" class="form-textarea"></textarea>
-                </div>
-                
-                <div>
-                    <label class="form-label">📱 លេខទូរស័ព្ទ / Telegram <span class="required">*</span></label>
-                    <input type="text" id="orderPhone" required placeholder="ឧ. 012345678 / @sokha" class="form-input">
-                </div>
-                
-                <!-- Payment Info (Bank & QR) -->
-                <div id="orderPaymentInfo" class="p-3 bg-emerald-500/10 rounded-lg md:rounded-xl border border-emerald-500/20 hidden">
-                    <h4 class="text-xs md:text-sm font-semibold text-emerald-400 mb-1.5 md:mb-2">💳 ព័ត៌មានទូទាត់</h4>
-                    <div id="orderBankDisplay" class="space-y-0.5 md:space-y-1 text-xs md:text-sm text-slate-300">
-                        <p>🏦 ធនាគារ៖ <span id="orderBankName" class="text-white">-</span></p>
-                        <p>🔢 លេខគណនី៖ <span id="orderBankAccount" class="text-white font-mono">-</span></p>
-                    </div>
-                    <div id="orderQrDisplay" class="mt-1.5 md:mt-2">
-                        <p class="text-[8px] md:text-xs text-slate-400 mb-0.5 md:mb-1">📱 QR Code បង់ប្រាក់៖</p>
-                        <img id="orderQrImage" src="" alt="QR Code" class="h-24 w-24 md:h-32 md:w-32 object-contain rounded-lg border border-slate-700 hidden">
-                        <p id="orderNoQr" class="text-[8px] md:text-xs text-slate-500">មិនមាន QR Code</p>
-                    </div>
-                </div>
-                
-                <!-- ====== SCREENSHOT UPLOAD ====== -->
-                <div class="p-3 md:p-4 border border-dashed border-yellow-500/30 rounded-lg md:rounded-xl bg-yellow-500/5">
-                    <label class="form-label text-yellow-400">📸 ភ្ជាប់រូបភាពថតអេក្រង់ការទូទាត់ (ស្រេចចិត្ត)</label>
-                    <input type="file" id="orderScreenshot" accept="image/*" onchange="previewScreenshot(this)" class="w-full text-xs md:text-sm text-slate-400">
-                    <div id="screenshotPreview" class="hidden mt-2">
-                        <img id="screenshotImg" class="h-20 w-20 md:h-32 md:w-32 object-cover rounded-lg border border-slate-700">
-                    </div>
-                    <p class="text-[8px] md:text-xs text-slate-500 mt-1">💡 សូមភ្ជាប់រូបភាពថតអេក្រង់បន្ទាប់ពីបានបង់ប្រាក់រួច</p>
-                </div>
-                
-                <input type="hidden" id="orderProductId" value="">
-                <input type="hidden" id="orderSellerId" value="">
-                <input type="hidden" id="orderPrice" value="">
-                
-                <button type="submit" id="orderSubmitBtn" class="btn-success w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
-                    <i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ
-                </button>
-            </form>
-        </div>
+                <p class="text-[8px] md:text-xs text-slate-500 mt-1">💡 សូមភ្ជាប់រូបភាពថតអេក្រង់បន្ទាប់ពីបានបង់ប្រាក់រួច</p>
+            </div>
+            
+            <input type="hidden" id="orderProductId" value="">
+            <input type="hidden" id="orderSellerId" value="">
+            <input type="hidden" id="orderPrice" value="">
+            <input type="hidden" id="orderDelivStatus" value="">
+            
+            <button type="submit" id="orderSubmitBtn" class="btn-success w-full text-white font-bold py-2.5 md:py-3 rounded-lg md:rounded-xl text-sm">
+                <i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ
+            </button>
+        </form>
     </div>
+</div>
     
     <!-- ====== DASHBOARD MODAL ====== -->
     <div id="dashboardModal" class="modal-overlay">
@@ -1926,197 +1927,255 @@
         // ====== ORDER SYSTEM ======
         // ================================================================
         
-        function openOrderModal() {
-            if (!currentProductId) {
-                showToast('⚠️ សូមជ្រើសរើសផលិតផលមុន!', 'error');
-                return;
-            }
-            
-            const userId = getUserId();
-            if (!userId) {
-                showToast('⚠️ សូមចុះឈ្មោះជាមុនសិន!', 'error');
-                return;
-            }
-            
-            let products = JSON.parse(localStorage.getItem('shop_products') || '[]');
-            const p = products.find(item => item.id === currentProductId);
-            if (!p) {
-                showToast('❌ មិនឃើញផលិតផល!', 'error');
-                return;
-            }
-            
-            // Check if product is real estate or vehicle (no payment info)
-            const isSpecial = p.cat.includes('អចលនទ្រព្យ') || p.cat.includes('រថយន្ត') || p.cat.includes('យានយន្ត');
-            
-            document.getElementById('orderProductName').textContent = p.item + ' (លេខទំនិញ: ' + (p.productId || 'N/A') + ')';
-            document.getElementById('orderProductPrice').textContent = p.price;
-            document.getElementById('orderProductId').value = p.id;
-            document.getElementById('orderSellerId').value = p.userId;
-            document.getElementById('orderPrice').value = p.price.replace(/[^0-9.]/g, '');
-            document.getElementById('orderBuyerId').value = userId;
-            document.getElementById('orderAmount').value = 1;
-            document.getElementById('orderAddress').value = '';
-            document.getElementById('orderPhone').value = '';
-            document.getElementById('orderScreenshot').value = '';
-            document.getElementById('screenshotPreview').classList.add('hidden');
-            
-            // Show/hide payment info based on product type
-            const paymentInfo = document.getElementById('orderPaymentInfo');
-            if (isSpecial) {
-                paymentInfo.classList.add('hidden');
-            } else {
-                paymentInfo.classList.remove('hidden');
-                // Show bank info
-                document.getElementById('orderBankName').textContent = p.bankName || 'មិនបានបញ្ជាក់';
-                document.getElementById('orderBankAccount').textContent = p.bankAccount || 'មិនបានបញ្ជាក់';
-                
-                // Show QR
-                const qrImg = document.getElementById('orderQrImage');
-                const noQr = document.getElementById('orderNoQr');
-                if (p.qrImg) {
-                    qrImg.src = p.qrImg;
-                    qrImg.classList.remove('hidden');
-                    noQr.classList.add('hidden');
-                } else {
-                    qrImg.classList.add('hidden');
-                    noQr.classList.remove('hidden');
-                }
-            }
+       function openOrderModal() {
+    if (!currentProductId) {
+        showToast('⚠️ សូមជ្រើសរើសផលិតផលមុន!', 'error');
+        return;
+    }
+    
+    const userId = getUserId();
+    if (!userId) {
+        showToast('⚠️ សូមចុះឈ្មោះជាមុនសិន!', 'error');
+        return;
+    }
+    
+    let products = JSON.parse(localStorage.getItem('shop_products') || '[]');
+    const p = products.find(item => item.id === currentProductId);
+    if (!p) {
+        showToast('❌ មិនឃើញផលិតផល!', 'error');
+        return;
+    }
+    
+    // ====== ពិនិត្យប្រភេទទំនិញ ======
+    const isSpecial = p.cat.includes('អចលនទ្រព្យ') || p.cat.includes('រថយន្ត') || p.cat.includes('យានយន្ត');
+    
+    // ====== ពិនិត្យស្ថានភាពដឹកជញ្ជូន ======
+    const delivStatus = p.delivStatus || 'មានសេវាដឹកជញ្ជូនរហ័ស';
+    const isDeliveryAvailable = delivStatus.includes('មានសេវា');
+    
+    // ====== កំណត់ថាតើអាចជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូនបានទេ ======
+    // អាចជ្រើសរើសបានលុះត្រាតែ៖
+    // 1. មិនមែនជាប្រភេទអចលនទ្រព្យ/រថយន្ត
+    // 2. អ្នកលក់ជ្រើសរើស "មានសេវាដឹកជញ្ជូនរហ័ស"
+    const canSelectCompany = !isSpecial && isDeliveryAvailable;
+    
+    // ====== បំពេញព័ត៌មាន ======
+    document.getElementById('orderProductName').textContent = p.item + ' (លេខទំនិញ: ' + (p.productId || 'N/A') + ')';
+    document.getElementById('orderProductPrice').textContent = p.price;
+    document.getElementById('orderDelivStatusDisplay').textContent = delivStatus;
+    document.getElementById('orderProductId').value = p.id;
+    document.getElementById('orderSellerId').value = p.userId;
+    document.getElementById('orderPrice').value = p.price.replace(/[^0-9.]/g, '');
+    document.getElementById('orderBuyerId').value = userId;
+    document.getElementById('orderAmount').value = 1;
+    document.getElementById('orderAddress').value = '';
+    document.getElementById('orderPhone').value = '';
+    document.getElementById('orderDelivStatus').value = delivStatus;
+    
+    // ====== កំណត់តម្លៃប្រភេទដឹកជញ្ជូន (អានតែ) ======
+    document.getElementById('orderDeliveryMethod').value = delivStatus;
+    
+    // ====== បង្ហាញ/លាក់ក្រុមហ៊ុនដឹកជញ្ជូន ======
+    const companyContainer = document.getElementById('orderCompanyContainer');
+    const companySelect = document.getElementById('orderDeliveryCompany');
+    const companyRequired = document.getElementById('companyRequired');
+    
+    if (canSelectCompany) {
+        // បង្ហាញប្រអប់ និងធ្វើឱ្យមានតម្រូវការ
+        companyContainer.style.display = 'block';
+        companySelect.required = true;
+        companyRequired.style.display = 'inline';
+        companySelect.value = '';
+        companySelect.disabled = false;
+        companyContainer.style.opacity = '1';
+    } else {
+        // លាក់ប្រអប់ និងមិនតម្រូវ
+        companyContainer.style.display = 'none';
+        companySelect.required = false;
+        companyRequired.style.display = 'none';
+        companySelect.value = 'មិនអនុវត្ត';
+        companySelect.disabled = true;
+        companyContainer.style.opacity = '0.5';
+    }
+    
+    // ====== បង្ហាញ/លាក់ព័ត៌មានទូទាត់ ======
+    const paymentInfo = document.getElementById('orderPaymentInfo');
+    if (isSpecial) {
+        paymentInfo.classList.add('hidden');
+    } else {
+        paymentInfo.classList.remove('hidden');
+        document.getElementById('orderBankName').textContent = p.bankName || 'មិនបានបញ្ជាក់';
+        document.getElementById('orderBankAccount').textContent = p.bankAccount || 'មិនបានបញ្ជាក់';
+        
+        const qrImg = document.getElementById('orderQrImage');
+        const noQr = document.getElementById('orderNoQr');
+        if (p.qrImg) {
+            qrImg.src = p.qrImg;
+            qrImg.classList.remove('hidden');
+            noQr.classList.add('hidden');
+        } else {
+            qrImg.classList.add('hidden');
+            noQr.classList.remove('hidden');
+        }
+    }
+    
+    // ====== កំណត់ស្ថានភាពឡើងវិញ ======
+    document.getElementById('orderScreenshot').value = '';
+    document.getElementById('screenshotPreview').classList.add('hidden');
+    
+    openModal('orderModal');
+}
             
             openModal('orderModal');
         }
         
         async function handleOrderSubmit(event) {
-            event.preventDefault();
-            const btn = document.getElementById('orderSubmitBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងបញ្ជូន...';
-            
-            const buyerId = document.getElementById('orderBuyerId').value.trim();
-            const productId = parseInt(document.getElementById('orderProductId').value);
-            const sellerId = document.getElementById('orderSellerId').value;
-            const amount = parseInt(document.getElementById('orderAmount').value);
-            const deliveryMethod = document.getElementById('orderDeliveryMethod').value;
-            const deliveryCompany = document.getElementById('orderDeliveryCompany').value || 'មិនបានបញ្ជាក់';
-            const address = document.getElementById('orderAddress').value.trim();
-            const phone = document.getElementById('orderPhone').value.trim();
-            const price = parseFloat(document.getElementById('orderPrice').value) || 0;
-            const total = price * amount;
-            const screenshotFile = document.getElementById('orderScreenshot').files[0];
-            
-            // Validate buyer ID
-            if (!validateUserId(buyerId)) {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
-                return;
-            }
-            
-            if (buyerId === sellerId) {
-                showToast('⚠️ អ្នកមិនអាចបញ្ជាទិញផលិតផលរបស់ខ្លួនឯងបានទេ!', 'error');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
-                return;
-            }
-            
-            if (!address || !phone) {
-                showToast('⚠️ សូមបំពេញអាសយដ្ឋាន និងលេខទូរស័ព្ទ!', 'error');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
-                return;
-            }
-            
-            try {
-                // Get product info
-                let products = JSON.parse(localStorage.getItem('shop_products') || '[]');
-                const p = products.find(item => item.id === productId);
-                if (!p) {
-                    showToast('❌ មិនឃើញផលិតផល!', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
-                    return;
-                }
-                
-                // Get buyer info
-                const buyerData = JSON.parse(localStorage.getItem('user_data') || '{}');
-                const buyerName = buyerData.name || 'អ្នកប្រើប្រាស់';
-                
-                // ====== Telegram Message with ID on top ======
-                let caption = `🛒 *មានការបញ្ជាទិញថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
-                caption += `🆔 លេខ ID អ្នកបញ្ជាទិញ: \`${buyerId}\`\n`;
-                caption += `👤 ឈ្មោះអ្នកបញ្ជាទិញ: ${buyerName}\n`;
-                caption += `📦 ផលិតផល: *${p.item}*\n`;
-                caption += `🏷️ លេខទំនិញ: ${p.productId || 'N/A'}\n`;
-                caption += `🏷️ ប្រភេទ: ${p.cat}\n`;
-                caption += `💰 តម្លៃក្នុងមួយឯកតា: ${p.price}\n`;
-                caption += `🔢 ចំនួន: ${amount}\n`;
-                caption += `💵 សរុប: *${total.toFixed(2)}*`;
-                if (p.price.includes('៛')) caption += `៛`;
-                else caption += `$`;
-                caption += `\n`;
-                caption += `🚚 វិធីដឹកជញ្ជូន: ${deliveryMethod}\n`;
-                caption += `🏢 ក្រុមហ៊ុនដឹកជញ្ជូន: ${deliveryCompany}\n`;
-                caption += `📍 អាសយដ្ឋាន: ${address}\n`;
-                caption += `📱 ទំនាក់ទំនង: ${phone}\n`;
-                caption += `🆔 លេខ ID អ្នកលក់: \`${p.userId}\`\n`;
-                caption += `━━━━━━━━━━━━━━━━━━━━`;
-                
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
-                
-                // ====== Send Order with Screenshot ======
-                const formData = new FormData();
-                formData.append('chat_id', TG_CONFIG.ORDER.chat_id);
-                
-                if (screenshotFile) {
-                    // Resize screenshot
-                    const resizedScreenshot = await resizeImage(screenshotFile);
-                    formData.append('photo', resizedScreenshot);
-                    formData.append('caption', caption);
-                    formData.append('parse_mode', 'Markdown');
-                    
-                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendPhoto`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    if (response.ok) {
-                        showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
-                        document.getElementById('orderForm').reset();
-                        document.getElementById('screenshotPreview').classList.add('hidden');
-                        closeModal('orderModal');
-                    } else {
-                        const errorText = await response.text();
-                        console.error('Order Telegram Error:', errorText);
-                        showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
-                    }
-                } else {
-                    // Send as text only
-                    formData.append('text', caption);
-                    formData.append('parse_mode', 'Markdown');
-                    
-                    const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendMessage`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    if (response.ok) {
-                        showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
-                        document.getElementById('orderForm').reset();
-                        closeModal('orderModal');
-                    } else {
-                        const errorText = await response.text();
-                        console.error('Order Telegram Error:', errorText);
-                        showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
-                    }
-                }
-                
-            } catch (error) {
-                console.error('Order error:', error);
-                showToast('❌ កំហុសប្រព័ន្ធ!', 'error');
-            }
-            
+    event.preventDefault();
+    const btn = document.getElementById('orderSubmitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងបញ្ជូន...';
+    
+    const buyerId = document.getElementById('orderBuyerId').value.trim();
+    const productId = parseInt(document.getElementById('orderProductId').value);
+    const sellerId = document.getElementById('orderSellerId').value;
+    const amount = parseInt(document.getElementById('orderAmount').value);
+    const deliveryMethod = document.getElementById('orderDelivStatus').value;
+    const deliveryCompany = document.getElementById('orderDeliveryCompany').value || 'មិនបានបញ្ជាក់';
+    const address = document.getElementById('orderAddress').value.trim();
+    const phone = document.getElementById('orderPhone').value.trim();
+    const price = parseFloat(document.getElementById('orderPrice').value) || 0;
+    const total = price * amount;
+    const screenshotFile = document.getElementById('orderScreenshot').files[0];
+    
+    // ====== ពិនិត្យថាតើត្រូវការក្រុមហ៊ុនដឹកជញ្ជូនឬទេ ======
+    const isDeliveryAvailable = deliveryMethod.includes('មានសេវា');
+    
+    // ====== ប្រសិនបើមានសេវាដឹកជញ្ជូន ត្រូវតែជ្រើសរើសក្រុមហ៊ុន ======
+    if (isDeliveryAvailable && (!deliveryCompany || deliveryCompany === 'មិនបានបញ្ជាក់' || deliveryCompany === '')) {
+        showToast('⚠️ សូមជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន!', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+        return;
+    }
+    
+    // Validate buyer ID
+    if (!validateUserId(buyerId)) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+        return;
+    }
+    
+    if (buyerId === sellerId) {
+        showToast('⚠️ អ្នកមិនអាចបញ្ជាទិញផលិតផលរបស់ខ្លួនឯងបានទេ!', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+        return;
+    }
+    
+    if (!address || !phone) {
+        showToast('⚠️ សូមបំពេញអាសយដ្ឋាន និងលេខទូរស័ព្ទ!', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+        return;
+    }
+    
+    try {
+        // Get product info
+        let products = JSON.parse(localStorage.getItem('shop_products') || '[]');
+        const p = products.find(item => item.id === productId);
+        if (!p) {
+            showToast('❌ មិនឃើញផលិតផល!', 'error');
             btn.disabled = false;
             btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+            return;
         }
+        
+        // Get buyer info
+        const buyerData = JSON.parse(localStorage.getItem('user_data') || '{}');
+        const buyerName = buyerData.name || 'អ្នកប្រើប្រាស់';
+        
+        // ====== Telegram Message with ID on top ======
+        let caption = `🛒 *មានការបញ្ជាទិញថ្មី*\n━━━━━━━━━━━━━━━━━━━━\n`;
+        caption += `🆔 លេខ ID អ្នកបញ្ជាទិញ: \`${buyerId}\`\n`;
+        caption += `👤 ឈ្មោះអ្នកបញ្ជាទិញ: ${buyerName}\n`;
+        caption += `📦 ផលិតផល: *${p.item}*\n`;
+        caption += `🏷️ លេខទំនិញ: ${p.productId || 'N/A'}\n`;
+        caption += `🏷️ ប្រភេទ: ${p.cat}\n`;
+        caption += `💰 តម្លៃក្នុងមួយឯកតា: ${p.price}\n`;
+        caption += `🔢 ចំនួន: ${amount}\n`;
+        caption += `💵 សរុប: *${total.toFixed(2)}*`;
+        if (p.price.includes('៛')) caption += `៛`;
+        else caption += `$`;
+        caption += `\n`;
+        caption += `🚚 វិធីដឹកជញ្ជូន: ${deliveryMethod}\n`;
+        
+        // ====== បន្ថែមក្រុមហ៊ុនដឹកជញ្ជូនលុះត្រាតែមាន ======
+        if (isDeliveryAvailable && deliveryCompany && deliveryCompany !== 'មិនបានបញ្ជាក់') {
+            caption += `🏢 ក្រុមហ៊ុនដឹកជញ្ជូន: ${deliveryCompany}\n`;
+        }
+        
+        caption += `📍 អាសយដ្ឋាន: ${address}\n`;
+        caption += `📱 ទំនាក់ទំនង: ${phone}\n`;
+        caption += `🆔 លេខ ID អ្នកលក់: \`${p.userId}\`\n`;
+        caption += `━━━━━━━━━━━━━━━━━━━━`;
+        
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> កំពុងផ្ញើ...';
+        
+        // ====== Send Order with Screenshot ======
+        const formData = new FormData();
+        formData.append('chat_id', TG_CONFIG.ORDER.chat_id);
+        
+        if (screenshotFile) {
+            // Resize screenshot
+            const resizedScreenshot = await resizeImage(screenshotFile);
+            formData.append('photo', resizedScreenshot);
+            formData.append('caption', caption);
+            formData.append('parse_mode', 'Markdown');
+            
+            const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
+                document.getElementById('orderForm').reset();
+                document.getElementById('screenshotPreview').classList.add('hidden');
+                closeModal('orderModal');
+            } else {
+                const errorText = await response.text();
+                console.error('Order Telegram Error:', errorText);
+                showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
+            }
+        } else {
+            // Send as text only
+            formData.append('text', caption);
+            formData.append('parse_mode', 'Markdown');
+            
+            const response = await fetch(`https://api.telegram.org/bot${TG_CONFIG.ORDER.token}/sendMessage`, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                showToast('✅ ការបញ្ជាទិញជោគជ័យ! សូមរង់ចាំការឆ្លើយតបពីអ្នកលក់', 'success');
+                document.getElementById('orderForm').reset();
+                closeModal('orderModal');
+            } else {
+                const errorText = await response.text();
+                console.error('Order Telegram Error:', errorText);
+                showToast('❌ ការផ្ញើបរាជ័យ! សូមព្យាយាមម្តងទៀត', 'error');
+            }
+        }
+        
+    } catch (error) {
+        console.error('Order error:', error);
+        showToast('❌ កំហុសប្រព័ន្ធ!', 'error');
+    }
+    
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
+}
         
         // ====== SHOP CATEGORY TOGGLE ======
         function toggleShopCategory() {
