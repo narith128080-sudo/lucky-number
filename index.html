@@ -250,7 +250,6 @@
             color-scheme: dark;
         }
         
-        /* Lucky Number display */
         #luckyNumber {
             font-size: 1.5rem;
             font-weight: bold;
@@ -971,7 +970,6 @@
             </form>
         </div>
     </div>
-    
     <!-- ====== PRODUCT DETAIL MODAL ====== -->
     <div id="detailModal" class="modal-overlay">
         <div class="modal-content modal-content-sm relative">
@@ -1009,7 +1007,7 @@
                         <div><span class="text-slate-400">🔢 លេខគណនី៖</span> <span id="detailBankAccount" class="text-white font-mono">-</span></div>
                         <div id="detailQrRow" class="mt-1">
                             <span class="text-slate-400">📱 QR Code៖</span>
-                            <img id="detailQrImage" src="" alt="QR Code" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-lg border border-slate-700 mt-1 hidden">
+                            <img id="detailQrImage" src="" alt="QR Code" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-lg border border-slate-700 mt-1 hidden cursor-pointer hover:scale-105 transition" onclick="openQrLightbox(this.src)">
                             <span id="detailNoQr" class="text-[8px] md:text-xs text-slate-500">មិនមាន QR Code</span>
                         </div>
                     </div>
@@ -1092,6 +1090,7 @@
             </button>
         </div>
     </div>
+    
     <!-- ====== ORDER MODAL ====== -->
     <div id="orderModal" class="modal-overlay">
         <div class="modal-content modal-content-sm relative">
@@ -1120,13 +1119,11 @@
                     <input type="number" id="orderAmount" required min="1" placeholder="ឧ. 1" class="form-input">
                 </div>
                 
-                <!-- Delivery Method (Read-only) -->
                 <div>
                     <label class="form-label">🚚 ប្រភេទដឹកជញ្ជូន (កំណត់ដោយអ្នកលក់)</label>
                     <input type="text" id="orderDeliveryMethod" readonly class="form-input bg-slate-700/50 cursor-not-allowed" value="មានសេវាដឹកជញ្ជូនរហ័ស">
                 </div>
                 
-                <!-- Delivery Company (Show/Hide) -->
                 <div id="orderCompanyContainer">
                     <label class="form-label">🚚 ជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន <span class="required" id="companyRequired">*</span></label>
                     <select id="orderDeliveryCompany" class="form-select">
@@ -1154,7 +1151,6 @@
                     <input type="text" id="orderPhone" required placeholder="ឧ. 012345678 / @sokha" class="form-input">
                 </div>
                 
-                <!-- Payment Info (Bank & QR) -->
                 <div id="orderPaymentInfo" class="p-3 bg-emerald-500/10 rounded-lg md:rounded-xl border border-emerald-500/20 hidden">
                     <h4 class="text-xs md:text-sm font-semibold text-emerald-400 mb-1.5 md:mb-2">💳 ព័ត៌មានទូទាត់</h4>
                     <div id="orderBankDisplay" class="space-y-0.5 md:space-y-1 text-xs md:text-sm text-slate-300">
@@ -1163,12 +1159,11 @@
                     </div>
                     <div id="orderQrDisplay" class="mt-1.5 md:mt-2">
                         <p class="text-[8px] md:text-xs text-slate-400 mb-0.5 md:mb-1">📱 QR Code បង់ប្រាក់៖</p>
-                        <img id="orderQrImage" src="" alt="QR Code" class="h-24 w-24 md:h-32 md:w-32 object-contain rounded-lg border border-slate-700 hidden">
+                        <img id="orderQrImage" src="" alt="QR Code" class="h-24 w-24 md:h-32 md:w-32 object-contain rounded-lg border border-slate-700 hidden cursor-pointer hover:scale-105 transition" onclick="openQrLightbox(this.src)">
                         <p id="orderNoQr" class="text-[8px] md:text-xs text-slate-500">មិនមាន QR Code</p>
                     </div>
                 </div>
                 
-                <!-- Screenshot Upload -->
                 <div class="p-3 md:p-4 border border-dashed border-yellow-500/30 rounded-lg md:rounded-xl bg-yellow-500/5">
                     <label class="form-label text-yellow-400">📸 ភ្ជាប់រូបភាពថតអេក្រង់ការទូទាត់ (ស្រេចចិត្ត)</label>
                     <input type="file" id="orderScreenshot" accept="image/*" onchange="previewScreenshot(this)" class="w-full text-xs md:text-sm text-slate-400">
@@ -1327,6 +1322,45 @@
                 toast.classList.add('toast-remove');
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
+        }
+        
+        // ====== QR CODE LIGHTBOX ======
+        function openQrLightbox(qrSrc) {
+            if (!qrSrc || qrSrc === '') {
+                showToast('⚠️ មិនមាន QR Code សម្រាប់បង្ហាញ!', 'warning');
+                return;
+            }
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'lightbox-overlay';
+            overlay.innerHTML = `
+                <button class="close" onclick="this.closest('.lightbox-overlay').remove(); document.body.style.overflow = '';">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+                <div style="background: white; padding: 20px; border-radius: 16px; max-width: 90%; max-height: 90vh; display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 80px rgba(0,0,0,0.6);">
+                    <img src="${qrSrc}" alt="QR Code" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 14px; background: rgba(0,0,0,0.4); padding: 6px 18px; border-radius: 20px; backdrop-filter: blur(8px);">
+                    <i class="fa-regular fa-qrcode"></i> QR Code សម្រាប់បង់ប្រាក់
+                </div>
+            `;
+            overlay.onclick = function(e) { 
+                if (e.target === this) { 
+                    this.remove(); 
+                    document.body.style.overflow = ''; 
+                } 
+            };
+            document.body.appendChild(overlay);
+            document.body.style.overflow = 'hidden';
+            
+            const keyHandler = function(e) {
+                if (e.key === 'Escape') {
+                    const ov = document.querySelector('.lightbox-overlay');
+                    if (ov) { ov.remove(); document.body.style.overflow = ''; }
+                    document.removeEventListener('keydown', keyHandler);
+                }
+            };
+            document.addEventListener('keydown', keyHandler);
         }
         
         // ====== THEME ======
@@ -1507,6 +1541,67 @@
                 const img = document.getElementById('screenshotImg');
                 img.src = URL.createObjectURL(input.files[0]);
                 preview.classList.remove('hidden');
+            }
+        }
+        
+        // ====== SHOP CATEGORY TOGGLE ======
+        function toggleShopCategory() {
+            const cat = document.getElementById('shopCategory').value;
+            const customContainer = document.getElementById('customCategoryContainer');
+            const deliveryGroup = document.getElementById('deliveryGroup');
+            const deliveryFeeField = document.getElementById('deliveryFeeField');
+            const bankFields = document.getElementById('bankFields');
+            const qrField = document.getElementById('qrField');
+            
+            if (cat === 'other') {
+                customContainer.style.display = 'block';
+            } else {
+                customContainer.style.display = 'none';
+            }
+            
+            const isSpecial = cat.includes('អចលនទ្រព្យ') || cat.includes('រថយន្ត') || cat.includes('យានយន្ត');
+            if (isSpecial) {
+                deliveryGroup.style.display = 'none';
+                deliveryFeeField.style.display = 'none';
+                bankFields.style.display = 'none';
+                qrField.style.display = 'none';
+            } else {
+                deliveryGroup.style.display = 'block';
+                deliveryFeeField.style.display = 'block';
+                bankFields.style.display = 'grid';
+                qrField.style.display = 'block';
+            }
+        }
+        
+        // ====== IMAGE PREVIEWS ======
+        function previewMainImage(input) {
+            if (input.files && input.files[0]) {
+                const preview = document.getElementById('mainPreview');
+                const img = document.getElementById('mainPreviewImg');
+                img.src = URL.createObjectURL(input.files[0]);
+                preview.classList.remove('hidden');
+            }
+        }
+        
+        function previewMoreImages(input) {
+            const container = document.getElementById('morePreviews');
+            container.innerHTML = '';
+            for (let i = 0; i < Math.min(input.files.length, 10); i++) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(input.files[i]);
+                img.className = 'h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-slate-700';
+                container.appendChild(img);
+            }
+        }
+        
+        function previewHRImages(input) {
+            const container = document.getElementById('hrPreviews');
+            container.innerHTML = '';
+            for (let i = 0; i < Math.min(input.files.length, 4); i++) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(input.files[i]);
+                img.className = 'h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-pink-500/30';
+                container.appendChild(img);
             }
         }
         // ================================================================
@@ -1906,7 +2001,6 @@
             btn.disabled = false;
             btn.innerHTML = '<i class="fa-solid fa-people-arrows mr-2"></i> បង្ហោះជ្រើសរើសបុគ្គលិក';
         }
-        
         // ================================================================
         // ====== ORDER SYSTEM ======
         // ================================================================
@@ -2125,66 +2219,6 @@
             
             btn.disabled = false;
             btn.innerHTML = '<i class="fa-solid fa-cart-plus mr-2"></i> បញ្ជាទិញឥឡូវនេះ';
-        }
-        // ====== SHOP CATEGORY TOGGLE ======
-        function toggleShopCategory() {
-            const cat = document.getElementById('shopCategory').value;
-            const customContainer = document.getElementById('customCategoryContainer');
-            const deliveryGroup = document.getElementById('deliveryGroup');
-            const deliveryFeeField = document.getElementById('deliveryFeeField');
-            const bankFields = document.getElementById('bankFields');
-            const qrField = document.getElementById('qrField');
-            
-            if (cat === 'other') {
-                customContainer.style.display = 'block';
-            } else {
-                customContainer.style.display = 'none';
-            }
-            
-            const isSpecial = cat.includes('អចលនទ្រព្យ') || cat.includes('រថយន្ត') || cat.includes('យានយន្ត');
-            if (isSpecial) {
-                deliveryGroup.style.display = 'none';
-                deliveryFeeField.style.display = 'none';
-                bankFields.style.display = 'none';
-                qrField.style.display = 'none';
-            } else {
-                deliveryGroup.style.display = 'block';
-                deliveryFeeField.style.display = 'block';
-                bankFields.style.display = 'grid';
-                qrField.style.display = 'block';
-            }
-        }
-        
-        // ====== IMAGE PREVIEWS ======
-        function previewMainImage(input) {
-            if (input.files && input.files[0]) {
-                const preview = document.getElementById('mainPreview');
-                const img = document.getElementById('mainPreviewImg');
-                img.src = URL.createObjectURL(input.files[0]);
-                preview.classList.remove('hidden');
-            }
-        }
-        
-        function previewMoreImages(input) {
-            const container = document.getElementById('morePreviews');
-            container.innerHTML = '';
-            for (let i = 0; i < Math.min(input.files.length, 10); i++) {
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(input.files[i]);
-                img.className = 'h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-slate-700';
-                container.appendChild(img);
-            }
-        }
-        
-        function previewHRImages(input) {
-            const container = document.getElementById('hrPreviews');
-            container.innerHTML = '';
-            for (let i = 0; i < Math.min(input.files.length, 4); i++) {
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(input.files[i]);
-                img.className = 'h-12 w-12 md:h-16 md:w-16 object-cover rounded-lg border border-pink-500/30';
-                container.appendChild(img);
-            }
         }
         
         // ====== RENDER PRODUCTS ======
@@ -2413,7 +2447,6 @@
             
             openModal('detailModal');
         }
-        
         // ====== HR DETAIL ======
         function openHRDetail(id) {
             let posts = JSON.parse(localStorage.getItem('hr_posts') || '[]');
@@ -2662,6 +2695,7 @@
             if (navigator.share) { navigator.share({ title: 'ការជ្រើសរើសបុគ្គលិក', text, url }).catch(() => {}); } 
             else { navigator.clipboard.writeText(text).then(() => showToast('📋 ចម្លងភ្ជាប់ហើយ!', 'info')); }
         }
+        
         // ====== DASHBOARD ======
         function openDashboard() {
             const userId = getUserId();
@@ -2855,7 +2889,6 @@
                 showToast('🗑️ បានលុបទិន្នន័យទាំងអស់!', 'info');
             }
         }
-        
         // ================================================================
         // ====== ZODIAC SYSTEM ======
         // ================================================================
@@ -3220,6 +3253,7 @@
         window.previewMoreImages = previewMoreImages;
         window.previewHRImages = previewHRImages;
         window.previewScreenshot = previewScreenshot;
+        window.openQrLightbox = openQrLightbox;
         window.openProductDetail = openProductDetail;
         window.openHRDetail = openHRDetail;
         window.openLightbox = openLightbox;
@@ -3243,6 +3277,11 @@
         window.initZodiac = initZodiac;
         window.autoFillFromRegister = autoFillFromRegister;
         window.generateProductId = generateProductId;
+        window.renderProducts = renderProducts;
+        window.renderHR = renderHR;
+        window.updateStats = updateStats;
+        window.updateWishlistBadge = updateWishlistBadge;
+        window.updateIdDisplay = updateIdDisplay;
     </script>
     
 </body>
