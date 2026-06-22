@@ -432,7 +432,7 @@
         .admin-panel-chart-container .title { font-size: 0.65rem; color: #fbd38d; margin-bottom: 4px; }
         .admin-panel-chart-container canvas { max-height: 150px; width: 100%; }
         
-        /* ====== DESKTOP LAYOUT (2 columns) ====== */
+               /* ====== DESKTOP LAYOUT (2 columns) - 45% / 55% ====== */
         @media (min-width: 1024px) {
             .zodiac-page-container {
                 max-width: 100% !important;
@@ -442,7 +442,7 @@
             }
             .zodiac-desktop-grid {
                 display: grid !important;
-                grid-template-columns: 1fr 1.5fr;
+                grid-template-columns: 45% 55% !important;  /* ← 45% / 55% */
                 gap: 0;
                 align-items: start;
                 min-height: 100vh;
@@ -453,8 +453,8 @@
             .zodiac-desktop-left {
                 display: flex;
                 flex-direction: column;
-                gap: 16px;
-                padding: 25px 28px;
+                gap: 14px;
+                padding: 22px 24px;
                 background: rgba(10, 10, 42, 0.6);
                 backdrop-filter: blur(10px);
                 position: sticky;
@@ -467,13 +467,15 @@
             .zodiac-desktop-right {
                 display: flex;
                 flex-direction: column;
-                gap: 16px;
-                padding: 25px 28px;
+                gap: 14px;
+                padding: 22px 24px;
                 max-height: 100vh;
                 overflow-y: auto;
                 background: rgba(10, 10, 42, 0.3);
                 width: 100%;
             }
+            /* ... rest of styles remain the same ... */
+        }
             .zodiac-desktop-left .main-title { font-size: 1.6rem; font-weight: 700; text-align: center; margin-bottom: 2px; }
             .zodiac-desktop-left .sub-title { font-size: 0.85rem; color: #94a3b8; text-align: center; margin-bottom: 10px; }
             .zodiac-desktop-left .live-time-badge {
@@ -740,7 +742,7 @@
             .modal-content { padding: 12px; }
             .modal-title { font-size: 14px; }
             .zodiac-page-container .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
-            .zodiac-mobile-only .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
+            .zodiac-mobile-only .zodiac-grid { grid-template-columnាs: repeat(2, 1fr); }
         }
         @media (min-width: 641px) and (max-width: 768px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -755,6 +757,435 @@
         .hero-sub-white { color: #ffffff !important; }
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
         input[type="date"] { color-scheme: dark; }
+        /* ====== ADMIN PANEL - FROM MESSAGE 29 ====== */
+        .admin-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .admin-modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .admin-modal-content {
+            background: #1a1a3a;
+            border-radius: 28px;
+            padding: 24px;
+            width: 100%;
+            max-width: 1100px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.08);
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .admin-modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .admin-modal-content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .admin-modal-content::-webkit-scrollbar-thumb {
+            background: rgba(139,92,246,0.4);
+            border-radius: 10px;
+        }
+        .admin-modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            color: #94a3b8;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            margin-bottom: 10px;
+        }
+        .admin-modal-close:hover {
+            background: rgba(239,68,68,0.2);
+            color: #ef4444;
+            transform: rotate(90deg);
+        }
+        
+        .admin-title {
+            color: #c4b5fd;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .admin-sub {
+            color: #a0aec0;
+            font-size: 0.7rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .admin-balance {
+            background: linear-gradient(135deg, #1e3a5f, #2a1a5a);
+            border-radius: 18px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .admin-balance-label {
+            font-size: 0.65rem;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .admin-balance-amount {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #4ade80;
+            font-family: 'Poppins', monospace;
+        }
+        .admin-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 10px;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 0.6rem;
+            color: #94a3b8;
+        }
+        .stat-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #c4b5fd;
+        }
+        .commission-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 14px;
+        }
+        .commission-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.7rem;
+            flex-wrap: wrap;
+            gap: 6px;
+            color: #cbd5e1;
+        }
+        .commission-row span:last-child {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+        .commission-input {
+            background: #0f0f2a;
+            border: 1px solid #2a2a4a;
+            border-radius: 10px;
+            padding: 4px 8px;
+            width: 60px;
+            color: white;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .save-btn {
+            background: #4ade80;
+            color: #1a1a2e;
+            border: none;
+            padding: 5px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .save-btn:hover {
+            opacity: 0.8;
+        }
+        .reset-btn {
+            background: #fc8181;
+            color: #1a1a2e;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 8px;
+            transition: opacity 0.2s;
+        }
+        .reset-btn:hover {
+            opacity: 0.8;
+        }
+        .admin-grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 1024px) {
+            .admin-grid-3col {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+        .player-bets-table {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 12px;
+            overflow-x: auto;
+        }
+        .player-bets-table h3 {
+            color: #fbd38d;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .bets-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.65rem;
+        }
+        .bets-table th,
+        .bets-table td {
+            padding: 6px 5px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .bets-table th {
+            background: rgba(139,92,246,0.2);
+            color: #c4b5fd;
+            font-weight: 600;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-bar input,
+        .filter-bar select {
+            background: #0f0f2a;
+            border: 1px solid #2a2a4a;
+            border-radius: 20px;
+            padding: 5px 12px;
+            color: white;
+            font-size: 0.65rem;
+        }
+        .summary-stats {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .summary-stat {
+            font-size: 0.65rem;
+            color: #cbd5e1;
+        }
+        .summary-stat-value {
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .summary-stat-value.win {
+            color: #4ade80;
+        }
+        .summary-stat-value.loss {
+            color: #fc8181;
+        }
+        .online-users-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+        .online-users-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .online-users-header h3 {
+            color: #fbd38d;
+            font-size: 0.8rem;
+        }
+        .admin-online-badge {
+            background: #4ade80;
+            color: #1a1a2e;
+            border-radius: 30px;
+            padding: 3px 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.6rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .users-table th,
+        .users-table td {
+            padding: 6px 5px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .users-table th {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        .status-online {
+            color: #4ade80;
+        }
+        .status-offline {
+            color: #fc8181;
+        }
+        .weekly-report {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+        .weekly-report .report-title {
+            font-size: 0.65rem;
+            color: #fbd38d;
+            margin-bottom: 4px;
+        }
+        .weekly-report #weeklyProfitZodiac {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .monthly-report {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+        .monthly-report .report-title {
+            font-size: 0.65rem;
+            color: #fbd38d;
+            margin-bottom: 4px;
+        }
+        .monthly-report #monthlyProfitZodiac {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .chart-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+        .chart-container .report-title {
+            font-size: 0.65rem;
+            color: #fbd38d;
+            margin-bottom: 4px;
+        }
+        .chart-container canvas {
+            max-height: 150px;
+            width: 100%;
+        }
+        .admin-btn {
+            background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.25);
+            padding: 8px 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #c4b5fd;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .admin-btn:hover {
+            background: rgba(139,92,246,0.25);
+        }
+        .player-admin-btn {
+            background: rgba(74,222,128,0.1);
+            border: 1px solid rgba(74,222,128,0.2);
+            padding: 8px 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #4ade80;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .player-admin-btn:hover {
+            background: rgba(74,222,128,0.2);
+        }
+        .admin-buttons-section {
+            margin-top: 12px;
+            border-top: 1px solid rgba(139,92,246,0.2);
+            padding-top: 10px;
+        }
+        .player-buttons-section {
+            margin-top: 12px;
+            border-top: 1px solid rgba(74,222,128,0.2);
+            padding-top: 10px;
+        }
+        .section-title {
+            font-size: 0.7rem;
+            margin-bottom: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+        .player-section-title {
+            font-size: 0.7rem;
+            margin-bottom: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+        .admin-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .player-admin-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
     </style>
 </head>
 <body>
@@ -1185,59 +1616,63 @@
         </div>
     </div>
     
-    <!-- ============================================================ -->
-    <!-- ====== ADMIN MODAL ====== -->
+        <!-- ============================================================ -->
+    <!-- ====== ADMIN PANEL MODAL (FROM MESSAGE 29) ====== -->
     <!-- ============================================================ -->
     <div class="admin-modal-overlay" id="adminModalZodiac">
         <div class="admin-modal-content">
             <button class="admin-modal-close" id="closeAdminModalZodiac"><i class="fa-solid fa-circle-xmark"></i></button>
             
-            <div class="admin-panel-title">🔧 ផ្ទាំងគ្រប់គ្រង Admin</div>
-            <div class="admin-panel-sub">គ្រប់គ្រងប្រព័ន្ធ និងត្រួតពិនិត្យអ្នកលេង</div>
+            <div class="admin-title">🔧 ផ្ទាំងគ្រប់គ្រង Admin</div>
+            <div class="admin-sub">គ្រប់គ្រងប្រព័ន្ធ និងត្រួតពិនិត្យអ្នកលេង</div>
             
-            <div class="admin-panel-online-users">
-                <div class="admin-panel-online-header">
-                    <h3>👥 អ្នកប្រើប្រាស់កំពុងប្រើប្រាស់ប្រព័ន្ធ</h3>
-                    <div class="admin-panel-online-badge" id="adminOnlineBadgeZodiac">🟢 0 online</div>
-                    <button class="admin-panel-btn-save" id="refreshUsersBtnZodiac" style="background:#c4b5fd;">🔄 ធ្វើឲ្យស្រស់</button>
+            <!-- Online Users -->
+            <div class="online-users-section">
+                <div class="online-users-header">
+                    <h3 style="color:#fbd38d; font-size:0.9rem;">👥 អ្នកប្រើប្រាស់កំពុងប្រើប្រាស់ប្រព័ន្ធ</h3>
+                    <div class="admin-online-badge" id="adminOnlineBadgeZodiac">🟢 0 online</div>
+                    <button class="save-btn" id="refreshUsersBtnZodiac" style="background:#c4b5fd;">🔄 ធ្វើឲ្យស្រស់</button>
                 </div>
                 <div style="overflow-x: auto; max-height: 200px; overflow-y: auto;">
-                    <table class="admin-panel-users-table" id="usersTableZodiac">
+                    <table class="users-table" id="usersTableZodiac">
                         <thead><tr><th>#</th><th>📱 ឧបករណ៍</th><th>🌐 IP</th><th>🕐 ចូលប្រើចុងក្រោយ</th><th>📊 ស្ថានភាព</th></tr></thead>
                         <tbody id="usersTableBodyZodiac"></tbody>
                     </table>
                 </div>
             </div>
             
-            <div class="admin-panel-grid-3col">
+            <div class="admin-grid-3col">
+                <!-- Column 1: Balances & Stats -->
                 <div>
-                    <div class="admin-panel-balance">
-                        <div class="admin-panel-balance-label">💰 សមតុល្យ Admin</div>
-                        <div class="admin-panel-balance-amount">$<span id="adminBalanceZodiac">0.00</span></div>
+                    <div class="admin-balance">
+                        <div class="admin-balance-label">💰 សមតុល្យ Admin</div>
+                        <div class="admin-balance-amount">$<span id="adminBalanceZodiac">0.00</span></div>
                     </div>
-                    <div class="admin-panel-balance" style="margin-top:-10px;">
-                        <div class="admin-panel-balance-label">👤 សមតុល្យអ្នកលេង</div>
-                        <div class="admin-panel-balance-amount">$<span id="playerBalanceDisplayZodiac">0.00</span></div>
+                    <div class="admin-balance" style="margin-top:-10px;">
+                        <div class="admin-balance-label">👤 សមតុល្យអ្នកលេង</div>
+                        <div class="admin-balance-amount">$<span id="playerBalanceDisplayZodiac">0.00</span></div>
                     </div>
-                    <div class="admin-panel-stats">
-                        <div class="admin-panel-stat-card"><div class="admin-panel-stat-label">🎲 ភ្នាល់សរុប</div><div class="admin-panel-stat-value" id="totalBetsZodiac">0</div></div>
-                        <div class="admin-panel-stat-card"><div class="admin-panel-stat-label">🏆 ឈ្នះសរុប</div><div class="admin-panel-stat-value" id="totalWinsZodiac">0</div></div>
-                        <div class="admin-panel-stat-card"><div class="admin-panel-stat-label">📊 ភាគរយឈ្នះ</div><div class="admin-panel-stat-value" id="winRateZodiac">0%</div></div>
-                        <div class="admin-panel-stat-card"><div class="admin-panel-stat-label">💰 ប្រាក់ចំណេញសុទ្ធ</div><div class="admin-panel-stat-value" id="netProfitZodiac">$0.00</div></div>
+                    <div class="admin-stats">
+                        <div class="stat-card"><div class="stat-label">🎲 ចំនួនភ្នាល់សរុប</div><div class="stat-value" id="totalBetsZodiac">0</div></div>
+                        <div class="stat-card"><div class="stat-label">🏆 ចំនួនឈ្នះសរុប</div><div class="stat-value" id="totalWinsZodiac">0</div></div>
+                        <div class="stat-card"><div class="stat-label">📊 ភាគរយឈ្នះ</div><div class="stat-value" id="winRateZodiac">0%</div></div>
+                        <div class="stat-card"><div class="stat-label">💰 ប្រាក់ចំណេញសុទ្ធ</div><div class="stat-value" id="netProfitZodiac">$0.00</div></div>
                     </div>
-                    <div class="admin-panel-weekly-report"><div class="title">📅 របាយការណ៍ប្រចាំសប្តាហ៍</div><div class="amount" id="weeklyProfitZodiac">$0.00</div></div>
-                    <div class="admin-panel-weekly-report"><div class="title">📆 របាយការណ៍ប្រចាំខែ</div><div class="amount" id="monthlyProfitZodiac">$0.00</div></div>
-                    <div class="admin-panel-chart-container"><div class="title">📈 ក្រាហ្វប្រាក់ចំណេញប្រចាំថ្ងៃ</div><canvas id="profitChartZodiac" width="400" height="150"></canvas></div>
-                    <div class="admin-panel-commission">
-                        <div class="admin-panel-commission-row"><span>🎮 មេគុណរង្វាន់បច្ចុប្បន្ន</span><span class="highlight" id="currentMultiplierZodiac">10x</span></div>
-                        <div class="admin-panel-commission-row"><span>កំណត់មេគុណថ្មី</span><input type="number" id="newMultiplierZodiac" class="admin-panel-commission-input" min="1" max="20" step="1" value="10"><button class="admin-panel-btn-save" id="saveMultiplierBtnZodiac">💾 រក្សាទុក</button></div>
+                    <div class="weekly-report"><div class="report-title">📅 របាយការណ៍ប្រចាំសប្តាហ៍</div><div id="weeklyProfitZodiac">$0.00</div></div>
+                    <div class="monthly-report"><div class="report-title">📆 របាយការណ៍ប្រចាំខែ</div><div id="monthlyProfitZodiac">$0.00</div></div>
+                    <div class="chart-container"><div class="report-title">📈 ក្រាហ្វប្រាក់ចំណេញប្រចាំថ្ងៃ</div><canvas id="profitChartZodiac" width="400" height="200"></canvas></div>
+                    <div class="commission-box">
+                        <div class="commission-row"><span>🎮 មេគុណរង្វាន់បច្ចុប្បន្ន</span><span id="currentMultiplierZodiac">10x</span></div>
+                        <div class="commission-row"><span>កំណត់មេគុណថ្មី</span><input type="number" id="newMultiplierZodiac" class="commission-input" min="1" max="20" step="1" value="10"></div>
+                        <button class="save-btn" id="saveMultiplierBtnZodiac">💾 រក្សាទុក</button>
                     </div>
-                    <button class="admin-panel-btn-reset" id="resetSystemBtnZodiac">🔄 កំណត់ប្រព័ន្ធឡើងវិញទាំងស្រុង</button>
+                    <button class="reset-btn" id="resetSystemBtnZodiac">🔄 កំណត់ប្រព័ន្ធឡើងវិញទាំងស្រុង</button>
                 </div>
                 
-                <div class="admin-panel-bets-table">
+                <!-- Column 2: Bets Table -->
+                <div class="player-bets-table">
                     <h3>📋 តារាងត្រួតពិនិត្យការភ្នាល់របស់អ្នកលេង</h3>
-                    <div class="admin-panel-filter-bar">
+                    <div class="filter-bar">
                         <input type="text" id="filterZodiacZodiac" placeholder="🔍 ច្រោះតាមឆ្នាំ..." style="flex:2">
                         <select id="filterStatusZodiac">
                             <option value="all">ទាំងអស់</option>
@@ -1245,46 +1680,46 @@
                             <option value="lose">ចាញ់</option>
                             <option value="pending">កំពុងរង់ចាំ</option>
                         </select>
-                        <button class="admin-panel-btn-save" id="clearFiltersBtnZodiac" style="background:#6b7280;">🗑️</button>
-                        <button class="admin-panel-btn-save" id="refreshBetsBtnZodiac" style="background:#c4b5fd;">🔄</button>
+                        <button id="clearFiltersBtnZodiac">🗑️ កំណត់ឡើងវិញ</button>
+                        <button id="refreshBetsBtnZodiac" class="save-btn" style="background:#c4b5fd;">🔄 ធ្វើឲ្យស្រស់</button>
                     </div>
-                    <div class="admin-panel-summary">
-                        <div class="admin-panel-summary-item">📊 ភ្នាល់សរុប: <span class="value" id="summaryTotalBetsFilteredZodiac">0</span></div>
-                        <div class="admin-panel-summary-item">🏆 ឈ្នះសរុប: <span class="value win" id="summaryTotalWinsFilteredZodiac">$0</span></div>
-                        <div class="admin-panel-summary-item">💔 ចាញ់សរុប: <span class="value loss" id="summaryTotalLossesFilteredZodiac">$0</span></div>
-                        <div class="admin-panel-summary-item">🎁 រង្វាន់សរុប: <span class="value win" id="summaryTotalRewardsFilteredZodiac">$0</span></div>
+                    <div class="summary-stats">
+                        <div class="summary-stat"><div class="summary-stat-label">📊 ភ្នាល់សរុប</div><div class="summary-stat-value" id="summaryTotalBetsFilteredZodiac">0</div></div>
+                        <div class="summary-stat"><div class="summary-stat-label">🏆 ឈ្នះសរុប</div><div class="summary-stat-value win" id="summaryTotalWinsFilteredZodiac">$0</div></div>
+                        <div class="summary-stat"><div class="summary-stat-label">💔 ចាញ់សរុប</div><div class="summary-stat-value loss" id="summaryTotalLossesFilteredZodiac">$0</div></div>
+                        <div class="summary-stat"><div class="summary-stat-label">🎁 រង្វាន់សរុប</div><div class="summary-stat-value win" id="summaryTotalRewardsFilteredZodiac">$0</div></div>
                     </div>
                     <div style="overflow-x: auto; max-height: 350px; overflow-y: auto;">
                         <table class="bets-table" id="adminBetsTableZodiac">
-                            <thead><tr><th>#</th><th>📅 កាលបរិច្ឆេទ</th><th>🎯 ឆ្នាំភ្នាល់</th><th>💰 ចំនួន</th><th>⏰ ម៉ោង</th><th>📊 ស្ថានភាព</th><th>🏆 រង្វាន់</th><th>📝 លទ្ធផល</th></tr></thead>
+                            <thead><tr><th>#</th><th>📅 កាលបរិច្ឆេទ</th><th>🎯 ឆ្នាំភ្នាល់</th><th>💰 ចំនួនទឹកប្រាក់</th><th>⏰ ម៉ោងគោលដៅ</th><th>📊 ស្ថានភាព</th><th>🏆 រង្វាន់</th><th>📝 លទ្ធផល</th></tr></thead>
                             <tbody id="adminBetsTableBodyZodiac"></tbody>
                         </table>
                     </div>
                 </div>
                 
+                <!-- Column 3: Admin Buttons -->
                 <div>
-                    <div class="admin-panel-section">
-                        <div class="admin-panel-section-title">🔐 ប៊ូតុងសម្រាប់ Admin</div>
-                        <div class="admin-panel-btn-group">
-                            <button class="btn" id="adminDepositMoneyBtnZodiac">💵 បញ្ចូលទឹកប្រាក់សម្រាប់ Admin</button>
-                            <button class="btn" id="adminViewDepositHistoryBtnZodiac">📜 មើលប្រវត្តិបញ្ចូលលុយ Admin</button>
-                            <button class="btn red" id="adminClearDepositHistoryBtnZodiac">🗑️ លុបប្រវត្តិបញ្ចូលលុយ Admin</button>
+                    <div class="admin-buttons-section">
+                        <div class="section-title">🔐 ប៊ូតុងសម្រាប់ Admin</div>
+                        <div class="admin-buttons">
+                            <button class="admin-btn" id="adminDepositMoneyBtnZodiac">💵 បញ្ចូលទឹកប្រាក់សម្រាប់ Admin</button>
+                            <button class="admin-btn view-history" id="adminViewDepositHistoryBtnZodiac">📜 មើលប្រវត្តិបញ្ចូលលុយ Admin</button>
+                            <button class="admin-btn" id="adminClearDepositHistoryBtnZodiac">🗑️ លុបប្រវត្តិបញ្ចូលលុយ Admin</button>
                         </div>
                     </div>
-                    <div class="admin-panel-section">
-                        <div class="admin-panel-section-title">🎮 ប៊ូតុងគ្រប់គ្រងអ្នកលេង</div>
-                        <div class="admin-panel-btn-group">
-                            <button class="btn green" id="playerDepositMoneyBtnZodiac">💵 បញ្ចូលទឹកប្រាក់អ្នកលេង</button>
-                            <button class="btn red" id="playerClearBalanceBtnZodiac">💰 លុបទឹកប្រាក់អ្នកលេង</button>
-                            <button class="btn red" id="playerClearDepositHistoryBtnZodiac">🗑️ លុបប្រវត្តិបញ្ចូលលុយ</button>
-                            <button class="btn red" id="playerClearBetHistoryBtnZodiac">🗑️ លុបប្រវត្តិទស្សន៍ទាយ</button>
+                    <div class="player-buttons-section">
+                        <div class="player-section-title">🎮 ប៊ូតុងគ្រប់គ្រងអ្នកលេង</div>
+                        <div class="player-admin-buttons">
+                            <button class="player-admin-btn" id="playerDepositMoneyBtnZodiac">💵 បញ្ចូលទឹកប្រាក់អ្នកលេង</button>
+                            <button class="player-admin-btn" id="playerClearBalanceBtnZodiac">💰 លុបទឹកប្រាក់អ្នកលេង</button>
+                            <button class="player-admin-btn" id="playerClearDepositHistoryBtnZodiac">🗑️ លុបប្រវត្តិបញ្ចូលលុយ</button>
+                            <button class="player-admin-btn" id="playerClearBetHistoryBtnZodiac">🗑️ លុបប្រវត្តិទស្សន៍ទាយ</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div>    
     <!-- ============================================================ -->
     <!-- ===================== MODALS ================================ -->
     <!-- ============================================================ -->
