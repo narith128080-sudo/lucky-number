@@ -279,484 +279,6 @@
             100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
         
-        /* ====== ADMIN MODAL ====== */
-        .admin-modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.92);
-            backdrop-filter: blur(12px); z-index: 99999;
-            display: flex; align-items: center; justify-content: center;
-            padding: 16px; opacity: 0; visibility: hidden; transition: all 0.3s ease;
-        }
-        .admin-modal-overlay.show { opacity: 1; visibility: visible; }
-        .admin-modal-content {
-            background: #1a1a3a; border-radius: 28px; padding: 24px;
-            width: 100%; max-width: 1100px; max-height: 90vh; overflow-y: auto;
-            border: 1px solid rgba(255,255,255,0.08);
-            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        .admin-modal-content::-webkit-scrollbar { width: 6px; }
-        .admin-modal-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        .admin-modal-content::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.4); border-radius: 10px; }
-        .admin-modal-close {
-            position: sticky; top: 0; float: right;
-            color: #94a3b8; font-size: 28px; cursor: pointer; transition: all 0.3s ease;
-            background: rgba(255,255,255,0.05); border: none; width: 44px; height: 44px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            z-index: 10; margin-bottom: 10px;
-        }
-        .admin-modal-close:hover { background: rgba(239,68,68,0.2); color: #ef4444; transform: rotate(90deg); }
-        
-        .admin-panel-title { color: #c4b5fd; font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; text-align: center; }
-        .admin-panel-sub { color: #a0aec0; font-size: 0.7rem; margin-bottom: 20px; text-align: center; }
-        .admin-panel-balance {
-            background: linear-gradient(135deg, #1e3a5f, #2a1a5a);
-            border-radius: 18px; padding: 12px 16px; margin-bottom: 16px; text-align: center;
-        }
-        .admin-panel-balance-label { font-size: 0.65rem; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; }
-        .admin-panel-balance-amount { font-size: 1.6rem; font-weight: 700; color: #4ade80; font-family: 'Poppins', monospace; }
-        .admin-panel-stats {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
-        }
-        .admin-panel-stat-card { background: rgba(0,0,0,0.3); border-radius: 14px; padding: 10px; text-align: center; }
-        .admin-panel-stat-label { font-size: 0.6rem; color: #94a3b8; }
-        .admin-panel-stat-value { font-size: 1rem; font-weight: 700; color: #c4b5fd; }
-        .admin-panel-commission {
-            background: rgba(0,0,0,0.3); border-radius: 14px; padding: 10px; margin-bottom: 14px;
-        }
-        .admin-panel-commission-row {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 6px; font-size: 0.7rem; flex-wrap: wrap; gap: 6px;
-            color: #cbd5e1;
-        }
-        .admin-panel-commission-row .highlight { color: #fbbf24; font-weight: 700; }
-        .admin-panel-commission-input {
-            background: #0f0f2a; border: 1px solid #2a2a4a; border-radius: 10px;
-            padding: 4px 8px; width: 60px; color: white; text-align: center; font-size: 0.8rem;
-        }
-        .admin-panel-btn-save {
-            background: #4ade80; color: #1a1a2e; border: none;
-            padding: 5px 14px; border-radius: 30px; cursor: pointer; font-size: 0.7rem; font-weight: 600;
-            transition: opacity 0.2s;
-        }
-        .admin-panel-btn-save:hover { opacity: 0.8; }
-        .admin-panel-btn-reset {
-            background: #fc8181; color: #1a1a2e; border: none; padding: 10px;
-            border-radius: 40px; cursor: pointer; font-size: 0.8rem; font-weight: 700;
-            width: 100%; margin-top: 8px; transition: opacity 0.2s;
-        }
-        .admin-panel-btn-reset:hover { opacity: 0.8; }
-        .admin-panel-grid-3col {
-            display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 16px; margin-bottom: 16px;
-        }
-        @media (max-width: 1024px) { .admin-panel-grid-3col { grid-template-columns: 1fr; gap: 12px; } }
-        .admin-panel-bets-table {
-            background: rgba(0,0,0,0.3); border-radius: 14px; padding: 12px; overflow-x: auto;
-        }
-        .admin-panel-bets-table h3 { color: #fbd38d; font-size: 0.8rem; margin-bottom: 10px; }
-        .admin-panel-bets-table .bets-table {
-            width: 100%; border-collapse: collapse; font-size: 0.65rem;
-        }
-        .admin-panel-bets-table .bets-table th,
-        .admin-panel-bets-table .bets-table td {
-            padding: 6px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .admin-panel-bets-table .bets-table th { background: rgba(139,92,246,0.2); color: #c4b5fd; font-weight: 600; }
-        .admin-panel-filter-bar {
-            display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;
-        }
-        .admin-panel-filter-bar input,
-        .admin-panel-filter-bar select {
-            background: #0f0f2a; border: 1px solid #2a2a4a; border-radius: 20px;
-            padding: 5px 12px; color: white; font-size: 0.65rem;
-        }
-        .admin-panel-summary {
-            background: rgba(0,0,0,0.2); border-radius: 12px; padding: 8px 12px;
-            margin-bottom: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-        }
-        .admin-panel-summary-item { font-size: 0.65rem; color: #cbd5e1; }
-        .admin-panel-summary-item .value { font-weight: 700; color: #e2e8f0; }
-        .admin-panel-summary-item .value.win { color: #4ade80; }
-        .admin-panel-summary-item .value.loss { color: #fc8181; }
-        .admin-panel-online-users {
-            background: rgba(0,0,0,0.3); border-radius: 14px; padding: 12px; margin-bottom: 16px;
-        }
-        .admin-panel-online-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 10px; flex-wrap: wrap; gap: 8px;
-        }
-        .admin-panel-online-header h3 { color: #fbd38d; font-size: 0.8rem; }
-        .admin-panel-online-badge {
-            background: #4ade80; color: #1a1a2e; border-radius: 30px;
-            padding: 3px 12px; font-size: 0.65rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;
-        }
-        .admin-panel-users-table {
-            width: 100%; border-collapse: collapse; font-size: 0.6rem;
-            background: rgba(0,0,0,0.2); border-radius: 10px;
-        }
-        .admin-panel-users-table th,
-        .admin-panel-users-table td {
-            padding: 6px 5px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .admin-panel-users-table th { color: #94a3b8; font-weight: 600; }
-        .admin-panel-btn-group {
-            display: flex; flex-direction: column; gap: 8px; margin-top: 8px;
-        }
-        .admin-panel-btn-group .btn {
-            background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.25);
-            padding: 8px 12px; border-radius: 40px; cursor: pointer; font-size: 0.7rem;
-            font-weight: 600; display: flex; align-items: center; justify-content: center;
-            gap: 6px; color: #c4b5fd; width: 100%; transition: background 0.2s;
-        }
-        .admin-panel-btn-group .btn:hover { background: rgba(139,92,246,0.25); }
-        .admin-panel-btn-group .btn.green {
-            background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.2); color: #4ade80;
-        }
-        .admin-panel-btn-group .btn.green:hover { background: rgba(74,222,128,0.2); }
-        .admin-panel-btn-group .btn.red {
-            background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.2); color: #fc8181;
-        }
-        .admin-panel-btn-group .btn.red:hover { background: rgba(248,113,113,0.2); }
-        .admin-panel-section {
-            margin-top: 12px; border-top: 1px solid rgba(139,92,246,0.2); padding-top: 10px;
-        }
-        .admin-panel-section-title {
-            font-size: 0.7rem; margin-bottom: 8px; text-align: center; font-weight: 600; color: #94a3b8;
-        }
-        .admin-panel-weekly-report {
-            background: rgba(0,0,0,0.3); border-radius: 14px; padding: 10px; margin-bottom: 12px;
-        }
-        .admin-panel-weekly-report .title { font-size: 0.65rem; color: #fbd38d; margin-bottom: 4px; }
-        .admin-panel-weekly-report .amount { font-size: 0.9rem; font-weight: 700; color: #e2e8f0; }
-        .admin-panel-chart-container {
-            background: rgba(0,0,0,0.3); border-radius: 14px; padding: 10px; margin-bottom: 12px;
-        }
-        .admin-panel-chart-container .title { font-size: 0.65rem; color: #fbd38d; margin-bottom: 4px; }
-        .admin-panel-chart-container canvas { max-height: 150px; width: 100%; }
-        
-               /* ====== DESKTOP LAYOUT (2 columns) - 45% / 55% ====== */
-        @media (min-width: 1024px) {
-            .zodiac-page-container {
-                max-width: 100% !important;
-                width: 100% !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-            .zodiac-desktop-grid {
-                display: grid !important;
-                grid-template-columns: 45% 55% !important;  /* ← 45% / 55% */
-                gap: 0;
-                align-items: start;
-                min-height: 100vh;
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
-            }
-            .zodiac-desktop-left {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-                padding: 22px 24px;
-                background: rgba(10, 10, 42, 0.6);
-                backdrop-filter: blur(10px);
-                position: sticky;
-                top: 0;
-                height: 100vh;
-                overflow-y: auto;
-                border-right: 1px solid rgba(255,255,255,0.08);
-                width: 100%;
-            }
-            .zodiac-desktop-right {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-                padding: 22px 24px;
-                max-height: 100vh;
-                overflow-y: auto;
-                background: rgba(10, 10, 42, 0.3);
-                width: 100%;
-            }
-            /* ... rest of styles remain the same ... */
-        }
-            .zodiac-desktop-left .main-title { font-size: 1.6rem; font-weight: 700; text-align: center; margin-bottom: 2px; }
-            .zodiac-desktop-left .sub-title { font-size: 0.85rem; color: #94a3b8; text-align: center; margin-bottom: 10px; }
-            .zodiac-desktop-left .live-time-badge {
-                display: flex; justify-content: center; align-items: center; width: fit-content;
-                margin: 0 auto 14px auto; font-size: 0.8rem; padding: 6px 16px;
-                background: rgba(43,108,176,0.3); border-radius: 40px; color: #e2e8f0;
-            }
-            .zodiac-desktop-left .balance-card {
-                background: linear-gradient(135deg, #1e3a5f, #2a1a5a);
-                border-radius: 24px; padding: 4px; margin-bottom: 10px; position: relative; overflow: hidden;
-            }
-            .zodiac-desktop-left .balance-inner {
-                background: rgba(10,20,35,0.4); border-radius: 20px; padding: 14px 16px;
-                position: relative; z-index: 1; border: 1px solid rgba(74,222,128,0.4);
-            }
-            .zodiac-desktop-left .balance-label { font-size: 0.65rem; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; }
-            .zodiac-desktop-left .balance-amount { font-size: 2rem; font-weight: 700; color: #4ade80; font-family: 'Poppins', monospace; }
-            .zodiac-desktop-left .info-badge {
-                background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
-                border-radius: 12px; color: #4ade80; font-size: 0.65rem; padding: 8px 12px; text-align: center; line-height: 1.5;
-            }
-            .zodiac-desktop-left .section-indicator { color: #4ade80; font-weight: 600; text-align: center; font-size: 0.8rem; margin-bottom: 4px; }
-            .zodiac-desktop-left .lucky-circle {
-                background: linear-gradient(135deg, #f5a623, #f7b733);
-                border-radius: 60px; margin: 0 auto 10px auto; display: inline-flex;
-                align-items: center; justify-content: center; gap: 8px;
-                color: #fff; font-size: 1.1rem; padding: 12px 24px; min-width: 100px;
-            }
-            .zodiac-desktop-left .countdown-box {
-                background: rgba(0,0,0,0.3); display: inline-block; border-radius: 40px;
-                margin: 0 auto 10px auto; font-size: 0.8rem; padding: 6px 18px; text-align: center;
-            }
-            .zodiac-desktop-left .countdown-time { color: #fc8181; font-weight: 700; }
-            .zodiac-desktop-left .player-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-            .zodiac-desktop-left .player-btn {
-                background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
-                padding: 10px; border-radius: 50px; color: #4ade80; cursor: pointer;
-                font-size: 0.8rem; font-weight: 600; display: flex; align-items: center;
-                justify-content: center; gap: 8px; width: 100%; transition: all 0.2s;
-            }
-            .zodiac-desktop-left .player-btn:hover { background: rgba(74,222,128,0.15); transform: translateY(-2px); }
-            .zodiac-desktop-left .law-text {
-                background: rgba(0,0,0,0.4); border-radius: 12px; padding: 10px 14px;
-                font-size: 0.6rem; display: none; text-align: left; color: #cbd5e1;
-                border: 1px solid rgba(255,255,255,0.05);
-            }
-            .zodiac-desktop-left .law-text p { margin-bottom: 3px; }
-            .zodiac-desktop-left .law-text p:last-child { margin-bottom: 0; }
-            .zodiac-desktop-left .admin-panel-btn {
-                background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-                width: 100%; border: none; padding: 12px; border-radius: 50px;
-                color: white; font-weight: 700; cursor: pointer; font-size: 0.85rem;
-                transition: transform 0.2s, box-shadow 0.2s; margin-top: 4px;
-            }
-            .zodiac-desktop-left .admin-panel-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(139,92,246,0.4); }
-            .zodiac-desktop-left .top-controls { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
-            .zodiac-desktop-left .top-btn {
-                background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
-                border-radius: 40px; padding: 5px 12px; font-size: 0.6rem;
-                font-weight: 600; cursor: pointer; display: flex; align-items: center;
-                gap: 4px; color: #e2e8f0; transition: background 0.2s;
-            }
-            .zodiac-desktop-left .top-btn:hover { background: rgba(255,255,255,0.15); }
-            .zodiac-desktop-left .floating-money {
-                position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                pointer-events: none; overflow: hidden; z-index: 0;
-            }
-            .zodiac-desktop-left .money-note {
-                position: absolute; font-size: 1.8rem; opacity: 0.3;
-                animation: floatMoney 8s ease-in-out infinite;
-            }
-            .zodiac-desktop-left .money-note:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
-            .zodiac-desktop-left .money-note:nth-child(2) { top: 20%; right: 8%; animation-delay: 1.2s; font-size: 2.2rem; }
-            .zodiac-desktop-left .money-note:nth-child(3) { bottom: 25%; left: 10%; animation-delay: 2.5s; }
-            .zodiac-desktop-left .money-note:nth-child(4) { bottom: 10%; right: 5%; animation-delay: 0.8s; font-size: 2.5rem; }
-            .zodiac-desktop-left .money-note:nth-child(5) { top: 45%; left: 2%; animation-delay: 3.5s; font-size: 1.5rem; }
-            .zodiac-desktop-left .money-note:nth-child(6) { top: 55%; right: 3%; animation-delay: 1.8s; font-size: 1.8rem; }
-            .zodiac-desktop-left .money-note:nth-child(7) { top: 75%; left: 25%; animation-delay: 4.2s; font-size: 2rem; }
-            @keyframes floatMoney {
-                0% { transform: translateY(0px) rotate(0deg) scale(1); }
-                50% { transform: translateY(-25px) rotate(10deg) scale(1.1); }
-                100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            }
-            
-            .zodiac-desktop-right .zodiac-single-box {
-                background: rgba(255,255,255,0.03); border-radius: 18px; padding: 16px;
-            }
-            .zodiac-desktop-right .zodiac-title {
-                color: #fbd38d; text-align: left; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600;
-            }
-            .zodiac-desktop-right .zodiac-grid {
-                display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-            }
-            .zodiac-desktop-right .zodiac-card {
-                background: rgba(0,0,0,0.3); border-radius: 10px; padding: 10px 4px;
-                text-align: center; border: 2px solid transparent; cursor: pointer; transition: all 0.3s ease;
-            }
-            .zodiac-desktop-right .zodiac-card:hover { background: rgba(236,72,153,0.15); transform: translateY(-2px); }
-            .zodiac-desktop-right .zodiac-card.selected {
-                background: linear-gradient(135deg, #ec4899, #f43f5e) !important;
-                border-color: #f43f5e !important;
-                box-shadow: 0 0 15px rgba(244,63,94,0.4) !important;
-                transform: scale(1.02) !important;
-            }
-            .zodiac-desktop-right .zodiac-icon { font-size: 1.5rem; }
-            .zodiac-desktop-right .zodiac-name { font-size: 0.7rem; color: #ddd; margin-top: 3px; }
-            .zodiac-desktop-right .zodiac-order { font-size: 0.55rem; color: #888; }
-            
-            .zodiac-desktop-right .desktop-bet-section {
-                background: rgba(255,255,255,0.03); border-radius: 18px; padding: 14px 16px;
-            }
-            .zodiac-desktop-right .desktop-bet-title {
-                font-size: 0.85rem; color: #fbd38d; margin-bottom: 10px; text-align: left;
-            }
-            .zodiac-desktop-right .desktop-selected-zodiac {
-                background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
-                border-radius: 50px; padding: 8px 14px; margin-bottom: 10px;
-                display: flex; justify-content: space-between; align-items: center;
-                font-size: 0.75rem; flex-wrap: wrap; gap: 6px; color: #e2e8f0;
-            }
-            .zodiac-desktop-right .desktop-selected-zodiac span:last-child { color: #4ade80; font-weight: 600; }
-            .zodiac-desktop-right .desktop-bet-input { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-            .zodiac-desktop-right .bet-input-field {
-                flex: 2; min-width: 120px; background: #0f0f2a; border: 1px solid #2a2a4a;
-                border-radius: 50px; padding: 8px 16px; color: white; font-size: 0.9rem;
-                text-align: center; outline: none; transition: border-color 0.3s;
-            }
-            .zodiac-desktop-right .bet-input-field:focus { border-color: #4ade80; }
-            .zodiac-desktop-right .desktop-bet-shortcuts {
-                display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; justify-content: center;
-            }
-            .zodiac-desktop-right .desktop-bet-shortcut {
-                background: #2a2a4a; border: none; padding: 5px 12px; border-radius: 50px;
-                color: white; cursor: pointer; font-weight: 600; font-size: 0.75rem; transition: background 0.2s;
-            }
-            .zodiac-desktop-right .desktop-bet-shortcut:hover { background: #3a3a5a; }
-            .zodiac-desktop-right .desktop-preview-box {
-                background: rgba(0,0,0,0.25); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px;
-            }
-            .zodiac-desktop-right .desktop-preview-row {
-                display: flex; justify-content: space-between; margin-bottom: 3px;
-                font-size: 0.8rem; flex-wrap: wrap; gap: 4px; color: #cbd5e1;
-            }
-            .zodiac-desktop-right .desktop-preview-row .negative { color: #fc8181; }
-            .zodiac-desktop-right .desktop-preview-row .desktop-preview-value { font-weight: 600; color: #e2e8f0; }
-            .zodiac-desktop-right .desktop-bet-confirm {
-                background: linear-gradient(135deg, #4ade80, #22c55e);
-                width: 100%; border: none; padding: 10px; border-radius: 50px;
-                color: #1a1a2e; font-weight: 700; font-size: 0.9rem; cursor: pointer;
-                transition: transform 0.2s, box-shadow 0.2s;
-            }
-            .zodiac-desktop-right .desktop-bet-confirm:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(74,222,128,0.3); }
-            
-            .zodiac-desktop-right .history-wrapper {
-                background: rgba(255,255,255,0.03); border-radius: 18px; padding: 14px;
-            }
-            .zodiac-desktop-right .history-header {
-                display: flex; justify-content: space-between; align-items: center;
-                margin-bottom: 10px; flex-wrap: wrap; gap: 6px;
-            }
-            .zodiac-desktop-right .tabs {
-                display: flex; gap: 4px; background: rgba(0,0,0,0.25);
-                padding: 4px; border-radius: 40px; flex-wrap: wrap;
-            }
-            .zodiac-desktop-right .tab {
-                padding: 4px 10px; border-radius: 30px; font-size: 0.65rem;
-                cursor: pointer; background: transparent; border: none;
-                color: #aaa; transition: all 0.2s ease; font-weight: 500;
-            }
-            .zodiac-desktop-right .tab.active-tab { color: #4ade80 !important; font-weight: bold; background: transparent !important; }
-            .zodiac-desktop-right .toggle-history {
-                background: rgba(255,255,255,0.08); border: none; padding: 4px 10px;
-                border-radius: 30px; color: white; cursor: pointer; font-size: 0.65rem; transition: background 0.2s;
-            }
-            .zodiac-desktop-right .toggle-history:hover { background: rgba(255,255,255,0.15); }
-            .zodiac-desktop-right .history-box {
-                background: rgba(0,0,0,0.2); border-radius: 12px; padding: 8px; max-height: 300px; overflow-y: auto;
-            }
-            .zodiac-desktop-right .history-box::-webkit-scrollbar { width: 4px; }
-            .zodiac-desktop-right .history-box::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-            .zodiac-desktop-right .history-box::-webkit-scrollbar-thumb { background: rgba(74,222,128,0.3); border-radius: 10px; }
-            .zodiac-desktop-right .time-item {
-                background: rgba(255,255,255,0.03); border-radius: 8px; padding: 6px 10px;
-                margin-bottom: 5px; display: flex; justify-content: space-between;
-                align-items: center; font-size: 0.65rem; flex-wrap: wrap; gap: 4px; color: #cbd5e1;
-            }
-            .zodiac-desktop-right .time-item.active { background: rgba(74,222,128,0.08); border-left: 3px solid #4ade80; }
-            .zodiac-desktop-right .history-item {
-                background: rgba(255,255,255,0.03); border-radius: 8px; padding: 6px 10px;
-                margin-bottom: 5px; display: flex; justify-content: space-between;
-                align-items: center; font-size: 0.65rem; flex-wrap: wrap; gap: 4px; color: #cbd5e1;
-            }
-            .zodiac-desktop-right .status-win { background: rgba(74,222,128,0.15); color: #4ade80; padding: 1px 8px; border-radius: 20px; font-weight: 600; font-size: 0.6rem; }
-            .zodiac-desktop-right .status-lose { background: rgba(248,113,113,0.15); color: #f87171; padding: 1px 8px; border-radius: 20px; font-weight: 600; font-size: 0.6rem; }
-            .zodiac-desktop-right .status-pending { background: rgba(251,191,36,0.15); color: #fbbf24; padding: 1px 8px; border-radius: 20px; font-weight: 600; font-size: 0.6rem; }
-            
-            .zodiac-mobile-only { display: none !important; }
-        }
-        
-        @media (max-width: 1023px) {
-            .zodiac-desktop-grid { display: none !important; }
-            .zodiac-mobile-only { display: block !important; }
-            .zodiac-mobile-only .zodiac-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        }
-        
-        @media (max-width: 640px) {
-            .modal-content { padding: 16px; border-radius: 16px; max-width: 100%; }
-            .modal-title { font-size: 16px; }
-            .modal-content { max-height: 95vh; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .product-card .img-wrap { height: 140px; }
-            .product-card .price-tag { font-size: 12px; padding: 3px 10px; }
-            .product-card .info .name { font-size: 12px; }
-            .product-card .info { padding: 10px; }
-            .product-card .info .meta { font-size: 9px; gap: 6px; flex-wrap: wrap; }
-            .hr-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .hr-card .img-wrap { height: 110px; }
-            .hr-card .info { padding: 10px; }
-            .hr-card .info .name { font-size: 13px; }
-            .hr-card .info .desc { font-size: 11px; }
-            .toast { min-width: auto; font-size: 12px; padding: 10px 14px; }
-            .toast-container { bottom: 10px; right: 10px; left: 10px; }
-            .cat-btn { font-size: 9px; padding: 3px 10px; }
-            body { font-size: 14px; line-height: 1.6; }
-            .form-input, .form-select, .form-textarea { font-size: 14px; padding: 10px 12px; }
-            .form-label { font-size: 11px; }
-            .text-slate-400, .text-slate-500 { color: #cbd5e1 !important; }
-            .hero-title { font-size: 1.6rem !important; }
-            .hero-sub { font-size: 1.3rem !important; }
-            .modal-overlay { padding: 8px; align-items: flex-start; padding-top: 20px; }
-            .modal-content { border-radius: 16px; padding: 14px; }
-            .modal-content-sm { max-width: 100%; }
-            .grid.gap-4 { gap: 10px; }
-            .grid.gap-3 { gap: 6px; }
-            #services .glass-card { padding: 10px !important; }
-            #services .glass-card .w-12.h-12 { width: 36px !important; height: 36px !important; font-size: 14px !important; }
-            #services .glass-card h3 { font-size: 10px !important; }
-            #services .glass-card p { display: none !important; }
-            #services .glass-card span { font-size: 7px !important; }
-            .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-pink, .btn-orange {
-                padding: 10px 14px !important; font-size: 12px !important; border-radius: 10px !important;
-            }
-            nav .flex.gap-3 { gap: 6px !important; }
-            nav .text-xl { font-size: 16px !important; }
-            nav .p-2 { padding: 6px !important; }
-            nav .px-3 { padding-left: 8px !important; padding-right: 8px !important; }
-            nav .py-3 { padding-top: 8px !important; padding-bottom: 8px !important; }
-            footer .grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-            footer .text-xs { font-size: 10px !important; }
-            #pagination button, #hrPagination button { padding: 4px 10px !important; font-size: 11px !important; }
-            .zodiac-page-container .zodiac-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-            .zodiac-page-container .main-title { font-size: 1.3rem; }
-            .zodiac-page-container .balance-amount { font-size: 1.6rem; }
-            .shortcut-grid { grid-template-columns: repeat(3, 1fr); }
-            .zodiac-select-grid { grid-template-columns: repeat(3, 1fr); }
-            .admin-modal-content { padding: 16px; border-radius: 16px; }
-            .admin-panel-grid-3col { grid-template-columns: 1fr; gap: 12px; }
-            .zodiac-mobile-only .zodiac-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 400px) {
-            .product-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-            .product-card .img-wrap { height: 110px; }
-            .hr-grid { grid-template-columns: 1fr; }
-            .modal-content { padding: 12px; }
-            .modal-title { font-size: 14px; }
-            .zodiac-page-container .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
-            .zodiac-mobile-only .zodiac-grid { grid-template-columnាs: repeat(2, 1fr); }
-        }
-        @media (min-width: 641px) and (max-width: 768px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-            .product-card .img-wrap { height: 170px; }
-            .hr-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .text-slate-400, .text-slate-500, .text-slate-600 { color: #cbd5e1 !important; }
-        .form-label { color: #e2e8f0 !important; font-weight: 500; }
-        .hero-title-white { color: #ffffff !important; }
-        .hero-sub-white { color: #ffffff !important; }
-        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
-        input[type="date"] { color-scheme: dark; }
         /* ====== ADMIN PANEL - FROM MESSAGE 29 ====== */
         .admin-modal-overlay {
             position: fixed;
@@ -1186,6 +708,750 @@
             flex-direction: column;
             gap: 8px;
         }
+        
+        /* ====== MODAL ====== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            padding: 16px;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #1a1a3a;
+            border-radius: 28px;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #e2e8f0;
+        }
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .password-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #0f0f2a, #1a1a3a);
+            border: 2px solid rgba(139,92,246,0.5);
+            border-radius: 50px;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+            outline: none;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 50px;
+            color: #c4b5fd;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            justify-content: space-between;
+        }
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .btn-cancel {
+            background: #4a5568;
+            color: white;
+        }
+        .btn-cancel:hover {
+            background: #5a6a78;
+        }
+        .btn-confirm {
+            background: #4ade80;
+            color: #1a1a2e;
+        }
+        .btn-confirm:hover {
+            opacity: 0.8;
+        }
+        
+        /* ====== DESKTOP LAYOUT (2 columns) - 45% / 55% ====== */
+        @media (min-width: 1024px) {
+            .zodiac-page-container {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .zodiac-desktop-grid {
+                display: grid !important;
+                grid-template-columns: 45% 55% !important;
+                gap: 0;
+                align-items: start;
+                min-height: 100vh;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            .zodiac-desktop-left {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                padding: 22px 24px;
+                background: rgba(10, 10, 42, 0.6);
+                backdrop-filter: blur(10px);
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow-y: auto;
+                border-right: 1px solid rgba(255,255,255,0.08);
+                width: 100%;
+            }
+            .zodiac-desktop-left::-webkit-scrollbar {
+                width: 4px;
+            }
+            .zodiac-desktop-left::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.05);
+                border-radius: 10px;
+            }
+            .zodiac-desktop-left::-webkit-scrollbar-thumb {
+                background: rgba(74,222,128,0.4);
+                border-radius: 10px;
+            }
+            .zodiac-desktop-right {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                padding: 22px 24px;
+                max-height: 100vh;
+                overflow-y: auto;
+                background: rgba(10, 10, 42, 0.3);
+                width: 100%;
+            }
+            .zodiac-desktop-right::-webkit-scrollbar {
+                width: 6px;
+            }
+            .zodiac-desktop-right::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.05);
+                border-radius: 10px;
+            }
+            .zodiac-desktop-right::-webkit-scrollbar-thumb {
+                background: rgba(74,222,128,0.5);
+                border-radius: 10px;
+            }
+            
+            .zodiac-desktop-left .main-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 2px;
+                text-align: center;
+            }
+            .zodiac-desktop-left .sub-title {
+                font-size: 0.85rem;
+                color: #94a3b8;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            .zodiac-desktop-left .live-time-badge {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: fit-content;
+                margin: 0 auto 14px auto;
+                font-size: 0.8rem;
+                padding: 6px 16px;
+                background: rgba(43,108,176,0.3);
+                border-radius: 40px;
+                color: #e2e8f0;
+            }
+            .zodiac-desktop-left .balance-card {
+                background: linear-gradient(135deg, #1e3a5f, #2a1a5a);
+                border-radius: 24px;
+                padding: 4px;
+                margin-bottom: 10px;
+                position: relative;
+                overflow: hidden;
+            }
+            .zodiac-desktop-left .balance-inner {
+                background: rgba(10,20,35,0.4);
+                border-radius: 20px;
+                padding: 14px 16px;
+                position: relative;
+                z-index: 1;
+                border: 1px solid rgba(74,222,128,0.4);
+            }
+            .zodiac-desktop-left .balance-label {
+                font-size: 0.65rem;
+                color: #a0aec0;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .zodiac-desktop-left .balance-amount {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #4ade80;
+                font-family: 'Poppins', monospace;
+            }
+            .zodiac-desktop-left .info-badge {
+                background: rgba(74,222,128,0.08);
+                border: 1px solid rgba(74,222,128,0.2);
+                border-radius: 12px;
+                color: #4ade80;
+                font-size: 0.65rem;
+                padding: 8px 12px;
+                text-align: center;
+                line-height: 1.5;
+            }
+            .zodiac-desktop-left .section-indicator {
+                color: #4ade80;
+                font-weight: 600;
+                text-align: center;
+                font-size: 0.8rem;
+                margin-bottom: 4px;
+            }
+            .zodiac-desktop-left .lucky-circle {
+                background: linear-gradient(135deg, #f5a623, #f7b733);
+                border-radius: 60px;
+                margin: 0 auto 10px auto;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: #fff;
+                font-size: 1.1rem;
+                padding: 12px 24px;
+                min-width: 100px;
+            }
+            .zodiac-desktop-left .countdown-box {
+                background: rgba(0,0,0,0.3);
+                display: inline-block;
+                border-radius: 40px;
+                margin: 0 auto 10px auto;
+                font-size: 0.8rem;
+                padding: 6px 18px;
+                text-align: center;
+            }
+            .zodiac-desktop-left .countdown-time {
+                color: #fc8181;
+                font-weight: 700;
+            }
+            .zodiac-desktop-left .player-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 4px;
+            }
+            .zodiac-desktop-left .player-btn {
+                background: rgba(74,222,128,0.08);
+                border: 1px solid rgba(74,222,128,0.2);
+                padding: 10px;
+                border-radius: 50px;
+                color: #4ade80;
+                cursor: pointer;
+                font-size: 0.8rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+                transition: all 0.2s;
+            }
+            .zodiac-desktop-left .player-btn:hover {
+                background: rgba(74,222,128,0.15);
+                transform: translateY(-2px);
+            }
+            .zodiac-desktop-left .law-text {
+                background: rgba(0,0,0,0.4);
+                border-radius: 12px;
+                padding: 10px 14px;
+                font-size: 0.6rem;
+                display: none;
+                text-align: left;
+                color: #cbd5e1;
+                border: 1px solid rgba(255,255,255,0.05);
+            }
+            .zodiac-desktop-left .law-text p {
+                margin-bottom: 3px;
+            }
+            .zodiac-desktop-left .law-text p:last-child {
+                margin-bottom: 0;
+            }
+            .zodiac-desktop-left .admin-panel-btn {
+                background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+                width: 100%;
+                border: none;
+                padding: 12px;
+                border-radius: 50px;
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+                font-size: 0.85rem;
+                transition: transform 0.2s, box-shadow 0.2s;
+                margin-top: 4px;
+            }
+            .zodiac-desktop-left .admin-panel-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(139,92,246,0.4);
+            }
+            .zodiac-desktop-left .top-controls {
+                display: flex;
+                justify-content: flex-end;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .zodiac-desktop-left .top-btn {
+                background: rgba(255,255,255,0.08);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 40px;
+                padding: 5px 12px;
+                font-size: 0.6rem;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                color: #e2e8f0;
+                transition: background 0.2s;
+            }
+            .zodiac-desktop-left .top-btn:hover {
+                background: rgba(255,255,255,0.15);
+            }
+            .zodiac-desktop-left .floating-money {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                overflow: hidden;
+                z-index: 0;
+            }
+            .zodiac-desktop-left .money-note {
+                position: absolute;
+                font-size: 1.8rem;
+                opacity: 0.3;
+                animation: floatMoney 8s ease-in-out infinite;
+            }
+            .zodiac-desktop-left .money-note:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; }
+            .zodiac-desktop-left .money-note:nth-child(2) { top: 20%; right: 8%; animation-delay: 1.2s; font-size: 2.2rem; }
+            .zodiac-desktop-left .money-note:nth-child(3) { bottom: 25%; left: 10%; animation-delay: 2.5s; }
+            .zodiac-desktop-left .money-note:nth-child(4) { bottom: 10%; right: 5%; animation-delay: 0.8s; font-size: 2.5rem; }
+            .zodiac-desktop-left .money-note:nth-child(5) { top: 45%; left: 2%; animation-delay: 3.5s; font-size: 1.5rem; }
+            .zodiac-desktop-left .money-note:nth-child(6) { top: 55%; right: 3%; animation-delay: 1.8s; font-size: 1.8rem; }
+            .zodiac-desktop-left .money-note:nth-child(7) { top: 75%; left: 25%; animation-delay: 4.2s; font-size: 2rem; }
+            @keyframes floatMoney {
+                0% { transform: translateY(0px) rotate(0deg) scale(1); }
+                50% { transform: translateY(-25px) rotate(10deg) scale(1.1); }
+                100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            }
+            
+            .zodiac-desktop-right .zodiac-single-box {
+                background: rgba(255,255,255,0.03);
+                border-radius: 18px;
+                padding: 16px;
+            }
+            .zodiac-desktop-right .zodiac-title {
+                color: #fbd38d;
+                text-align: left;
+                margin-bottom: 12px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
+            .zodiac-desktop-right .zodiac-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .zodiac-desktop-right .zodiac-card {
+                background: rgba(0,0,0,0.3);
+                border-radius: 10px;
+                padding: 10px 4px;
+                text-align: center;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .zodiac-desktop-right .zodiac-card:hover {
+                background: rgba(236,72,153,0.15);
+                transform: translateY(-2px);
+            }
+            .zodiac-desktop-right .zodiac-card.selected {
+                background: linear-gradient(135deg, #ec4899, #f43f5e) !important;
+                border-color: #f43f5e !important;
+                box-shadow: 0 0 15px rgba(244,63,94,0.4) !important;
+                transform: scale(1.02) !important;
+            }
+            .zodiac-desktop-right .zodiac-icon {
+                font-size: 1.5rem;
+            }
+            .zodiac-desktop-right .zodiac-name {
+                font-size: 0.7rem;
+                color: #ddd;
+                margin-top: 3px;
+            }
+            .zodiac-desktop-right .zodiac-order {
+                font-size: 0.55rem;
+                color: #888;
+            }
+            
+            .zodiac-desktop-right .desktop-bet-section {
+                background: rgba(255,255,255,0.03);
+                border-radius: 18px;
+                padding: 14px 16px;
+            }
+            .zodiac-desktop-right .desktop-bet-title {
+                font-size: 0.85rem;
+                color: #fbd38d;
+                margin-bottom: 10px;
+                text-align: left;
+            }
+            .zodiac-desktop-right .desktop-selected-zodiac {
+                background: rgba(74,222,128,0.08);
+                border: 1px solid rgba(74,222,128,0.2);
+                border-radius: 50px;
+                padding: 8px 14px;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.75rem;
+                flex-wrap: wrap;
+                gap: 6px;
+                color: #e2e8f0;
+            }
+            .zodiac-desktop-right .desktop-selected-zodiac span:last-child {
+                color: #4ade80;
+                font-weight: 600;
+            }
+            .zodiac-desktop-right .desktop-bet-input {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 10px;
+                flex-wrap: wrap;
+            }
+            .zodiac-desktop-right .bet-input-field {
+                flex: 2;
+                min-width: 120px;
+                background: #0f0f2a;
+                border: 1px solid #2a2a4a;
+                border-radius: 50px;
+                padding: 8px 16px;
+                color: white;
+                font-size: 0.9rem;
+                text-align: center;
+                outline: none;
+                transition: border-color 0.3s;
+            }
+            .zodiac-desktop-right .bet-input-field:focus {
+                border-color: #4ade80;
+            }
+            .zodiac-desktop-right .desktop-bet-shortcuts {
+                display: flex;
+                gap: 6px;
+                margin-bottom: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .zodiac-desktop-right .desktop-bet-shortcut {
+                background: #2a2a4a;
+                border: none;
+                padding: 5px 12px;
+                border-radius: 50px;
+                color: white;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 0.75rem;
+                transition: background 0.2s;
+            }
+            .zodiac-desktop-right .desktop-bet-shortcut:hover {
+                background: #3a3a5a;
+            }
+            .zodiac-desktop-right .desktop-preview-box {
+                background: rgba(0,0,0,0.25);
+                border-radius: 12px;
+                padding: 10px 14px;
+                margin-bottom: 10px;
+            }
+            .zodiac-desktop-right .desktop-preview-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 3px;
+                font-size: 0.8rem;
+                flex-wrap: wrap;
+                gap: 4px;
+                color: #cbd5e1;
+            }
+            .zodiac-desktop-right .desktop-preview-row .negative {
+                color: #fc8181;
+            }
+            .zodiac-desktop-right .desktop-preview-row .desktop-preview-value {
+                font-weight: 600;
+                color: #e2e8f0;
+            }
+            .zodiac-desktop-right .desktop-bet-confirm {
+                background: linear-gradient(135deg, #4ade80, #22c55e);
+                width: 100%;
+                border: none;
+                padding: 10px;
+                border-radius: 50px;
+                color: #1a1a2e;
+                font-weight: 700;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .zodiac-desktop-right .desktop-bet-confirm:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(74,222,128,0.3);
+            }
+            
+            .zodiac-desktop-right .history-wrapper {
+                background: rgba(255,255,255,0.03);
+                border-radius: 18px;
+                padding: 14px;
+            }
+            .zodiac-desktop-right .history-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            .zodiac-desktop-right .tabs {
+                display: flex;
+                gap: 4px;
+                background: rgba(0,0,0,0.25);
+                padding: 4px;
+                border-radius: 40px;
+                flex-wrap: wrap;
+            }
+            .zodiac-desktop-right .tab {
+                padding: 4px 10px;
+                border-radius: 30px;
+                font-size: 0.65rem;
+                cursor: pointer;
+                background: transparent;
+                border: none;
+                color: #aaa;
+                transition: all 0.2s ease;
+                font-weight: 500;
+            }
+            .zodiac-desktop-right .tab.active-tab {
+                color: #4ade80 !important;
+                font-weight: bold;
+                background: transparent !important;
+            }
+            .zodiac-desktop-right .toggle-history {
+                background: rgba(255,255,255,0.08);
+                border: none;
+                padding: 4px 10px;
+                border-radius: 30px;
+                color: white;
+                cursor: pointer;
+                font-size: 0.65rem;
+                transition: background 0.2s;
+            }
+            .zodiac-desktop-right .toggle-history:hover {
+                background: rgba(255,255,255,0.15);
+            }
+            .zodiac-desktop-right .history-box {
+                background: rgba(0,0,0,0.2);
+                border-radius: 12px;
+                padding: 8px;
+                max-height: 300px;
+                overflow-y: auto;
+            }
+            .zodiac-desktop-right .history-box::-webkit-scrollbar {
+                width: 4px;
+            }
+            .zodiac-desktop-right .history-box::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.05);
+                border-radius: 10px;
+            }
+            .zodiac-desktop-right .history-box::-webkit-scrollbar-thumb {
+                background: rgba(74,222,128,0.3);
+                border-radius: 10px;
+            }
+            .zodiac-desktop-right .time-item {
+                background: rgba(255,255,255,0.03);
+                border-radius: 8px;
+                padding: 6px 10px;
+                margin-bottom: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.65rem;
+                flex-wrap: wrap;
+                gap: 4px;
+                color: #cbd5e1;
+            }
+            .zodiac-desktop-right .time-item.active {
+                background: rgba(74,222,128,0.08);
+                border-left: 3px solid #4ade80;
+            }
+            .zodiac-desktop-right .history-item {
+                background: rgba(255,255,255,0.03);
+                border-radius: 8px;
+                padding: 6px 10px;
+                margin-bottom: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.65rem;
+                flex-wrap: wrap;
+                gap: 4px;
+                color: #cbd5e1;
+            }
+            .zodiac-desktop-right .status-win {
+                background: rgba(74,222,128,0.15);
+                color: #4ade80;
+                padding: 1px 8px;
+                border-radius: 20px;
+                font-weight: 600;
+                font-size: 0.6rem;
+            }
+            .zodiac-desktop-right .status-lose {
+                background: rgba(248,113,113,0.15);
+                color: #f87171;
+                padding: 1px 8px;
+                border-radius: 20px;
+                font-weight: 600;
+                font-size: 0.6rem;
+            }
+            .zodiac-desktop-right .status-pending {
+                background: rgba(251,191,36,0.15);
+                color: #fbbf24;
+                padding: 1px 8px;
+                border-radius: 20px;
+                font-weight: 600;
+                font-size: 0.6rem;
+            }
+            
+            .zodiac-mobile-only {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 1023px) {
+            .zodiac-desktop-grid {
+                display: none !important;
+            }
+            .zodiac-mobile-only {
+                display: block !important;
+            }
+            .zodiac-mobile-only .zodiac-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .modal-content { padding: 16px; border-radius: 16px; max-width: 100%; }
+            .modal-title { font-size: 16px; }
+            .modal-content { max-height: 95vh; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .product-card .img-wrap { height: 140px; }
+            .product-card .price-tag { font-size: 12px; padding: 3px 10px; }
+            .product-card .info .name { font-size: 12px; }
+            .product-card .info { padding: 10px; }
+            .product-card .info .meta { font-size: 9px; gap: 6px; flex-wrap: wrap; }
+            .hr-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .hr-card .img-wrap { height: 110px; }
+            .hr-card .info { padding: 10px; }
+            .hr-card .info .name { font-size: 13px; }
+            .hr-card .info .desc { font-size: 11px; }
+            .toast { min-width: auto; font-size: 12px; padding: 10px 14px; }
+            .toast-container { bottom: 10px; right: 10px; left: 10px; }
+            .cat-btn { font-size: 9px; padding: 3px 10px; }
+            body { font-size: 14px; line-height: 1.6; }
+            .form-input, .form-select, .form-textarea { font-size: 14px; padding: 10px 12px; }
+            .form-label { font-size: 11px; }
+            .text-slate-400, .text-slate-500 { color: #cbd5e1 !important; }
+            .hero-title { font-size: 1.6rem !important; }
+            .hero-sub { font-size: 1.3rem !important; }
+            .modal-overlay { padding: 8px; align-items: flex-start; padding-top: 20px; }
+            .modal-content { border-radius: 16px; padding: 14px; }
+            .modal-content-sm { max-width: 100%; }
+            .grid.gap-4 { gap: 10px; }
+            .grid.gap-3 { gap: 6px; }
+            #services .glass-card { padding: 10px !important; }
+            #services .glass-card .w-12.h-12 { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+            #services .glass-card h3 { font-size: 10px !important; }
+            #services .glass-card p { display: none !important; }
+            #services .glass-card span { font-size: 7px !important; }
+            .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-pink, .btn-orange {
+                padding: 10px 14px !important; font-size: 12px !important; border-radius: 10px !important;
+            }
+            nav .flex.gap-3 { gap: 6px !important; }
+            nav .text-xl { font-size: 16px !important; }
+            nav .p-2 { padding: 6px !important; }
+            nav .px-3 { padding-left: 8px !important; padding-right: 8px !important; }
+            nav .py-3 { padding-top: 8px !important; padding-bottom: 8px !important; }
+            footer .grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+            footer .text-xs { font-size: 10px !important; }
+            #pagination button, #hrPagination button { padding: 4px 10px !important; font-size: 11px !important; }
+            .zodiac-page-container .zodiac-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .zodiac-page-container .main-title { font-size: 1.3rem; }
+            .zodiac-page-container .balance-amount { font-size: 1.6rem; }
+            .shortcut-grid { grid-template-columns: repeat(3, 1fr); }
+            .zodiac-select-grid { grid-template-columns: repeat(3, 1fr); }
+            .admin-modal-content { padding: 16px; border-radius: 16px; }
+            .admin-grid-3col { grid-template-columns: 1fr; gap: 12px; }
+            .zodiac-mobile-only .zodiac-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 400px) {
+            .product-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .product-card .img-wrap { height: 110px; }
+            .hr-grid { grid-template-columns: 1fr; }
+            .modal-content { padding: 12px; }
+            .modal-title { font-size: 14px; }
+            .zodiac-page-container .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
+            .zodiac-mobile-only .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 641px) and (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .product-card .img-wrap { height: 170px; }
+            .hr-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+        .text-slate-400, .text-slate-500, .text-slate-600 { color: #cbd5e1 !important; }
+        .form-label { color: #e2e8f0 !important; font-weight: 500; }
+        .hero-title-white { color: #ffffff !important; }
+        .hero-sub-white { color: #ffffff !important; }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+        input[type="date"] { color-scheme: dark; }
     </style>
 </head>
 <body>
@@ -1230,7 +1496,7 @@
             </div>
         </div>
     </nav>
-        <!-- ============================================================ -->
+    <!-- ============================================================ -->
     <!-- ===================== PAGE: SHOP ============================ -->
     <!-- ============================================================ -->
     <div id="shopPage">
@@ -1616,8 +1882,8 @@
         </div>
     </div>
     
-        <!-- ============================================================ -->
-    <!-- ====== ADMIN PANEL MODAL (FROM MESSAGE 29) ====== -->
+    <!-- ============================================================ -->
+    <!-- ====== ADMIN MODAL ====== -->
     <!-- ============================================================ -->
     <div class="admin-modal-overlay" id="adminModalZodiac">
         <div class="admin-modal-content">
@@ -1626,7 +1892,6 @@
             <div class="admin-title">🔧 ផ្ទាំងគ្រប់គ្រង Admin</div>
             <div class="admin-sub">គ្រប់គ្រងប្រព័ន្ធ និងត្រួតពិនិត្យអ្នកលេង</div>
             
-            <!-- Online Users -->
             <div class="online-users-section">
                 <div class="online-users-header">
                     <h3 style="color:#fbd38d; font-size:0.9rem;">👥 អ្នកប្រើប្រាស់កំពុងប្រើប្រាស់ប្រព័ន្ធ</h3>
@@ -1642,7 +1907,6 @@
             </div>
             
             <div class="admin-grid-3col">
-                <!-- Column 1: Balances & Stats -->
                 <div>
                     <div class="admin-balance">
                         <div class="admin-balance-label">💰 សមតុល្យ Admin</div>
@@ -1669,7 +1933,6 @@
                     <button class="reset-btn" id="resetSystemBtnZodiac">🔄 កំណត់ប្រព័ន្ធឡើងវិញទាំងស្រុង</button>
                 </div>
                 
-                <!-- Column 2: Bets Table -->
                 <div class="player-bets-table">
                     <h3>📋 តារាងត្រួតពិនិត្យការភ្នាល់របស់អ្នកលេង</h3>
                     <div class="filter-bar">
@@ -1697,7 +1960,6 @@
                     </div>
                 </div>
                 
-                <!-- Column 3: Admin Buttons -->
                 <div>
                     <div class="admin-buttons-section">
                         <div class="section-title">🔐 ប៊ូតុងសម្រាប់ Admin</div>
@@ -1719,7 +1981,22 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+    
+    <!-- ====== ADMIN ENTRY PIN MODAL ====== -->
+    <div class="modal" id="adminEntryPinModalZodiac">
+        <div class="modal-content">
+            <div class="modal-title">🔐 បញ្ចូលពាក្យសម្ងាត់ Admin</div>
+            <div class="password-wrapper">
+                <input type="password" class="password-input" id="adminEntryPinInputZodiac" placeholder="ពាក្យសម្ងាត់">
+                <button type="button" class="toggle-password" onclick="togglePasswordVisibility('adminEntryPinInputZodiac', this)">👁️</button>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-cancel" id="closeAdminEntryModalZodiac">បោះបង់</button>
+                <button class="modal-btn btn-confirm" id="confirmAdminEntryBtnZodiac">ផ្ទៀងផ្ទាត់</button>
+            </div>
+        </div>
+    </div>
     <!-- ============================================================ -->
     <!-- ===================== MODALS ================================ -->
     <!-- ============================================================ -->
@@ -3537,7 +3814,6 @@
         }
         
         function settleBets(currentHour, currentDate, currentSeconds) {
-            // Check for results within first 5 seconds of target hour
             if (currentSeconds >= 0 && currentSeconds <= 5) {
                 const nums = generateNumbers(currentDate);
                 let changed = false;
@@ -3622,7 +3898,9 @@
             } catch (e) {}
         }
         
+        // ================================================================
         // ====== DEVICE & SESSION ======
+        // ================================================================
         function getDeviceId() {
             let id = localStorage.getItem('deviceId');
             if (!id) { id = 'dev_' + Math.random().toString(36).substr(2, 9); localStorage.setItem('deviceId', id); }
@@ -3681,7 +3959,9 @@
             tbody.innerHTML = html;
         }
         
+        // ================================================================
         // ====== PREDICTION FUNCTIONS ======
+        // ================================================================
         function executePredictionFromConfirm() {
             currentBalance -= pendingBetAmount;
             localStorage.setItem('balance', currentBalance);
@@ -3740,7 +4020,9 @@
             setTimeout(() => window.location.reload(), 1500);
         }
         
+        // ================================================================
         // ====== LANGUAGE & SOUND TOGGLES ======
+        // ================================================================
         const translationsZodiac = {
             km: { soundOn: "បិទសំឡេង", soundOff: "បើកសំឡេង", langKhmer: "ភាសាខ្មែរ", langEnglish: "English" },
             en: { soundOn: "Mute", soundOff: "Unmute", langKhmer: "ភាសាខ្មែរ", langEnglish: "English" }
@@ -3775,7 +4057,9 @@
         }
         window.togglePasswordVisibility = togglePasswordVisibility;
         
+        // ================================================================
         // ====== ADMIN PANEL SHOW/HIDE ======
+        // ================================================================
         function showAdminPanelZodiac() {
             document.getElementById('adminModalZodiac').classList.add('show');
             renderAdminBetsTableZodiac();
@@ -3863,12 +4147,25 @@
                 executePredictionFromConfirm();
             });
             
-            document.getElementById('adminPanelBtnZodiac').addEventListener('click', () => document.getElementById('adminEntryPinModalZodiac').classList.add('show'));
-            document.getElementById('adminPanelBtnZodiacMobile').addEventListener('click', () => document.getElementById('adminEntryPinModalZodiac').classList.add('show'));
-            document.getElementById('closeAdminEntryModalZodiac').addEventListener('click', () => document.getElementById('adminEntryPinModalZodiac').classList.remove('show'));
-            document.getElementById('confirmAdminEntryBtnZodiac').addEventListener('click', () => {
-                if (document.getElementById('adminEntryPinInputZodiac').value === ADMIN_PIN) {
+            // Admin Entry Pin
+            document.querySelectorAll('#adminPanelBtnZodiac, #adminPanelBtnZodiacMobile').forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', function() {
+                        document.getElementById('adminEntryPinModalZodiac').classList.add('show');
+                    });
+                }
+            });
+            
+            document.getElementById('closeAdminEntryModalZodiac').addEventListener('click', function() {
+                document.getElementById('adminEntryPinModalZodiac').classList.remove('show');
+                document.getElementById('adminEntryPinInputZodiac').value = '';
+            });
+            
+            document.getElementById('confirmAdminEntryBtnZodiac').addEventListener('click', function() {
+                const pin = document.getElementById('adminEntryPinInputZodiac').value;
+                if (pin === ADMIN_PIN) {
                     document.getElementById('adminEntryPinModalZodiac').classList.remove('show');
+                    document.getElementById('adminEntryPinInputZodiac').value = '';
                     showAdminPanelZodiac();
                     showToast('បានចូលទៅកាន់ Admin Panel!');
                 } else {
@@ -3877,23 +4174,22 @@
                 }
             });
             
-            // Admin modal close handlers
-            document.getElementById('closeAdminModalZodiac').addEventListener('click', function() {
-                document.getElementById('adminModalZodiac').classList.remove('show');
-                document.body.style.overflow = '';
-            });
-            document.getElementById('adminModalZodiac').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('show');
-                    document.body.style.overflow = '';
+            document.getElementById('adminEntryPinInputZodiac').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('confirmAdminEntryBtnZodiac').click();
                 }
+            });
+            
+            // Close admin modal
+            document.getElementById('closeAdminModalZodiac').addEventListener('click', hideAdminPanelZodiac);
+            document.getElementById('adminModalZodiac').addEventListener('click', function(e) {
+                if (e.target === this) hideAdminPanelZodiac();
             });
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     const adminModal = document.getElementById('adminModalZodiac');
                     if (adminModal && adminModal.classList.contains('show')) {
-                        adminModal.classList.remove('show');
-                        document.body.style.overflow = '';
+                        hideAdminPanelZodiac();
                     }
                 }
             });
